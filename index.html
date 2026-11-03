@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>SLAM Production | Corporate Video Production in Atlanta</title>
+<title>SLAM Production | Corporate Video Production in Atlanta and Boston</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="SLAM Production is a corporate video studio in Atlanta. We plan and film everything in one production, cut it into weeks of ready-to-post video, and track how every piece performs on your channels.">
+<meta name="description" content="SLAM Production is a corporate video studio in Atlanta and Boston. We plan and film everything in one production, cut it into weeks of ready-to-post video, and track how every piece performs on your channels.">
 <script>
   /* Theme: light is the default. A visitor's choice is remembered in this browser only. */
   (function () {
@@ -14,19 +14,30 @@
     document.documentElement.setAttribute("data-mode", mode);
   })();
 </script>
+<script>
+  /* Cookie consent: analytics stays off until the visitor accepts (Google Consent Mode v2). */
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag("consent", "default", { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", wait_for_update: 500 });
+  (function () {
+    var c = null;
+    try { c = localStorage.getItem("slam-consent"); } catch (e) {}
+    if (c === "all") gtag("consent", "update", { analytics_storage: "granted" });
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "SLAM Production",
-  "description": "Corporate video production in Atlanta. One production, weeks of ready-to-post video, and tracked results after release.",
-  "email": "hello@slamproduction.com",
+  "description": "Corporate video production in Atlanta and Boston. One production, weeks of ready-to-post video, and tracked results after release.",
+  "email": "contact@slamproduction.com",
   "priceRange": "$4,500 – $21,500",
   "address": { "@type": "PostalAddress", "addressLocality": "Atlanta", "addressRegion": "GA", "addressCountry": "US" },
-  "areaServed": "Metro Atlanta, Georgia"
+  "areaServed": ["Metro Atlanta, Georgia", "Greater Boston, Massachusetts"]
 }
 </script>
 <style>
@@ -65,8 +76,7 @@
   --display: "Futura", "Jost", "Century Gothic", "Avenir Next", sans-serif;
   --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --wrap: 1180px;
+    --wrap: 1180px;
   --gutter: 16px;
   color-scheme: light;
 }
@@ -214,27 +224,147 @@ ul { margin: 0; padding: 0; list-style: none; }
   .hero-row { grid-template-columns: minmax(0, 1fr) auto; gap: 48px; }
 }
 
-/* calendar */
-.cal { margin-top: clamp(36px, 4vw, 48px); background: var(--raised); border: 1px solid var(--line); border-radius: 3px; }
-.cal-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding: 16px 18px; border-bottom: 1px solid var(--line); }
-.cal-title { font: 400 .8rem/1.5 var(--mono); color: var(--muted); }
-.cal-title strong { color: var(--fg); font-weight: 500; }
-.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font: 400 .75rem/1 var(--mono); color: var(--muted); }
-.legend span { display: inline-flex; align-items: center; gap: 7px; }
-.cal-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.cal-grid { display: grid; grid-template-columns: repeat(7, minmax(96px, 1fr)); min-width: 700px; }
-.cal-dow { font: 500 .7rem/1 var(--mono); letter-spacing: .06em; color: var(--muted); padding: 12px; border-bottom: 1px solid var(--line); }
-.cal-cell { min-height: 74px; padding: 10px 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
-.cal-dow:not(:nth-child(7n)) { border-right: 1px solid var(--line); }
-.cal-cell:nth-child(7n) { border-right: 0; }
-.cal-cell.last-row { border-bottom: 0; }
-.cal-num { font: 400 .7rem/1 var(--mono); color: var(--muted); }
-.cal-cell.wk0 { background: var(--bg); }
-.cal-cell.empty { background: repeating-linear-gradient(110deg, var(--hatch) 0 1px, transparent 1px 9px); }
-.cal-foot { display: flex; flex-wrap: wrap; gap: 14px 36px; padding: 16px 18px; border-top: 1px solid var(--line); font: 400 .78rem/1.3 var(--mono); color: var(--muted); }
-.cal-foot b { font: 700 1.35rem/1 var(--display); color: var(--fg); margin-right: 6px; font-variant-numeric: tabular-nums; }
-.scroll-hint { display: block; padding: 8px 18px 0; font: 400 .7rem/1 var(--mono); color: var(--muted); }
-@media (min-width: 740px) { .scroll-hint { display: none; } }
+/* month timeline: one shoot day feeds 30 days of posts, ending in the results report.
+   Laid out like an edit timeline: a day ruler, three tracks, a playhead that runs once. */
+.tl { width: min(1440px, calc(100vw - 2 * var(--gutter))); position: relative; left: 50%; transform: translateX(-50%); margin-top: clamp(44px, 6vw, 80px); border: 1px solid var(--line); border-radius: 6px; background: var(--raised); overflow: hidden; }
+.tl-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding: 26px 28px; border-bottom: 1px solid var(--line); }
+.tl-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font: 700 clamp(1.35rem, 3vw, 2.3rem)/1.1 var(--display); letter-spacing: -.015em; }
+.tl-title i { font-style: normal; color: var(--muted); font-weight: 500; }
+.tl-title .rep { background: var(--spectrum); -webkit-background-clip: text; background-clip: text; color: transparent; filter: saturate(1.2); }
+:root:not([data-mode="dark"]) .tl-title .rep { background: linear-gradient(110deg, #FF2E1F, #E08A00 40%, #1636FF); -webkit-background-clip: text; background-clip: text; }
+.tl-side { display: flex; align-items: center; gap: 16px; font: 400 .8rem/1 var(--mono); color: var(--muted); }
+.tl-side b { font: 700 1.6rem/1 var(--display); color: var(--fg); font-variant-numeric: tabular-nums; margin-right: 4px; }
+.tl-replay { font: 500 .74rem/1 var(--mono); letter-spacing: .04em; padding: 9px 12px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg); color: var(--fg); cursor: pointer; }
+.tl-replay:hover { border-color: var(--fg); }
+.tl-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.tl-grid {
+  --lab: 104px; --src: 150px; --rep: 300px; --day: 20px;
+  position: relative; display: grid; min-width: calc(var(--lab) + var(--src) + var(--rep) + 30 * var(--day));
+  grid-template-columns: var(--lab) var(--src) repeat(30, minmax(var(--day), 1fr)) var(--rep);
+  grid-template-rows: 40px 72px 72px 72px; row-gap: 10px; padding: 16px 0 22px;
+}
+.tl-lab { grid-column: 1; align-self: center; padding-left: 28px; font: 500 .7rem/1.2 var(--mono); letter-spacing: .06em; color: var(--muted); position: sticky; left: 0; z-index: 3; background: var(--raised); height: 100%; display: flex; align-items: center; }
+.tl-day { grid-row: 1; align-self: end; text-align: center; font: 400 .7rem/1 var(--mono); color: var(--muted); padding-bottom: 6px; font-variant-numeric: tabular-nums; }
+.tl-day.wk { color: var(--fg); font-weight: 500; }
+.tl-lane { grid-column: 3 / 33; border-radius: 3px;
+  background: linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / calc(100% / 30) 100%, var(--bg); }
+.tl-clip {
+  position: relative; z-index: 1; margin: 6px 2px; border: 1px solid transparent; border-radius: 4px; padding: 0; cursor: pointer;
+  font: 600 .68rem/1 var(--mono); letter-spacing: .04em; color: var(--bg); background: var(--fg);
+  display: grid; place-items: center; overflow: hidden;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.tl-clip:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.18); }
+.tl-clip:focus-visible { outline-offset: 2px; }
+.tl-clip.t-v::after { content: ""; border-left: 9px solid currentColor; border-top: 6px solid transparent; border-bottom: 6px solid transparent; margin-left: 2px; }
+.tl-clip.t-hero { background: var(--spectrum); color: #0A0A0A; }
+.tl-clip.t-ad { background: var(--s2); color: #0A0A0A; }
+.tl-clip.t-still { background: var(--bg); border: 1px dashed var(--muted); color: var(--muted); }
+.tl-clip.t-still::after { content: ""; width: 12px; height: 9px; border: 1px solid currentColor; border-radius: 1px; }
+.tl-src, .tl-rep { position: relative; z-index: 2; margin: 0 12px; border-radius: 6px; border: 0; cursor: pointer; text-align: left; font: inherit; display: flex; flex-direction: column; justify-content: space-between; padding: 16px; overflow: hidden; transition: transform .18s ease, box-shadow .18s ease; }
+.tl-src:hover, .tl-rep:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.2); }
+.tl-src { grid-column: 2; grid-row: 1 / 5; background: var(--fg); color: var(--bg); }
+.tl-src small, .tl-rep small { font: 500 .68rem/1.35 var(--mono); letter-spacing: .06em; opacity: .7; }
+.tl-src strong { font: 700 1.4rem/1.05 var(--display); white-space: nowrap; }
+.tl-src .rec { margin: 0 6px 0 0; flex: none; }
+.src-rec { display: flex; align-items: center; font: 500 .62rem/1 var(--mono); letter-spacing: .04em; color: var(--s1); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.src-rec span:last-child { color: inherit; opacity: .85; margin-left: 5px; }
+.src-out { display: grid; gap: 7px; padding: 12px 0; margin: 10px 0; border-top: 1px solid rgba(127,127,127,.35); border-bottom: 1px solid rgba(127,127,127,.35); }
+.src-out span { display: flex; align-items: baseline; gap: 6px; font: 400 .62rem/1 var(--mono); letter-spacing: .02em; opacity: .75; white-space: nowrap; }
+.src-out b { font: 700 1.05rem/1 var(--display); min-width: 1.4em; opacity: 1; font-variant-numeric: tabular-nums; }
+.tl-rep { grid-column: 33; grid-row: 1 / 5; background: #0A0A0A; color: #fff; }
+.tl-rep::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--spectrum); }
+.tl-rep strong { display: block; font: 700 clamp(4rem, 5.6vw, 5.2rem)/.85 var(--display); letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
+.tl-rep .spark { display: flex; align-items: flex-end; gap: 2px; height: 60px; }
+.tl-rep .spark i { flex: 1; background: rgba(255,255,255,.35); border-radius: 1px; min-height: 2px; transform-origin: bottom; }
+.tl-rep .spark i.top { background: var(--s4); }
+.tl-rep .go { font: 500 .74rem/1 var(--mono); letter-spacing: .04em; color: var(--s3); }
+.tl-head-cell { grid-row: 1; }
+.tl-ph { position: absolute; top: 6px; bottom: 10px; left: 0; width: 3px; background: var(--s1); z-index: 4; pointer-events: none; opacity: 0; }
+.tl-ph::before { content: ""; position: absolute; top: 0; left: -6px; border: 7.5px solid transparent; border-top: 10px solid var(--s1); border-bottom: 0; }
+.tl-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; padding: 16px 28px; border-top: 1px solid var(--line); }
+.tl-foot .legend { display: flex; flex-wrap: wrap; gap: 8px 20px; font: 400 .76rem/1 var(--mono); color: var(--muted); }
+.tl-foot .legend span { display: inline-flex; align-items: center; gap: 7px; }
+.tl-foot .legend i { width: 18px; height: 12px; border-radius: 2px; display: inline-block; }
+.tl-hint { font: 400 .74rem/1.4 var(--mono); color: var(--muted); }
+.m-only { display: none; }
+@media (max-width: 1100px) { .m-only { display: inline; } }
+@media (max-width: 760px) {
+  .tl-grid { --lab: 78px; --src: 122px; --rep: 250px; --day: 34px; grid-template-rows: 34px 60px 60px 60px; }
+  .tl-head { padding: 20px 16px; }
+  .tl-foot { padding: 14px 16px; }
+  .tl-lab { padding-left: 14px; font-size: .6rem; }
+  .tl-src strong { font-size: 1.1rem; }
+  .tl-src, .tl-rep { margin: 0 8px; padding: 12px; }
+  .src-out { gap: 5px; padding: 8px 0; margin: 6px 0; }
+  .src-out b { font-size: .9rem; }
+  .src-out span { font-size: .56rem; }
+  .tl-rep strong { font-size: 3.4rem; }
+}
+
+/* post preview */
+.rep-chart { width: 100%; display: grid; gap: 10px; color: #fff; align-self: stretch; align-content: center; }
+.rep-chart .rc-top { display: flex; justify-content: space-between; font: 500 .62rem/1 var(--mono); letter-spacing: .06em; color: rgba(255,255,255,.6); }
+.rep-chart .rc-bars { display: flex; align-items: flex-end; gap: 3px; height: 190px; margin-top: 14px; border-bottom: 1px solid rgba(255,255,255,.2); }
+.rep-chart .rc-bars i { position: relative; flex: 1; border-radius: 2px 2px 0 0; transform-origin: bottom; min-height: 1px; background: rgba(255,255,255,.12); }
+.rep-chart .rc-bars i.t-v { background: #EAF6FF; }
+.rep-chart .rc-bars i.t-hero { background: linear-gradient(0deg, #FF2E1F, #FFB300 40%, #18BFFF); }
+.rep-chart .rc-bars i.t-ad { background: #FFB300; }
+.rep-chart .rc-bars i.t-still { background: rgba(255,255,255,.4); }
+.rep-chart .rc-bars i.top { background: #18BFFF; }
+.rep-chart .rc-bars i b { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); font: 600 .62rem/1 var(--mono); white-space: nowrap; color: #18BFFF; }
+.rep-chart .rc-axis { display: flex; justify-content: space-between; font: 400 .56rem/1 var(--mono); color: rgba(255,255,255,.5); }
+.rep-chart .rc-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.15); border-radius: 4px; overflow: hidden; margin-top: 6px; }
+.rep-chart .rc-kpis div { background: #141414; padding: 10px; display: grid; gap: 4px; }
+.rep-chart .rc-kpis b { font: 700 1.6rem/1 var(--display); }
+.rep-chart .rc-kpis div:first-child b { font-size: 2.2rem; }
+.rep-chart .rc-kpis span { font: 400 .56rem/1.3 var(--mono); color: rgba(255,255,255,.6); }
+
+.post-modal { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; padding: 16px; }
+.post-modal[hidden] { display: none !important; }
+.post-backdrop { position: absolute; inset: 0; background: rgba(10, 10, 10, .55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.post-card {
+  position: relative; width: min(760px, 100%); max-height: calc(100dvh - 32px); overflow: auto;
+  background: var(--bg); color: var(--fg); border: 1px solid var(--line); border-radius: 10px;
+  display: grid; box-shadow: 0 30px 80px rgba(0, 0, 0, .35); transform-origin: top left;
+}
+@media (min-width: 720px) { .post-card { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.post-stage { position: relative; background: #0A0A0A; display: grid; place-items: center; padding: 28px; min-height: 300px; overflow: hidden; }
+.post-media { position: relative; width: 100%; border-radius: 8px; overflow: hidden; color: #fff; box-shadow: 0 12px 40px rgba(0,0,0,.4); }
+.post-media.r-v { aspect-ratio: 9 / 16; max-width: 220px; }
+.post-media.r-hero { aspect-ratio: 16 / 9; }
+.post-media.r-ad { aspect-ratio: 4 / 5; max-width: 260px; }
+.post-media.r-still { aspect-ratio: 1 / 1; max-width: 280px; }
+.post-media.r-shoot { aspect-ratio: 3 / 2; }
+.post-media .bg { position: absolute; inset: 0; background: var(--grad, var(--spectrum)); }
+.post-media .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.05) 30%, rgba(0,0,0,.65)); }
+.post-media .bg.kb { animation: kb 9s ease-in-out infinite alternate; }
+@keyframes kb { from { transform: scale(1); } to { transform: scale(1.12) translate(-2%, -2%); } }
+.post-media .play { position: absolute; left: 50%; top: 46%; width: 54px; height: 54px; margin: -27px 0 0 -27px; border-radius: 50%; background: rgba(255,255,255,.18); backdrop-filter: blur(6px); display: grid; place-items: center; }
+.post-media .play::after { content: ""; border-left: 15px solid #fff; border-top: 9px solid transparent; border-bottom: 9px solid transparent; margin-left: 4px; }
+.post-media .over { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px; display: grid; gap: 6px; }
+.post-media .hook { font: 700 1.05rem/1.15 var(--display); text-shadow: 0 2px 12px rgba(0,0,0,.35); }
+.post-media .handle { font: 500 .7rem/1 var(--body); opacity: .9; }
+.post-media .tag { position: absolute; top: 12px; left: 12px; font: 500 .62rem/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; background: rgba(0,0,0,.45); padding: 5px 7px; border-radius: 3px; }
+.post-media .bar { height: 3px; background: rgba(255,255,255,.3); border-radius: 2px; overflow: hidden; }
+.post-media .bar i { display: block; height: 100%; width: 0; background: #fff; animation: progress 6s linear infinite; }
+@keyframes progress { to { width: 100%; } }
+.post-body { padding: 26px 26px 22px; display: grid; gap: 16px; align-content: start; }
+.post-kicker { font: 500 .7rem/1.4 var(--mono); letter-spacing: .04em; color: var(--muted); }
+.post-body h3 { font: 700 1.6rem/1.05 var(--display); letter-spacing: -.01em; }
+.post-body p { color: var(--muted); }
+.post-meta { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.post-meta div { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
+.post-meta dt { font: 500 .7rem/1.6 var(--mono); letter-spacing: .04em; color: var(--muted); }
+.post-meta dd { margin: 0; }
+.post-nav { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.post-nav .count { font: 400 .72rem/1 var(--mono); color: var(--muted); }
+.post-nav .arrows { display: flex; gap: 8px; }
+.icon-btn { width: 40px; height: 40px; display: inline-grid; place-items: center; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); cursor: pointer; font: 500 1rem/1 var(--body); }
+.icon-btn:hover { border-color: var(--fg); }
+.post-close { position: absolute; top: 10px; right: 10px; z-index: 2; background: rgba(0,0,0,.5); color: #fff; border-color: transparent; }
+.post-close:hover { border-color: #fff; }
+body.modal-open { overflow: hidden; }
 
 /* ---------- goals ---------- */
 .goals { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 3px; }
@@ -249,10 +379,15 @@ ul { margin: 0; padding: 0; list-style: none; }
 .goal-tab .s { font: 400 .75rem/1.4 var(--mono); color: var(--muted); }
 .goal-tab::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: transparent; }
 .goal-tab[aria-selected="true"] { background: var(--raised); }
-.goal-tab[aria-selected="true"]::before { background: linear-gradient(0deg, var(--s1), var(--s2) 28%, var(--s3) 50%, var(--s4) 72%, var(--s5)); }
+.goal-tabs { position: relative; }
+.goal-tab { transition: background-color .3s ease; }
+.goal-ind { position: absolute; left: 0; top: 0; width: 4px; height: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(0deg, var(--s1), var(--s2) 28%, var(--s3) 50%, var(--s4) 72%, var(--s5));
+  transition: transform .45s cubic-bezier(.2, .8, .2, 1), height .45s cubic-bezier(.2, .8, .2, 1); }
+.goal-panel { overflow: hidden; }
 .goal-tab:hover .t { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 .goal-panel { padding: clamp(24px, 4vw, 44px); display: grid; gap: 28px; align-content: start; min-width: 0; }
-.goal-pitch { font: italic 400 clamp(1.6rem, 3vw, 2.3rem)/1.15 var(--serif); max-width: 24ch; }
+.goal-pitch { font: 500 clamp(1.5rem, 2.6vw, 2rem)/1.2 var(--body); letter-spacing: -.022em; max-width: 26ch; }
 .goal-lists { display: grid; gap: 28px; }
 .goal-lists h3 { font: 500 .75rem/1 var(--mono); letter-spacing: .04em; color: var(--muted); margin-bottom: 14px; }
 .slash-list li { position: relative; padding-left: 20px; margin-bottom: 8px; }
@@ -299,16 +434,39 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: var(--spectrum-slash); opacity: .22; transform: skewX(-20deg);
 }
 .frame-label { position: absolute; left: 14px; top: 12px; font: 500 .72rem/1 var(--mono); letter-spacing: .04em; }
+/* photo frames: monochrome photo, spectrum "chroma" overlay, brand slash; color comes back on hover */
+.frame.photo { background: #0A0A0A; border-color: transparent; color: #fff; }
+.frame.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: grayscale(1) contrast(1.18) brightness(.92); transform: scale(1.02);
+  transition: filter .7s ease, transform 1.2s cubic-bezier(.2,.8,.2,1); }
+.frame.photo .chroma { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(115deg, #FF2E1F 0%, #FFB300 30%, rgba(234,246,255,.0) 50%, #18BFFF 70%, #1636FF 100%);
+  mix-blend-mode: color; opacity: .9; transition: opacity .7s ease; }
+.frame.photo .shade { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,.55) 100%); }
+.frame.photo::after { z-index: 2; opacity: .85; mix-blend-mode: screen; }
+.frame.photo .frame-label, .frame.photo .frame-pending { z-index: 3; color: #fff; }
+.frame.photo .frame-pending { opacity: .8; }
+.case:hover .frame.photo img { filter: grayscale(.15) contrast(1.05); transform: scale(1.06); }
+.case:hover .frame.photo .chroma { opacity: .35; }
 .frame-pending { position: absolute; left: 14px; bottom: 12px; font: 400 .7rem/1 var(--mono); color: var(--muted); }
+.more-work { display: grid; gap: 24px; margin-top: clamp(28px, 3vw, 40px); }
+@media (min-width: 640px) { .more-work { grid-template-columns: repeat(3, 1fr); } }
+.case-sm .frame { aspect-ratio: 16 / 9; }
+.case-sm h3 { font-size: 1.05rem; }
+.frame.logo { background: #fff; display: grid; place-items: center start; padding-left: 10%; }
+.frame.logo img { width: 48%; height: auto; max-height: 80%; object-fit: contain; mix-blend-mode: multiply; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.frame.logo .frame-label { color: #0A0A0A; z-index: 3; }
+.frame.logo::after { opacity: .9; }
+.case:hover .frame.logo img { transform: scale(1.04); }
 .case-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .case h3 { font: 600 1.25rem/1.25 var(--body); }
 .case p { color: var(--muted); max-width: 60ch; }
 .also { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: .95rem; }
 .also strong { color: var(--fg); font-weight: 600; }
-@media (min-width: 800px) {
-  .work-grid { grid-template-columns: repeat(12, 1fr); }
-  .case-a { grid-column: span 7; } .case-b { grid-column: span 5; }
-  .case-c, .case-d { grid-column: span 6; }
+/* 2 x 2 grid of equal cards from tablet up, so every photo sits at the same size */
+@media (min-width: 640px) {
+  .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* ---------- tracking ---------- */
@@ -356,7 +514,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .pkg.featured::before { content: ""; position: absolute; left: -1px; right: -1px; top: -1px; height: 4px; background: var(--spectrum); }
 .pkg.featured .pkg-len, .pkg.featured .price small, .pkg.featured .pkg-for, .pkg.featured .pkg-meta { color: var(--muted); }
 .pkg.featured .items, .pkg.featured .items li { border-color: var(--line); }
-.feat-line { font: italic 400 1.15rem/1.2 var(--serif); }
+.feat-line { font: 500 1.05rem/1.3 var(--body); letter-spacing: -.01em; }
 .pkg-cta { margin-top: 4px; }
 .band .btn-primary { background: var(--band-btn-bg); color: var(--band-btn-fg); }
 .band .btn-primary:hover { opacity: .88; }
@@ -443,12 +601,13 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* ---------- closer ---------- */
 .closer { position: relative; overflow: hidden; border-top: 1px solid var(--line); padding-block: clamp(80px, 12vw, 150px); }
 .closer .wrap { position: relative; z-index: 1; display: grid; gap: 28px; justify-items: start; }
-.closer .h2 { font-size: clamp(2.3rem, 6vw, 4.8rem); max-width: 13ch; }
+.closer .h2 { font-size: clamp(2.3rem, 6vw, 4.8rem); max-width: none; }
+.closer .h2 .line { display: block; }
 .big-slash {
   position: absolute; top: -20%; bottom: -20%; right: 6%; width: clamp(70px, 11vw, 150px);
   background: var(--spectrum-slash); transform: skewX(-20deg);
 }
-@media (max-width: 640px) { .big-slash { right: -40px; opacity: .9; } .closer .h2 { max-width: 11ch; } }
+@media (max-width: 640px) { .big-slash { right: -40px; opacity: .9; } .closer .h2 { font-size: 8.6vw; } .closer .h2 .line { white-space: nowrap; } }
 
 /* ---------- footer ---------- */
 .foot { border-top: 1px solid var(--line); padding-block: 36px; }
@@ -459,6 +618,53 @@ ul { margin: 0; padding: 0; list-style: none; }
 .copy { font: 500 .72rem/1 var(--mono); letter-spacing: .04em; padding: 7px 9px; border: 1px solid var(--line); border-radius: 2px; background: transparent; color: var(--fg); cursor: pointer; }
 .copy:hover { border-color: var(--fg); }
 .foot-meta { font: 400 .75rem/1.4 var(--mono); color: var(--muted); }
+
+/* ---------- cookie banner ---------- */
+.cookie {
+  position: fixed; z-index: 80; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  max-width: 440px; margin-left: auto;
+  background: var(--bg); color: var(--fg); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.18); padding: 20px; display: grid; gap: 14px;
+}
+.cookie[hidden] { display: none !important; }
+.cookie h2 { font: 700 1.15rem/1.15 var(--display); display: flex; align-items: center; gap: 10px; }
+.cookie h2::before { content: ""; width: 7px; height: 16px; flex: none; background: var(--spectrum); clip-path: polygon(64% 0, 100% 0, 36% 100%, 0 100%); }
+.cookie p { font-size: .9rem; color: var(--muted); }
+.cookie-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.cookie-actions .btn { padding: 11px 16px; font-size: .88rem; flex: 1 1 auto; justify-content: center; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.linkish { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+/* ---------- contact window ---------- */
+.contact-modal { position: fixed; inset: 0; z-index: 95; display: grid; place-items: center; padding: 16px; }
+.contact-modal[hidden] { display: none !important; }
+.contact-card {
+  position: relative; width: min(880px, 100%); max-height: calc(100dvh - 32px); overflow: auto;
+  background: var(--bg); color: var(--fg); border: 1px solid var(--line); border-radius: 12px;
+  display: grid; box-shadow: 0 30px 80px rgba(0,0,0,.35); transform-origin: center;
+}
+@media (min-width: 760px) { .contact-card { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
+.contact-side { position: relative; overflow: hidden; background: #0A0A0A; color: #fff; padding: 32px 28px; display: grid; gap: 22px; align-content: start; }
+.contact-side::after { content: ""; position: absolute; right: -40px; top: -20%; bottom: -20%; width: 70px; background: var(--spectrum-slash); transform: skewX(-20deg); opacity: .9; }
+.contact-side > * { position: relative; z-index: 1; max-width: 30ch; }
+.contact-side .label { color: rgba(255,255,255,.6); margin: 0; }
+.contact-side h2 { font: 700 clamp(2rem, 4vw, 2.8rem)/1 var(--display); letter-spacing: -.02em; }
+.contact-side p { color: rgba(255,255,255,.72); }
+.c-rows { display: grid; border-top: 1px solid rgba(255,255,255,.18); }
+.c-rows div { display: grid; gap: 4px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+.c-rows dt { font: 500 .66rem/1 var(--mono); letter-spacing: .06em; color: rgba(255,255,255,.55); }
+.c-rows dd { margin: 0; font-size: 1rem; }
+.c-rows a { color: #fff; }
+.contact-form { padding: 32px 28px; display: grid; gap: 14px; align-content: start; }
+.contact-form .row2 { display: grid; gap: 14px; }
+@media (min-width: 520px) { .contact-form .row2 { grid-template-columns: 1fr 1fr; } }
+.field select { font: inherit; padding: 11px 12px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg); color: var(--fg); }
+.contact-form .btn { justify-content: center; }
+.contact-close { position: absolute; top: 12px; right: 12px; z-index: 3; }
+.hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
+.form-msg { font-size: .9rem; padding: 12px 14px; border-radius: 4px; background: var(--raised); border: 1px solid var(--line); }
+.form-msg.err { border-color: var(--s1); }
+.nav-contact { color: var(--fg) !important; font-weight: 500; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -473,12 +679,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 <header class="nav">
   <div class="wrap">
     <a class="logo" href="#top" aria-label="SLAM Production, back to top">
-      <svg viewBox="0 0 440 100" role="img" aria-label="SLAM">
+      <svg viewBox="0 0 450 100" role="img" aria-label="SLAM">
         <defs><linearGradient id="spec-nav" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FF2E1F"/><stop offset=".3" stop-color="#FFB300"/><stop offset=".5" stop-color="#EAF6FF"/><stop offset=".72" stop-color="#18BFFF"/><stop offset="1" stop-color="#1636FF"/></linearGradient></defs>
         <polygon points="0,0 42,0 5.6,100 0,100" fill="currentColor"/>
         <polygon points="49,0 70,0 33.6,100 12.6,100" fill="url(#spec-nav)"/>
         <polygon points="77,0 100,0 100,100 40.6,100" fill="currentColor"/>
-        <text x="122" y="88" fill="currentColor" font-family="Futura, Jost, sans-serif" font-weight="700" font-size="118" letter-spacing="-2">SLAM</text>
+        <text x="122" y="88" fill="currentColor" font-family="Futura, Jost, sans-serif" font-weight="700" font-size="118" textLength="320" lengthAdjust="spacingAndGlyphs">SLAM</text>
       </svg>
     </a>
     <nav class="nav-links" aria-label="Main">
@@ -487,6 +693,7 @@ ul { margin: 0; padding: 0; list-style: none; }
       <a href="#tracking">Tracking</a>
       <a href="#packages">Packages</a>
       <a href="#estimate">Estimate</a>
+      <a href="#contact" class="nav-contact" data-contact>Contact</a>
     </nav>
     <div class="nav-end">
       <button class="mode-toggle" id="mode-toggle" type="button" aria-pressed="false" aria-label="Dark mode">
@@ -503,7 +710,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 <section class="hero" id="top" aria-labelledby="hero-title">
   <div class="wrap">
     <div class="hero-top">
-      <span><span class="rec" aria-hidden="true"></span><strong>SLAM Production</strong> // corporate video, Atlanta</span>
+      <span><span class="rec" aria-hidden="true"></span><strong>SLAM Production</strong> // corporate video, Atlanta and Boston</span>
       <span class="tnum" aria-hidden="true"><span id="tc">TC 00:00:00:00</span> // 4K 25p</span>
     </div>
     <h1 id="hero-title"><span>Shoot once.</span> <span>Post all month.</span> <span>Know what worked.</span></h1>
@@ -515,28 +722,25 @@ ul { margin: 0; padding: 0; list-style: none; }
       </div>
     </div>
 
-    <figure class="cal" aria-labelledby="cal-title" style="margin-inline:0">
-      <div class="cal-head">
-        <p class="cal-title" id="cal-title"><strong>One production</strong> → a month of posts. Example calendar from The Month package.</p>
+    <figure class="tl" aria-labelledby="tl-title" style="margin-inline:0">
+      <div class="tl-head">
+        <p class="tl-title" id="tl-title"><span>1 shoot day</span><i aria-hidden="true">→</i><span>30 days of posts</span><i aria-hidden="true">→</i><span class="rep">1 results report</span></p>
+        <div class="tl-side">
+          <span><b id="tl-n">20</b>posts live</span>
+          <button class="tl-replay" type="button" id="tl-replay" aria-label="Replay the month">↻ Replay</button>
+        </div>
+      </div>
+      <div class="tl-scroll" tabindex="0" aria-label="Example month from The Month package. Scroll sideways on small screens.">
+        <div class="tl-grid" id="tl-grid"></div>
+      </div>
+      <div class="tl-foot">
         <div class="legend" aria-label="Legend">
-          <span><i class="chip chip-hero">Hero</i>16:9 film</span>
-          <span><i class="chip chip-ad">AD</i>15s / 30s</span>
-          <span><i class="chip chip-v">9:16</i>vertical clip</span>
-          <span><i class="chip chip-still">Still</i>photo</span>
+          <span><i style="background:var(--spectrum)"></i>Hero film</span>
+          <span><i style="background:var(--s2)"></i>Ad, 15s / 30s</span>
+          <span><i style="background:var(--fg)"></i>Vertical clip</span>
+          <span><i style="border:1px dashed var(--muted)"></i>Photo</span>
         </div>
-      </div>
-      <span class="scroll-hint" aria-hidden="true">Scroll sideways to see the full week →</span>
-      <div class="cal-scroll" tabindex="0" aria-label="Example month posting calendar">
-        <div class="cal-grid" id="cal-grid">
-          <div class="cal-dow">MON</div><div class="cal-dow">TUE</div><div class="cal-dow">WED</div><div class="cal-dow">THU</div><div class="cal-dow">FRI</div><div class="cal-dow">SAT</div><div class="cal-dow">SUN</div>
-        </div>
-      </div>
-      <div class="cal-foot">
-        <span><b>1</b>production</span>
-        <span><b>15</b>videos</span>
-        <span><b>25</b>stills</span>
-        <span><b>3</b>posts a week</span>
-        <span><b>30</b>day results report</span>
+        <span class="tl-hint">Click any post to preview it, or the report to see the results.<span class="m-only"> Swipe to scroll the month.</span></span>
       </div>
     </figure>
   </div>
@@ -602,31 +806,45 @@ ul { margin: 0; padding: 0; list-style: none; }
     </div>
     <div class="work-grid">
       <article class="case case-a">
-        <div class="frame" role="img" aria-label="Placeholder frame for TrialPort, still pending"><span class="frame-label">TRIALPORT // EP 01–15</span><span class="frame-pending">Still pending</span></div>
+        <div class="frame logo"><img src="images/work/trialport-logo.jpg" alt="TrialPort logo" loading="lazy"><span class="frame-label">TRIALPORT // EP 01–15</span></div>
         <div class="case-tags"><span class="chip">Pharmaceutical</span><span class="chip">Podcast series</span><span class="chip">YouTube</span></div>
         <h3>TrialPort: a 15-episode video podcast</h3>
         <p>Multi-camera production for a pharmaceutical company's podcast, filmed in studio sessions and released on YouTube, with clips cut from every episode.</p>
       </article>
       <article class="case case-b">
-        <div class="frame" role="img" aria-label="Placeholder frame for Czech Fencing Federation, still pending"><span class="frame-label">CZECH FENCING // SOCIAL</span><span class="frame-pending">Still pending</span></div>
+        <div class="frame photo"><img src="images/work/czech-fencing.jpg" alt="A Czech fencer in a national team mask pointing during a bout" loading="lazy" style="object-position:50% 0%"><span class="chroma" aria-hidden="true"></span><span class="shade" aria-hidden="true"></span><span class="frame-label">CZECH FENCING // SOCIAL</span></div>
         <div class="case-tags"><span class="chip">Sport federation</span><span class="chip">Social content</span></div>
         <h3>Czech Fencing Federation</h3>
         <p>Ongoing social media management and content production: filming competitions and athletes, then running the channels that publish it.</p>
       </article>
       <article class="case case-c">
-        <div class="frame" role="img" aria-label="Placeholder frame for the Olympic fencer documentary, still pending"><span class="frame-label">DOCUMENTARY // OLYMPIC FENCER</span><span class="frame-pending">Still pending</span></div>
+        <div class="frame photo"><img src="images/work/cesta-za-snem.jpg" alt="Portrait of a Czech Olympic gold medalist in a national team shirt" loading="lazy" style="object-position:50% 22%"><span class="chroma" aria-hidden="true"></span><span class="shade" aria-hidden="true"></span><span class="frame-label">DOCUMENTARY // OLYMPIC GOLD MEDALIST</span></div>
         <div class="case-tags"><span class="chip">Documentary</span><span class="chip">With the Czech Fencing Federation</span></div>
-        <h3>Portrait of an Olympic fencer</h3>
-        <p>A documentary following an Olympic fencer, produced in collaboration with the federation.</p>
+        <h3>A documentary about an Olympic gold medalist</h3>
+        <p>A documentary following an Olympic gold medalist in fencing, produced in collaboration with the federation.</p>
       </article>
       <article class="case case-d">
-        <div class="frame" role="img" aria-label="Placeholder frame for content for Red Bull athletes, still pending"><span class="frame-label">ATHLETES // FILM, EDIT, DELIVERY</span><span class="frame-pending">Still pending</span></div>
+        <div class="frame photo"><img src="images/work/red-bull-athlete.jpg" alt="A fencer in a Red Bull mask looking down between bouts" loading="lazy" style="object-position:40% 25%"><span class="chroma" aria-hidden="true"></span><span class="shade" aria-hidden="true"></span><span class="frame-label">ATHLETES // FILM, EDIT, DELIVERY</span></div>
         <div class="case-tags"><span class="chip">Athletes</span><span class="chip">Filmed, edited, produced</span></div>
         <h3>Content for Red Bull athletes</h3>
         <p>Videos for Red Bull athletes, from filming through edit and final delivery.</p>
       </article>
     </div>
-    <p class="also"><strong>Also designed for</strong> Toyota and Furiosa · Camera and lighting crew on corporate shoots for national brands</p>
+    <div class="more-work">
+      <article class="case case-sm">
+        <div class="frame photo"><img src="images/work/czech-olympic-team.jpg" alt="A Czech Olympic athlete smiling and holding up a medal" loading="lazy" style="object-position:50% 35%"><span class="chroma" aria-hidden="true"></span><span class="shade" aria-hidden="true"></span><span class="frame-label">OLYMPIC TEAM</span></div>
+        <h3>Czech Olympic Team</h3>
+      </article>
+      <article class="case case-sm">
+        <div class="frame photo"><img src="images/work/candy-crush.jpg" alt="Candy Crush Saga commercial still with the game logo" loading="lazy" style="object-position:50% 50%"><span class="chroma" aria-hidden="true"></span><span class="shade" aria-hidden="true"></span><span class="frame-label">COMMERCIAL</span></div>
+        <h3>Candy Crush commercial</h3>
+      </article>
+      <article class="case case-sm">
+        <div class="frame photo"><img src="images/work/action-juice.jpg" alt="Action Juice still of a man looking into the camera under red neon lettering" loading="lazy" style="object-position:50% 40%"><span class="chroma" aria-hidden="true"></span><span class="shade" aria-hidden="true"></span><span class="frame-label">ACTION JUICE</span></div>
+        <h3>Action Juice</h3>
+      </article>
+    </div>
+    <p class="also"><strong>Also designed for</strong> Toyota, Furiosa and ChefATL · Camera and lighting crew on corporate shoots for national brands</p>
   </div>
 </section>
 
@@ -642,16 +860,16 @@ ul { margin: 0; padding: 0; list-style: none; }
       <figure class="dash" style="margin:0" aria-label="Sample results dashboard with illustrative numbers">
         <div class="dash-head"><span>Results // first 30 days</span><span class="sample-tag">SAMPLE DATA</span></div>
         <div class="kpis">
-          <div class="kpi"><b>48.2K</b><span>views, all platforms</span></div>
+          <div class="kpi"><b>482K</b><span>views, all platforms</span></div>
           <div class="kpi"><b>41%</b><span>avg. watch-through</span></div>
-          <div class="kpi"><b>612</b><span>site visits from links</span></div>
+          <div class="kpi"><b>6.1K</b><span>site visits from links</span></div>
         </div>
         <div class="bars">
-          <div class="bar"><span>Customer clip 03</span><div class="bar-track"><div class="bar-fill top" style="width:100%"></div></div><span class="bar-val">9.4K</span></div>
-          <div class="bar"><span>Customer clip 07</span><div class="bar-track"><div class="bar-fill" style="width:81.9%"></div></div><span class="bar-val">7.7K</span></div>
-          <div class="bar"><span>Hero film</span><div class="bar-track"><div class="bar-fill" style="width:63.8%"></div></div><span class="bar-val">6.0K</span></div>
-          <div class="bar"><span>Ad, 30 sec</span><div class="bar-track"><div class="bar-fill" style="width:41.5%"></div></div><span class="bar-val">3.9K</span></div>
-          <div class="bar"><span>Team BTS clip</span><div class="bar-track"><div class="bar-fill" style="width:29.8%"></div></div><span class="bar-val">2.8K</span></div>
+          <div class="bar"><span>Customer clip 03</span><div class="bar-track"><div class="bar-fill top" style="width:100%"></div></div><span class="bar-val">94K</span></div>
+          <div class="bar"><span>Customer clip 07</span><div class="bar-track"><div class="bar-fill" style="width:81.9%"></div></div><span class="bar-val">77K</span></div>
+          <div class="bar"><span>Hero film</span><div class="bar-track"><div class="bar-fill" style="width:63.8%"></div></div><span class="bar-val">60K</span></div>
+          <div class="bar"><span>Ad, 30 sec</span><div class="bar-track"><div class="bar-fill" style="width:41.5%"></div></div><span class="bar-val">39K</span></div>
+          <div class="bar"><span>Team BTS clip</span><div class="bar-track"><div class="bar-fill" style="width:29.8%"></div></div><span class="bar-val">28K</span></div>
         </div>
         <p class="insight"><strong>Vertical customer clips drove 3× the site visits of the 30-second ad.</strong> Next shoot: more customer stories, shorter openers.</p>
       </figure>
@@ -806,7 +1024,10 @@ ul { margin: 0; padding: 0; list-style: none; }
         </div>
         <ul class="lines" id="est-lines"></ul>
         <p class="includes" id="est-includes"></p>
-        <form class="lead" id="lead-form" novalidate>
+        <form class="lead" id="lead-form" name="estimate" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="estimate">
+          <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <input type="hidden" name="estimate" id="lead-estimate">
           <div class="field"><label for="lead-name">Name</label><input id="lead-name" name="name" autocomplete="name"></div>
           <div class="field"><label for="lead-company">Company</label><input id="lead-company" name="company" autocomplete="organization"></div>
           <div class="field">
@@ -847,30 +1068,111 @@ ul { margin: 0; padding: 0; list-style: none; }
   <div class="big-slash" aria-hidden="true"></div>
   <div class="wrap">
     <span class="label" style="margin:0">// Ready when you are</span>
-    <h2 class="h2" id="closer-title">One shoot. A month of content. Proof it worked.</h2>
-    <a class="btn btn-primary" href="#estimate" data-track="cta_closer"><span class="slash-ico" aria-hidden="true"></span>Get a free treatment</a>
+    <h2 class="h2" id="closer-title"><span class="line">One shoot.</span> <span class="line">A month of content.</span> <span class="line">Proof it worked.</span></h2>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#estimate" data-track="cta_closer"><span class="slash-ico" aria-hidden="true"></span>Get a free treatment</a>
+      <a class="btn btn-secondary" href="#contact" data-contact>Contact us</a>
+    </div>
   </div>
 </section>
 </main>
+
+<!-- Post preview (opened from the hero calendar) -->
+<div class="post-modal" id="post-modal" hidden>
+  <div class="post-backdrop" data-close></div>
+  <div class="post-card" id="post-card" role="dialog" aria-modal="true" aria-labelledby="post-title" tabindex="-1">
+    <button class="icon-btn post-close" type="button" data-close aria-label="Close preview">✕</button>
+    <div class="post-stage" id="post-stage"></div>
+    <div class="post-body">
+      <span class="post-kicker" id="post-kicker"></span>
+      <h3 id="post-title"></h3>
+      <p id="post-desc"></p>
+      <dl class="post-meta" id="post-meta" style="margin:0"></dl>
+      <div class="post-nav">
+        <span class="count" id="post-count"></span>
+        <div class="arrows">
+          <button class="icon-btn" type="button" id="post-prev" aria-label="Previous post">←</button>
+          <button class="icon-btn" type="button" id="post-next" aria-label="Next post">→</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Contact window -->
+<div class="contact-modal" id="contact-modal" hidden>
+  <div class="post-backdrop" data-cclose></div>
+  <div class="contact-card" id="contact-card" role="dialog" aria-modal="true" aria-labelledby="contact-title" tabindex="-1">
+    <button class="icon-btn post-close contact-close" type="button" data-cclose aria-label="Close contact window">✕</button>
+    <div class="contact-side">
+      <span class="label">// Contact</span>
+      <h2 id="contact-title">Let's make your next month of content.</h2>
+      <p>Tell us what you need and we'll reply within one business day. Or just email us.</p>
+      <dl class="c-rows" style="margin:0">
+        <div><dt>EMAIL</dt><dd><a href="mailto:contact@slamproduction.com">contact@slamproduction.com</a></dd></div>
+        <div><dt>STUDIOS</dt><dd>Atlanta, GA · Boston, MA</dd></div>
+        <div><dt>REPLY TIME</dt><dd>Within one business day</dd></div>
+      </dl>
+    </div>
+    <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="contact">
+      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <div class="row2">
+        <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" autocomplete="name"></div>
+        <div class="field"><label for="c-company">Company</label><input id="c-company" name="company" autocomplete="organization"></div>
+      </div>
+      <div class="field">
+        <label for="c-email">Email <em>(required)</em></label>
+        <input id="c-email" name="email" type="email" autocomplete="email" required aria-describedby="c-email-err">
+        <span class="err" id="c-email-err" hidden>Enter an email so we can reply.</span>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="c-city">Where are you?</label>
+          <select id="c-city" name="city"><option>Atlanta</option><option>Boston</option><option>Somewhere else</option></select></div>
+        <div class="field"><label for="c-phone">Phone <em>(optional)</em></label><input id="c-phone" name="phone" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="field">
+        <label for="c-msg">Message <em>(required)</em></label>
+        <textarea id="c-msg" name="message" required aria-describedby="c-msg-err" placeholder="What are you looking to film, and when?"></textarea>
+        <span class="err" id="c-msg-err" hidden>Add a short message so we know what you need.</span>
+      </div>
+      <button class="btn btn-primary" type="submit"><span class="slash-ico" aria-hidden="true"></span>Send message</button>
+      <div class="form-msg" id="contact-sent" role="status" hidden></div>
+    </form>
+  </div>
+</div>
+
+<!-- Cookie banner -->
+<div class="cookie" id="cookie" role="region" aria-labelledby="cookie-title" hidden>
+  <h2 id="cookie-title">Cookies</h2>
+  <p>We use analytics cookies to see which pages and videos people find useful. They stay off unless you accept. Your light or dark mode choice is saved on your device either way.</p>
+  <div class="cookie-actions">
+    <button class="btn btn-primary" type="button" id="cookie-accept">Accept all</button>
+    <button class="btn btn-secondary" type="button" id="cookie-decline">Only necessary</button>
+  </div>
+</div>
 
 <!-- 10. Footer -->
 <footer class="foot">
   <div class="wrap">
     <a class="logo" href="#top" aria-label="SLAM Production, back to top">
-      <svg viewBox="0 0 440 100" role="img" aria-label="SLAM">
+      <svg viewBox="0 0 450 100" role="img" aria-label="SLAM">
         <defs><linearGradient id="spec-foot" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FF2E1F"/><stop offset=".3" stop-color="#FFB300"/><stop offset=".5" stop-color="#EAF6FF"/><stop offset=".72" stop-color="#18BFFF"/><stop offset="1" stop-color="#1636FF"/></linearGradient></defs>
         <polygon points="0,0 42,0 5.6,100 0,100" fill="currentColor"/>
         <polygon points="49,0 70,0 33.6,100 12.6,100" fill="url(#spec-foot)"/>
         <polygon points="77,0 100,0 100,100 40.6,100" fill="currentColor"/>
-        <text x="122" y="88" fill="currentColor" font-family="Futura, Jost, sans-serif" font-weight="700" font-size="118" letter-spacing="-2">SLAM</text>
+        <text x="122" y="88" fill="currentColor" font-family="Futura, Jost, sans-serif" font-weight="700" font-size="118" textLength="320" lengthAdjust="spacingAndGlyphs">SLAM</text>
       </svg>
     </a>
     <div class="mail">
-      <span class="placeholder-tag">PLACEHOLDER</span>
-      <code id="mail-addr">hello@slamproduction.com</code>
+      <code id="mail-addr">contact@slamproduction.com</code>
       <button class="copy" id="copy-mail" type="button">Copy</button>
     </div>
-    <p class="foot-meta">SLAM Production // Atlanta, GA // © 2026</p>
+    <div class="foot-links foot-meta">
+      <a href="#contact" data-contact>Contact</a>
+      <button type="button" class="linkish" id="cookie-settings">Cookie settings</button>
+    </div>
+    <p class="foot-meta">SLAM Production // Atlanta, GA // Boston, MA // © 2026</p>
   </div>
 </footer>
 
@@ -916,24 +1218,232 @@ ul { margin: 0; padding: 0; list-style: none; }
     var f = Math.floor((performance.now() - t0) / 40);
     var ff = f % 25, s = Math.floor(f / 25), ss = s % 60, mm = Math.floor(s / 60) % 60, hh = Math.floor(s / 3600);
     tc.textContent = "TC " + pad(hh) + ":" + pad(mm) + ":" + pad(ss) + ":" + pad(ff);
+    var stc = document.getElementById("tl-tc"); if (stc) stc.textContent = pad(mm) + ":" + pad(ss) + ":" + pad(ff);
   }
   if (!reduce) setInterval(tick, 40);
 
-  /* ---------- month calendar ---------- */
+  /* ---------- month timeline ---------- */
   var plan = { 1: ["hero", "Hero"], 5: ["ad", "AD 30s"], 17: ["ad", "AD 15s"] };
-  [3, 8, 10, 12, 15, 19, 22, 24, 26, 27, 29, 31].forEach(function (d) { plan[d] = ["v", "9:16"]; });
+  [3, 8, 10, 12, 15, 19, 22, 24, 26, 27, 28, 29].forEach(function (d) { plan[d] = ["v", "9:16"]; });
   [2, 9, 16, 23, 30].forEach(function (d) { plan[d] = ["still", "Still"]; });
-  var grid = document.getElementById("cal-grid");
-  var cells = [];
-  cells.push('<div class="cal-cell wk0"><span class="cal-num">WK 0</span><span class="chip chip-shoot">Shoot day</span></div>');
-  for (var d = 1; d <= 31; d++) {
-    var p = plan[d];
-    cells.push('<div class="cal-cell"><span class="cal-num">' + pad(d) + "</span>" + (p ? '<span class="chip chip-' + p[0] + '">' + p[1] + "</span>" : "") + "</div>");
+  /* illustrative 30-day views per post; totals match the sample dashboard (482K) */
+  var VIEWS = { 1: 60000, 5: 39000, 17: 24000, 3: 36000, 8: 39000, 10: 94000, 12: 19000, 15: 77000, 19: 22000, 22: 16000, 24: 14000, 26: 11000, 27: 9000, 28: 6000, 29: 5000,
+                2: 3000, 9: 2500, 16: 2200, 23: 1800, 30: 1500 };
+  function k(n) { return n >= 1000 ? (n / 1000).toFixed(1).replace(".0", "") + "K" : String(n); }
+  var grid = document.getElementById("tl-grid");
+  var DOW = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  var ROW = { hero: 2, ad: 2, v: 3, still: 4 };
+  var NAME = { hero: "Hero film", ad: "Ad", v: "Vertical clip", still: "Photo" };
+  var h = [];
+  h.push('<span class="tl-lab" style="grid-row:1">DAY</span>');
+  h.push('<span class="tl-lab" style="grid-row:2">FILM + ADS</span><span class="tl-lab" style="grid-row:3">VERTICAL</span><span class="tl-lab" style="grid-row:4">PHOTOS</span>');
+  for (var r = 2; r <= 4; r++) h.push('<span class="tl-lane" style="grid-row:' + r + '" aria-hidden="true"></span>');
+  for (var d = 1; d <= 30; d++) h.push('<span class="tl-day' + ((d - 1) % 7 === 0 ? " wk" : "") + '" style="grid-column:' + (d + 2) + '">' + pad(d) + "</span>");
+  h.push('<button type="button" class="tl-src" data-day="0" aria-label="Day 0, shoot day. Open preview"><small>DAY 0</small><span class="src-rec" aria-hidden="true"><span class="rec"></span>REC <span id="tl-tc">00:00:00</span></span><span class="src-out" aria-hidden="true"><span><b>1</b>hero film</span><span><b>2</b>ads</span><span><b>12</b>clips</span><span><b>25</b>photos</span></span><strong>Shoot<br>day</strong></button>');
+  Object.keys(plan).map(Number).sort(function (a, b) { return a - b; }).forEach(function (d) {
+    var t = plan[d][0], span = t === "hero" ? 2 : 1;
+    var txt = t === "hero" ? "HERO" : t === "ad" ? "AD" : "";
+    h.push('<button type="button" class="tl-clip t-' + t + '" data-day="' + d + '" style="grid-row:' + ROW[t] + ";grid-column:" + (d + 2) + " / span " + span + '" aria-label="Day ' + d + ", " + NAME[t] + '. Open preview" title="Day ' + d + " · " + NAME[t] + '">' + txt + "</button>");
+  });
+  var maxV = 94000, spark = "";
+  for (var sd = 1; sd <= 30; sd++) spark += '<i style="height:' + Math.max(4, Math.round((VIEWS[sd] || 0) / maxV * 100)) + '%"' + (sd === 10 ? ' class="top"' : "") + "></i>";
+  h.push('<button type="button" class="tl-rep" data-day="99" aria-label="Day 30, results report. Open the report"><small>DAY 30 · REPORT</small><span><strong id="tl-views">482K</strong><small style="display:block;margin-top:8px">views across platforms</small></span><span class="spark" aria-hidden="true">' + spark + '</span><span class="go">Open report →</span></button>');
+  h.push('<span class="tl-ph" id="tl-ph" aria-hidden="true"></span>');
+  grid.innerHTML = h.join("");
+
+  /* playhead: runs once when the timeline comes into view, posts light up as it passes */
+  var ph = document.getElementById("tl-ph"), countEl = document.getElementById("tl-n");
+  var TOTAL = Object.keys(plan).length;
+  function playMonth() {
+    if (reduce || !grid.animate) { countEl.textContent = TOTAL; return; }
+    var src = grid.querySelector(".tl-src"), rep = grid.querySelector(".tl-rep");
+    var x0 = src.offsetLeft + src.offsetWidth, x1 = rep.offsetLeft, D = 3200;
+    grid.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); });
+    ph.animate([{ transform: "translateX(" + x0 + "px)", opacity: 1 }, { transform: "translateX(" + x1 + "px)", opacity: 1, offset: .97 }, { transform: "translateX(" + x1 + "px)", opacity: 0 }],
+      { duration: D, easing: "linear", fill: "forwards" });
+    src.animate([{ transform: "scale(.94)", opacity: .6 }, { transform: "none", opacity: 1 }], { duration: 400, easing: "cubic-bezier(.2,.8,.2,1)" });
+    var n = 0; countEl.textContent = "0";
+    grid.querySelectorAll(".tl-clip").forEach(function (c) {
+      var delay = Math.max(0, (c.offsetLeft - x0) / (x1 - x0) * D);
+      c.animate([{ opacity: .12, transform: "scale(.6)" }, { opacity: 1, transform: "scale(1.15)", offset: .6 }, { opacity: 1, transform: "none" }],
+        { duration: 380, delay: delay, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" })
+        .onfinish = function () { countEl.textContent = ++n; };
+    });
+    /* on narrow screens the strip scrolls with the playhead */
+    var sc = grid.parentNode;
+    if (sc.scrollWidth > sc.clientWidth + 4) {
+      var t0s = performance.now(), maxS = sc.scrollWidth - sc.clientWidth, stopped = false;
+      var stop = function () { stopped = true; };
+      sc.addEventListener("touchstart", stop, { once: true, passive: true });
+      sc.addEventListener("wheel", stop, { once: true, passive: true });
+      (function follow(now) {
+        if (stopped) return;
+        var p = Math.min(1, (now - t0s) / D), x = x0 + (x1 - x0) * p;
+        sc.scrollLeft = Math.max(0, Math.min(maxS, x - sc.clientWidth * .6));
+        if (p < 1) requestAnimationFrame(follow);
+        else if (sc.scrollTo) sc.scrollTo({ left: maxS, behavior: "smooth" });
+      })(t0s);
+    }
+    rep.animate([{ opacity: .35, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }], { duration: 500, delay: D - 200, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
+    var vEl = document.getElementById("tl-views"), vStart;
+    setTimeout(function () {
+      vStart = performance.now();
+      (function up(now) {
+        var p = Math.min(1, (now - vStart) / 900), e = 1 - Math.pow(1 - p, 3);
+        vEl.textContent = Math.round(482 * e) + "K";
+        if (p < 1) requestAnimationFrame(up);
+      })(vStart);
+    }, D - 200);
+    vEl.textContent = "0.0K";
+    rep.querySelectorAll(".spark i").forEach(function (b, i) {
+      b.animate([{ transform: "scaleY(0)" }, { transform: "none" }], { duration: 500, delay: D + i * 18, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
+    });
   }
-  while (cells.length % 7) cells.push('<div class="cal-cell empty" aria-hidden="true"></div>');
-  grid.insertAdjacentHTML("beforeend", cells.join(""));
-  var all = grid.querySelectorAll(".cal-cell");
-  for (var i = all.length - 7; i < all.length; i++) all[i].classList.add("last-row");
+  if ("IntersectionObserver" in window && !reduce) {
+    var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { playMonth(); io.disconnect(); } }, { threshold: .45 });
+    io.observe(grid.closest(".tl"));
+  } else countEl.textContent = TOTAL;
+  document.getElementById("tl-replay").addEventListener("click", function () { playMonth(); track("timeline_replay"); });
+
+  /* ---------- post preview ---------- */
+  var G = {
+    warm: "linear-gradient(150deg, #FF2E1F 0%, #FFB300 55%, #EAF6FF 100%)",
+    cool: "linear-gradient(150deg, #1636FF 0%, #18BFFF 60%, #EAF6FF 100%)",
+    dusk: "linear-gradient(160deg, #0A0A0A 0%, #1636FF 55%, #FF2E1F 100%)",
+    gold: "linear-gradient(140deg, #FFB300 0%, #FF2E1F 70%, #1636FF 130%)",
+    ink:  "linear-gradient(170deg, #2A2A2A 0%, #0A0A0A 100%)"
+  };
+  var HOOKS = [
+    "3 things our clients ask before they buy",
+    "What a day on the floor actually looks like",
+    "Meet the team behind the product",
+    "The 10-second version of our story",
+    "Why customers switched to us",
+    "One question we get every week",
+    "Before and after: the results",
+    "The detail nobody notices (but everyone feels)",
+    "How we did it in 30 days",
+    "Our founder on what's next",
+    "Quick tip you can use today",
+    "Behind the scenes of the shoot"
+  ];
+  var vIdx = 0, sIdx = 0;
+  var POSTS = { 0: {
+    type: "shoot", grad: G.ink, tag: "Shoot day",
+    title: "One production day", hook: "Lights, camera, a month of content",
+    desc: "Half a day to three days on location, scheduled around your team. We film the hero, every cutdown and all the stills in one go.",
+    meta: [["Where", "Your office, store or site"], ["Crew", "Director, camera, sound"], ["Comes out of it", "15 videos and 25 stills"]] } };
+  Object.keys(plan).forEach(function (k) {
+    var d = +k, t = plan[k][0], o;
+    if (t === "hero") o = { grad: G.dusk, tag: "Hero film · 16:9", title: "The hero film", hook: "Who we are, in two minutes",
+      desc: "The centerpiece of the month. A 60 to 120 second film for your website, YouTube and LinkedIn that every other post points back to.",
+      meta: [["Platforms", "Website, YouTube, LinkedIn"], ["Length", "60–120 sec"], ["We track", "Watch time, completion, site visits"]] };
+    else if (t === "ad") o = { grad: d === 5 ? G.warm : G.gold, tag: "Paid ad · " + plan[k][1].replace("AD ", ""), title: "Paid social ad, " + plan[k][1].replace("AD ", ""),
+      hook: d === 5 ? "Book your free consult this week" : "Still thinking it over?",
+      desc: d === 5 ? "A 30 second ad cut from the hero, built to stop the scroll in the first two seconds and send people to your site."
+                    : "A 15 second retargeting cut for people who already watched the hero. Shorter, sharper, one clear ask.",
+      meta: [["Platforms", "Meta, LinkedIn, YouTube ads"], ["Format", "4:5 and 9:16"], ["We track", "Clicks, cost per lead, hook rate"]] };
+    else if (t === "v") { var h = HOOKS[vIdx++ % HOOKS.length];
+      o = { grad: [G.cool, G.warm, G.dusk, G.gold][vIdx % 4], tag: "Vertical clip · 9:16", title: "Vertical clip #" + vIdx, hook: h,
+      desc: "A 15 to 45 second vertical clip cut from the shoot, captioned and ready for Reels, TikTok and Shorts.",
+      meta: [["Platforms", "Instagram, TikTok, Shorts"], ["Length", "15–45 sec, captioned"], ["We track", "Reach, saves, shares, follows"]] }; }
+    else { sIdx++;
+      o = { grad: [G.warm, G.cool, G.gold, G.dusk, G.ink][sIdx % 5], tag: "Photo post", title: "Photo post #" + sIdx, hook: ["Team portrait", "Product detail", "On location", "Behind the camera", "Customer moment"][sIdx % 5],
+      desc: "A still pulled from the same production. Great for LinkedIn, your website and carousel posts between videos.",
+      meta: [["Platforms", "LinkedIn, Instagram, website"], ["Format", "1:1 and 4:5"], ["We track", "Engagement, profile visits"]] }; }
+    o.type = t; POSTS[d] = o;
+  });
+  Object.keys(POSTS).forEach(function (d) { if (VIEWS[d]) POSTS[d].meta.push(["30-day result", k(VIEWS[d]) + " views" + (+d === 10 ? " · top post" : "")]); });
+  var bars = "";
+  for (var bd = 1; bd <= 30; bd++) {
+    var v = VIEWS[bd] || 0, t = plan[bd] ? plan[bd][0] : "";
+    bars += '<i class="t-' + t + (bd === 10 ? " top" : "") + '" style="height:' + (v ? Math.max(2, v / maxV * 100) : 0.5) + '%" title="Day ' + bd + ": " + k(v) + ' views">' + (bd === 10 ? "<b>94K</b>" : "") + "</i>";
+  }
+  POSTS[99] = { type: "report", title: "Your 30-day results report",
+    desc: "On day 30 you get every post tracked across your channels, the winners and losers, and what we would change for next month's shoot.",
+    meta: [["Views", "482K across all platforms"], ["Watch-through", "41% average"], ["Site visits", "6,120 from tracked links"], ["Top post", "Vertical customer clip, day 10 · 94K views"], ["Next month", "More customer stories, shorter openers"]] };
+  var ORDER = Object.keys(POSTS).map(Number).sort(function (a, b) { return a - b; });
+
+  var modal = document.getElementById("post-modal"), card = document.getElementById("post-card");
+  var stage = document.getElementById("post-stage");
+  var curPost = null, opener = null;
+  function dayLabel(d) { return d === 0 ? "Day 0 · Shoot" : d === 99 ? "Day 30" : "Day " + pad(d) + " · " + DOW[(d - 1) % 7]; }
+  function render(d) {
+    var o = POSTS[d]; curPost = d;
+    if (o.type === "report") {
+      stage.innerHTML = '<div class="rep-chart"><div class="rc-top"><span>VIEWS PER POST · DAYS 1–30</span><span>SAMPLE DATA</span></div>' +
+        '<div class="rc-bars">' + bars + '</div><div class="rc-axis"><span>01</span><span>08</span><span>15</span><span>22</span><span>30</span></div>' +
+        '<div class="rc-kpis"><div><b>482K</b><span>views</span></div><div><b>41%</b><span>watch-through</span></div><div><b>6.1K</b><span>site visits</span></div></div></div>';
+      document.getElementById("post-kicker").textContent = "// Example report · " + dayLabel(d);
+      document.getElementById("post-title").textContent = o.title;
+      document.getElementById("post-desc").textContent = o.desc;
+      document.getElementById("post-meta").innerHTML = o.meta.map(function (m) { return "<div><dt>" + m[0] + "</dt><dd>" + m[1] + "</dd></div>"; }).join("");
+      document.getElementById("post-count").textContent = (ORDER.indexOf(d) + 1) + " of " + ORDER.length;
+      if (!reduce && stage.animate) stage.querySelectorAll(".rc-bars i").forEach(function (b, i) {
+        b.animate([{ transform: "scaleY(0)" }, { transform: "none" }], { duration: 600, delay: 250 + i * 22, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
+      });
+      return;
+    }
+    var ratio = { v: "r-v", hero: "r-hero", ad: "r-ad", still: "r-still", shoot: "r-shoot" }[o.type];
+    var playable = o.type !== "still" && o.type !== "shoot";
+    stage.innerHTML = '<div class="post-media ' + ratio + '" style="--grad:' + o.grad + '">' +
+      '<div class="bg kb"></div><span class="tag">' + o.tag + "</span>" +
+      (playable ? '<span class="play" aria-hidden="true"></span>' : "") +
+      '<div class="over"><span class="hook">' + o.hook + '</span><span class="handle">@yourbrand</span>' +
+      (playable ? '<span class="bar"><i></i></span>' : "") + "</div></div>";
+    document.getElementById("post-kicker").textContent = "// Example post · " + dayLabel(d);
+    document.getElementById("post-title").textContent = o.title;
+    document.getElementById("post-desc").textContent = o.desc;
+    document.getElementById("post-meta").innerHTML = o.meta.map(function (m) { return "<div><dt>" + m[0] + "</dt><dd>" + m[1] + "</dd></div>"; }).join("");
+    document.getElementById("post-count").textContent = (ORDER.indexOf(d) + 1) + " of " + ORDER.length;
+  }
+  var EASE = "cubic-bezier(.2, .8, .2, 1)";
+  function fromCell(cell) {
+    var c = cell.getBoundingClientRect(), r = card.getBoundingClientRect();
+    return "translate(" + (c.left - r.left) + "px," + (c.top - r.top) + "px) scale(" + (c.width / r.width) + "," + (c.height / r.height) + ")";
+  }
+  function openPost(d, cell) {
+    opener = cell; render(d);
+    modal.hidden = false; document.body.classList.add("modal-open");
+    if (!reduce && card.animate) {
+      card.animate([{ transform: fromCell(cell), opacity: .4, borderRadius: "4px" }, { transform: "none", opacity: 1, borderRadius: "10px" }], { duration: 480, easing: EASE });
+      modal.querySelector(".post-backdrop").animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, easing: "ease-out" });
+      stage.firstChild.animate([{ transform: "translateY(24px) scale(.94)", opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 520, delay: 160, easing: EASE, fill: "backwards" });
+    }
+    card.focus();
+    track("timeline_post_open", { day: d, type: POSTS[d].type });
+  }
+  function closePost() {
+    if (modal.hidden) return;
+    var done = function () { modal.hidden = true; document.body.classList.remove("modal-open"); if (opener) opener.focus({ preventScroll: true }); };
+    var cell = grid.querySelector('[data-day="' + curPost + '"]') || opener;
+    if (!reduce && card.animate && cell) {
+      modal.querySelector(".post-backdrop").animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, fill: "forwards" });
+      card.animate([{ transform: "none", opacity: 1 }, { transform: fromCell(cell), opacity: 0 }], { duration: 320, easing: "cubic-bezier(.4, 0, .2, 1)", fill: "forwards" })
+        .onfinish = function () { card.getAnimations().forEach(function (a) { a.cancel(); }); modal.querySelector(".post-backdrop").getAnimations().forEach(function (a) { a.cancel(); }); done(); };
+    } else done();
+  }
+  function step(dir) {
+    var n = ORDER[(ORDER.indexOf(curPost) + dir + ORDER.length) % ORDER.length];
+    render(n);
+    opener = grid.querySelector('[data-day="' + n + '"]');
+    if (!reduce && stage.firstChild.animate) stage.firstChild.animate([{ transform: "translateX(" + (dir * 40) + "px)", opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 360, easing: EASE });
+  }
+  grid.addEventListener("click", function (e) { var c = e.target.closest("button[data-day]"); if (c) openPost(+c.dataset.day, c); });
+  modal.addEventListener("click", function (e) { if (e.target.closest("[data-close]")) closePost(); });
+  document.getElementById("post-prev").addEventListener("click", function () { step(-1); });
+  document.getElementById("post-next").addEventListener("click", function () { step(1); });
+  document.addEventListener("keydown", function (e) {
+    if (modal.hidden) return;
+    if (e.key === "Escape") closePost();
+    else if (e.key === "ArrowRight") step(1);
+    else if (e.key === "ArrowLeft") step(-1);
+    else if (e.key === "Tab") {
+      var f = card.querySelectorAll("button"), first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === card)) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
 
   /* ---------- goals ---------- */
   var GOALS = [
@@ -965,6 +1475,15 @@ ul { margin: 0; padding: 0; list-style: none; }
       '<span class="t">' + g.name + '</span><span class="s">' + g.sub + "</span></button>";
   }).join("");
   var tabs = Array.prototype.slice.call(tabsEl.querySelectorAll(".goal-tab"));
+  var lastGoalIdx = -1;
+  var ind = document.createElement("span"); ind.className = "goal-ind"; ind.setAttribute("aria-hidden", "true"); tabsEl.appendChild(ind);
+  function moveInd() {
+    var t = tabs.filter(function (x) { return x.getAttribute("aria-selected") === "true"; })[0];
+    if (!t) return;
+    ind.style.height = t.offsetHeight + "px";
+    ind.style.transform = "translateY(" + t.offsetTop + "px)";
+  }
+  window.addEventListener("resize", moveInd);
   function li(arr) { return arr.map(function (x) { return "<li>" + x + "</li>"; }).join(""); }
   function selectGoal(id, opts) {
     opts = opts || {};
@@ -976,12 +1495,21 @@ ul { margin: 0; padding: 0; list-style: none; }
       if (on && opts.focus) t.focus();
     });
     panel.setAttribute("aria-labelledby", "tab-" + id);
+    var newIdx = GOALS.indexOf(g), dir = lastGoalIdx < 0 ? 0 : (newIdx > lastGoalIdx ? 1 : newIdx < lastGoalIdx ? -1 : 0);
+    lastGoalIdx = newIdx;
+    moveInd();
     panel.innerHTML =
       '<p class="goal-pitch">' + g.pitch + "</p>" +
       '<div class="goal-lists"><div><h3>WHAT WE MAKE</h3><ul class="slash-list">' + li(g.make) + "</ul></div>" +
       '<div><h3>WHAT WE TRACK</h3><ul class="slash-list">' + li(g.track) + "</ul></div></div>" +
       '<div class="goal-month"><p><strong>In The Month:</strong> ' + g.month.charAt(0).toUpperCase() + g.month.slice(1) + "</p>" +
       '<a class="btn btn-secondary" href="#estimate" data-goal-cta>Estimate for this goal</a></div>';
+    if (dir && !reduce && panel.animate) {
+      Array.prototype.forEach.call(panel.children, function (el, k) {
+        el.animate([{ transform: "translateY(" + (dir * 28) + "px)", opacity: 0 }, { transform: "none", opacity: 1 }],
+          { duration: 460, delay: k * 70, easing: "cubic-bezier(.2, .8, .2, 1)", fill: "backwards" });
+      });
+    }
     if (opts.sync !== false) {
       var r = document.getElementById("g-" + id);
       if (r && !r.checked) { r.checked = true; calc(); }
@@ -1092,15 +1620,119 @@ ul { margin: 0; padding: 0; list-style: none; }
       submitted_at: new Date().toISOString()
     });
     track("generate_lead", { package: payload.package, goal: payload.goal, range: payload.range });
-    /* PLACEHOLDER: no backend yet. Set window.SLAM_FORM_ENDPOINT to a form service URL to send the payload. */
-    var endpoint = window.SLAM_FORM_ENDPOINT;
-    if (endpoint) {
-      fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }).catch(function () {});
-    }
-    sent.innerHTML = "<strong>Thanks" + (payload.name ? ", " + payload.name.replace(/[<>&]/g, "") : "") + ". We'll reply within one business day.</strong>" +
-      '<span class="note"><span class="placeholder-tag">PLACEHOLDER</span>The form isn\'t connected to an inbox yet, so nothing was sent.</span>';
-    sent.hidden = false;
+    document.getElementById("lead-estimate").value =
+      "Range: " + payload.range + " | Package: " + payload.package + " | Goal: " + ((GOALS.filter(function (g) { return g.id === payload.goal; })[0] || {}).name || payload.goal) +
+      " | Locations: " + payload.locations + " | Add-ons: " + (payload.addons || []).join(", ") + " | Timeline: " + (payload.timeline || "");
+    var btn = lead.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    sendForm(lead).then(function () {
+      sent.innerHTML = "<strong>Thanks" + (payload.name ? ", " + payload.name.replace(/[<>&]/g, "") : "") + ". Your estimate is on its way to us.</strong>" +
+        '<span class="note">We\'ll reply within one business day with your free treatment.</span>';
+      sent.hidden = false; lead.reset(); calc();
+    }, function () {
+      sent.innerHTML = "<strong>That didn't go through.</strong><span class=\"note\">Please try again, or email contact@slamproduction.com.</span>";
+      sent.hidden = false;
+    }).then(function () { btn.disabled = false; });
   });
+
+  /* Netlify Forms: post the form, url-encoded, to the site root */
+  function sendForm(formEl) {
+    var body = new URLSearchParams(new FormData(formEl)).toString();
+    return fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); });
+  }
+
+  /* ---------- contact window ---------- */
+  var cModal = document.getElementById("contact-modal"), cCard = document.getElementById("contact-card");
+  var cForm = document.getElementById("contact-form"), cSent = document.getElementById("contact-sent"), cOpener = null;
+  function openContact(from) {
+    cOpener = from || null;
+    cModal.hidden = false; document.body.classList.add("modal-open");
+    if (!reduce && cCard.animate) {
+      var start = "translateY(40px) scale(.96)";
+      if (from && from.getBoundingClientRect) {
+        var a = from.getBoundingClientRect(), b = cCard.getBoundingClientRect();
+        start = "translate(" + (a.left + a.width / 2 - (b.left + b.width / 2)) + "px," + (a.top + a.height / 2 - (b.top + b.height / 2)) + "px) scale(.2)";
+      }
+      cCard.animate([{ transform: start, opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 480, easing: "cubic-bezier(.2,.8,.2,1)" });
+      cModal.querySelector(".post-backdrop").animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
+      Array.prototype.forEach.call(cCard.querySelectorAll(".contact-side > *, .contact-form > .row2, .contact-form > .field, .contact-form > .btn"), function (el, i) {
+        el.animate([{ transform: "translateY(14px)", opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 420, delay: 160 + i * 40, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
+      });
+    }
+    setTimeout(function () { var n = document.getElementById("c-name"); (n || cCard).focus({ preventScroll: true }); }, 60);
+    track("contact_open", { source: from && from.closest ? (from.closest("nav") ? "nav" : from.closest("footer") ? "footer" : "page") : "link" });
+  }
+  function closeContact() {
+    if (cModal.hidden) return;
+    var done = function () {
+      cModal.hidden = true; document.body.classList.remove("modal-open");
+      if (location.hash === "#contact") history.replaceState(null, "", location.pathname + location.search);
+      if (cOpener && cOpener.focus) cOpener.focus({ preventScroll: true });
+    };
+    if (!reduce && cCard.animate) {
+      cModal.querySelector(".post-backdrop").animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220, fill: "forwards" });
+      cCard.animate([{ transform: "none", opacity: 1 }, { transform: "translateY(30px) scale(.97)", opacity: 0 }], { duration: 240, easing: "cubic-bezier(.4,0,.2,1)", fill: "forwards" })
+        .onfinish = function () { cCard.getAnimations().forEach(function (x) { x.cancel(); }); cModal.querySelector(".post-backdrop").getAnimations().forEach(function (x) { x.cancel(); }); done(); };
+    } else done();
+  }
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-contact]");
+    if (t) { e.preventDefault(); openContact(t); return; }
+    if (e.target.closest("[data-cclose]")) closeContact();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (cModal.hidden) return;
+    if (e.key === "Escape") closeContact();
+    else if (e.key === "Tab") {
+      var f = cCard.querySelectorAll("a[href], button:not([disabled]), input:not([type=hidden]):not([tabindex='-1']), select, textarea");
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  if (location.hash === "#contact") openContact(null);
+  var cEmail = document.getElementById("c-email"), cMsg = document.getElementById("c-msg");
+  function cValid(el, errId, ok) { el.toggleAttribute("aria-invalid", !ok); document.getElementById(errId).hidden = ok; return ok; }
+  cEmail.addEventListener("blur", function () { if (cEmail.value) cValid(cEmail, "c-email-err", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(cEmail.value.trim())); });
+  cEmail.addEventListener("input", function () { if (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(cEmail.value.trim())) cValid(cEmail, "c-email-err", true); });
+  cMsg.addEventListener("input", function () { if (cMsg.value.trim()) cValid(cMsg, "c-msg-err", true); });
+  cForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var okE = cValid(cEmail, "c-email-err", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(cEmail.value.trim()));
+    var okM = cValid(cMsg, "c-msg-err", !!cMsg.value.trim());
+    if (!okE) { cEmail.focus(); return; }
+    if (!okM) { cMsg.focus(); return; }
+    var btn = cForm.querySelector('button[type="submit"]'); btn.disabled = true;
+    sendForm(cForm).then(function () {
+      cSent.className = "form-msg"; cSent.innerHTML = "<strong>Thanks, message sent.</strong> We'll reply within one business day.";
+      cSent.hidden = false; cForm.reset(); track("contact_submit");
+    }, function () {
+      cSent.className = "form-msg err"; cSent.innerHTML = "<strong>That didn't go through.</strong> Please try again, or email contact@slamproduction.com.";
+      cSent.hidden = false;
+    }).then(function () { btn.disabled = false; });
+  });
+
+  /* ---------- cookie consent ---------- */
+  var cookie = document.getElementById("cookie");
+  function getConsent() { try { return localStorage.getItem("slam-consent"); } catch (e) { return null; } }
+  function setConsent(v) {
+    try { localStorage.setItem("slam-consent", v); } catch (e) {}
+    gtag("consent", "update", { analytics_storage: v === "all" ? "granted" : "denied" });
+    hideCookie();
+  }
+  function showCookie() {
+    cookie.hidden = false;
+    if (!reduce && cookie.animate) cookie.animate([{ transform: "translateY(24px)", opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 420, easing: "cubic-bezier(.2,.8,.2,1)" });
+  }
+  function hideCookie() {
+    if (!reduce && cookie.animate) cookie.animate([{ opacity: 1 }, { transform: "translateY(16px)", opacity: 0 }], { duration: 220 }).onfinish = function () { cookie.hidden = true; };
+    else cookie.hidden = true;
+  }
+  document.getElementById("cookie-accept").addEventListener("click", function () { setConsent("all"); });
+  document.getElementById("cookie-decline").addEventListener("click", function () { setConsent("necessary"); });
+  document.getElementById("cookie-settings").addEventListener("click", showCookie);
+  if (!getConsent()) setTimeout(showCookie, 900);
 
   /* goal CTA inside the picker jumps to the estimate */
   panel.addEventListener("click", function (e) { if (e.target.closest("[data-goal-cta]")) track("cta_click", { location: "goal_panel" }); });
