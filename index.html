@@ -450,6 +450,15 @@ body.modal-open { overflow: hidden; }
 .case:hover .frame.photo img { filter: grayscale(.15) contrast(1.05); transform: scale(1.06); }
 .case:hover .frame.photo .chroma { opacity: .35; }
 .frame-pending { position: absolute; left: 14px; bottom: 12px; font: 400 .7rem/1 var(--mono); color: var(--muted); }
+.more-work { display: grid; gap: 24px; margin-top: clamp(28px, 3vw, 40px); }
+@media (min-width: 640px) { .more-work { grid-template-columns: repeat(3, 1fr); } }
+.case-sm .frame { aspect-ratio: 4 / 3; }
+.case-sm h3 { font-size: 1.05rem; }
+.frame.logo { background: #fff; display: grid; place-items: center; }
+.frame.logo img { width: 46%; height: auto; max-height: 80%; object-fit: contain; mix-blend-mode: multiply; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.frame.logo .frame-label { color: #0A0A0A; z-index: 3; }
+.frame.logo::after { opacity: .9; }
+.case:hover .frame.logo img { transform: scale(1.04); }
 .case-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .case h3 { font: 600 1.25rem/1.25 var(--body); }
 .case p { color: var(--muted); max-width: 60ch; }
@@ -798,31 +807,45 @@ body.modal-open { overflow: hidden; }
     </div>
     <div class="work-grid">
       <article class="case case-a">
-        <div class="frame" role="img" aria-label="Placeholder frame for TrialPort, still pending"><span class="frame-label">TRIALPORT // EP 01–15</span><span class="frame-pending">Still pending</span></div>
+        <div class="frame logo"><img src="images/work/trialport-logo.jpg" alt="TrialPort logo" loading="lazy"><span class="frame-label">TRIALPORT // EP 01–15</span></div>
         <div class="case-tags"><span class="chip">Pharmaceutical</span><span class="chip">Podcast series</span><span class="chip">YouTube</span></div>
         <h3>TrialPort: a 15-episode video podcast</h3>
         <p>Multi-camera production for a pharmaceutical company's podcast, filmed in studio sessions and released on YouTube, with clips cut from every episode.</p>
       </article>
       <article class="case case-b">
-        <div class="frame" role="img" aria-label="Placeholder frame for Czech Fencing Federation, still pending"><span class="frame-label">CZECH FENCING // SOCIAL</span><span class="frame-pending">Still pending</span></div>
+        <div class="frame photo"><img src="images/work/czech-fencing.jpg" alt="A Czech fencer in a national team mask pointing during a bout" loading="lazy" style="object-position:50% 40%"><span class="chroma" aria-hidden="true"></span><span class="shade" aria-hidden="true"></span><span class="frame-label">CZECH FENCING // SOCIAL</span></div>
         <div class="case-tags"><span class="chip">Sport federation</span><span class="chip">Social content</span></div>
         <h3>Czech Fencing Federation</h3>
         <p>Ongoing social media management and content production: filming competitions and athletes, then running the channels that publish it.</p>
       </article>
       <article class="case case-c">
-        <div class="frame" role="img" aria-label="Placeholder frame for the Olympic fencer documentary, still pending"><span class="frame-label">DOCUMENTARY // OLYMPIC FENCER</span><span class="frame-pending">Still pending</span></div>
+        <div class="frame photo"><img src="images/work/cesta-za-snem.jpg" alt="Portrait of a Czech fencer in a national team shirt" loading="lazy" style="object-position:50% 22%"><span class="chroma" aria-hidden="true"></span><span class="shade" aria-hidden="true"></span><span class="frame-label">DOCUMENTARY // OLYMPIC FENCER</span></div>
         <div class="case-tags"><span class="chip">Documentary</span><span class="chip">With the Czech Fencing Federation</span></div>
         <h3>Portrait of an Olympic fencer</h3>
         <p>A documentary following an Olympic fencer, produced in collaboration with the federation.</p>
       </article>
       <article class="case case-d">
-        <div class="frame" role="img" aria-label="Placeholder frame for content for Red Bull athletes, still pending"><span class="frame-label">ATHLETES // FILM, EDIT, DELIVERY</span><span class="frame-pending">Still pending</span></div>
+        <div class="frame photo"><img src="images/work/red-bull-athlete.jpg" alt="A fencer in a Red Bull mask looking down between bouts" loading="lazy" style="object-position:40% 25%"><span class="chroma" aria-hidden="true"></span><span class="shade" aria-hidden="true"></span><span class="frame-label">ATHLETES // FILM, EDIT, DELIVERY</span></div>
         <div class="case-tags"><span class="chip">Athletes</span><span class="chip">Filmed, edited, produced</span></div>
         <h3>Content for Red Bull athletes</h3>
         <p>Videos for Red Bull athletes, from filming through edit and final delivery.</p>
       </article>
     </div>
-    <p class="also"><strong>Also designed for</strong> Toyota and Furiosa · Camera and lighting crew on corporate shoots for national brands</p>
+    <div class="more-work">
+      <article class="case case-sm">
+        <div class="frame photo"><img src="images/work/czech-olympic-team.jpg" alt="A Czech Olympic athlete smiling and holding up a medal" loading="lazy" style="object-position:50% 35%"><span class="chroma" aria-hidden="true"></span><span class="shade" aria-hidden="true"></span><span class="frame-label">OLYMPIC TEAM</span></div>
+        <h3>Czech Olympic Team</h3>
+      </article>
+      <article class="case case-sm">
+        <div class="frame photo"><img src="images/work/candy-crush.jpg" alt="Candy Crush Saga commercial still with the game logo" loading="lazy" style="object-position:50% 50%"><span class="chroma" aria-hidden="true"></span><span class="shade" aria-hidden="true"></span><span class="frame-label">COMMERCIAL</span></div>
+        <h3>Candy Crush commercial</h3>
+      </article>
+      <article class="case case-sm">
+        <div class="frame photo"><img src="images/work/action-juice.jpg" alt="Action Juice still of a man looking into the camera under red neon lettering" loading="lazy" style="object-position:50% 40%"><span class="chroma" aria-hidden="true"></span><span class="shade" aria-hidden="true"></span><span class="frame-label">ACTION JUICE</span></div>
+        <h3>Action Juice</h3>
+      </article>
+    </div>
+    <p class="also"><strong>Also designed for</strong> Toyota, Furiosa and ChefATL · Camera and lighting crew on corporate shoots for national brands</p>
   </div>
 </section>
 
