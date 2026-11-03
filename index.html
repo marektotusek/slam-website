@@ -434,6 +434,21 @@ body.modal-open { overflow: hidden; }
   background: var(--spectrum-slash); opacity: .22; transform: skewX(-20deg);
 }
 .frame-label { position: absolute; left: 14px; top: 12px; font: 500 .72rem/1 var(--mono); letter-spacing: .04em; }
+/* photo frames: monochrome photo, spectrum "chroma" overlay, brand slash; color comes back on hover */
+.frame.photo { background: #0A0A0A; border-color: transparent; color: #fff; }
+.frame.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: grayscale(1) contrast(1.18) brightness(.92); transform: scale(1.02);
+  transition: filter .7s ease, transform 1.2s cubic-bezier(.2,.8,.2,1); }
+.frame.photo .chroma { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(115deg, #FF2E1F 0%, #FFB300 30%, rgba(234,246,255,.0) 50%, #18BFFF 70%, #1636FF 100%);
+  mix-blend-mode: color; opacity: .9; transition: opacity .7s ease; }
+.frame.photo .shade { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,.55) 100%); }
+.frame.photo::after { z-index: 2; opacity: .85; mix-blend-mode: screen; }
+.frame.photo .frame-label, .frame.photo .frame-pending { z-index: 3; color: #fff; }
+.frame.photo .frame-pending { opacity: .8; }
+.case:hover .frame.photo img { filter: grayscale(.15) contrast(1.05); transform: scale(1.06); }
+.case:hover .frame.photo .chroma { opacity: .35; }
 .frame-pending { position: absolute; left: 14px; bottom: 12px; font: 400 .7rem/1 var(--mono); color: var(--muted); }
 .case-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .case h3 { font: 600 1.25rem/1.25 var(--body); }
