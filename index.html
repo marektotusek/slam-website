@@ -1,0 +1,1122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SLAM Production | Corporate Video Production in Atlanta</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="SLAM Production is a corporate video studio in Atlanta. We plan and film everything in one production, cut it into weeks of ready-to-post video, and track how every piece performs on your channels.">
+<script>
+  /* Theme: light is the default. A visitor's choice is remembered in this browser only. */
+  (function () {
+    var mode = "light";
+    try { if (localStorage.getItem("slam-mode") === "dark") mode = "dark"; } catch (e) {}
+    document.documentElement.setAttribute("data-mode", mode);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "SLAM Production",
+  "description": "Corporate video production in Atlanta. One production, weeks of ready-to-post video, and tracked results after release.",
+  "email": "hello@slamproduction.com",
+  "priceRange": "$4,500 – $21,500",
+  "address": { "@type": "PostalAddress", "addressLocality": "Atlanta", "addressRegion": "GA", "addressCountry": "US" },
+  "areaServed": "Metro Atlanta, Georgia"
+}
+</script>
+<style>
+/* Layout: a film set with the work lights on (light, default) or at night (dark).
+   Type-led hero over a month content calendar; hairline structure; the 70° clapper slash
+   in the Spectrum gradient is the single loud device. Left-aligned. The packages band
+   inverts against the page in both modes. */
+:root {
+  /* brand */
+  --black: #0A0A0A;
+  --white: #FFFFFF;
+  --s1: #FF2E1F; --s2: #FFB300; --s3: #EAF6FF; --s4: #18BFFF; --s5: #1636FF;
+  --spectrum: linear-gradient(110deg, var(--s1) 0%, var(--s2) 28%, var(--s3) 50%, var(--s4) 72%, var(--s5) 100%);
+  --spectrum-slash: linear-gradient(20deg, var(--s1) 0%, var(--s2) 28%, var(--s3) 50%, var(--s4) 72%, var(--s5) 100%);
+
+  /* light mode (default) */
+  --bg: #FFFFFF;
+  --fg: #0A0A0A;
+  --raised: #F4F4F4;
+  --line: #DADADA;
+  --muted: #5A5A5A;
+  --btn-bg: #0A0A0A;
+  --btn-fg: #FFFFFF;
+  --btn-hover: #2A2A2A;
+  --hatch: rgba(10, 10, 10, .07);
+  --focus: #1636FF;
+  --nav-bg: rgba(255, 255, 255, .92);
+  /* inverted band (packages) */
+  --band-bg: #0A0A0A;
+  --band-fg: #FFFFFF;
+  --band-line: #2A2A2A;
+  --band-muted: #9C9C9C;
+  --band-btn-bg: #FFFFFF;
+  --band-btn-fg: #0A0A0A;
+
+  --display: "Futura", "Jost", "Century Gothic", "Avenir Next", sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --wrap: 1180px;
+  --gutter: 16px;
+  color-scheme: light;
+}
+:root[data-mode="dark"] {
+  --bg: #0A0A0A;
+  --fg: #FFFFFF;
+  --raised: #151515;
+  --line: #2A2A2A;
+  --muted: #9C9C9C;
+  --btn-bg: #FFFFFF;
+  --btn-fg: #0A0A0A;
+  --btn-hover: #EAF6FF;
+  --hatch: rgba(255, 255, 255, .06);
+  --focus: #18BFFF;
+  --nav-bg: rgba(10, 10, 10, .92);
+  --band-bg: #FFFFFF;
+  --band-fg: #0A0A0A;
+  --band-line: #DADADA;
+  --band-muted: #5A5A5A;
+  --band-btn-bg: #0A0A0A;
+  --band-btn-fg: #FFFFFF;
+  color-scheme: dark;
+}
+@media (min-width: 768px) { :root { --gutter: 32px; } }
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px)); }
+body {
+  margin: 0;
+  background: var(--bg); color: var(--fg);
+  font: 400 16px/1.6 var(--body);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .25s, color .25s;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 60; background: var(--bg);
+}
+a { color: inherit; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.tnum { font-variant-numeric: tabular-nums; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+.wrap {
+  max-width: calc(var(--wrap) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+.skip { position: absolute; left: 16px; top: -60px; z-index: 100; background: var(--btn-bg); color: var(--btn-fg); padding: 8px 14px; border-radius: 3px; }
+.skip:focus { top: calc(12px + env(safe-area-inset-top, 0px)); }
+
+/* type */
+.label {
+  font: 500 .75rem/1.4 var(--mono); letter-spacing: .04em; color: var(--muted);
+  display: block; margin-bottom: 16px;
+}
+.h2 {
+  font: 700 clamp(2rem, 4.6vw, 3.4rem)/1.02 var(--display);
+  letter-spacing: -.015em;
+}
+.lede { font-size: 1.1rem; line-height: 1.55; color: var(--muted); max-width: 60ch; }
+.section { padding-block: clamp(72px, 10vw, 128px); border-top: 1px solid var(--line); }
+.section-head { display: grid; gap: 20px; margin-bottom: clamp(36px, 5vw, 56px); max-width: 820px; }
+
+/* buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font: 600 .95rem/1 var(--body); text-decoration: none; cursor: pointer;
+  padding: 15px 20px; border-radius: 3px; border: 1px solid transparent;
+  transition: background-color .15s, color .15s, border-color .15s;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--btn-bg); color: var(--btn-fg); }
+.btn-primary:hover { background: var(--btn-hover); }
+.btn-secondary { border-color: var(--fg); color: var(--fg); background: transparent; }
+.btn-secondary:hover { background: var(--fg); color: var(--bg); }
+.slash-ico { width: 7px; height: 14px; background: currentColor; clip-path: polygon(64% 0, 100% 0, 36% 100%, 0 100%); flex: none; }
+
+/* chips */
+.chip {
+  display: inline-flex; align-items: center;
+  font: 500 .68rem/1 var(--mono); letter-spacing: .04em; text-transform: uppercase;
+  padding: 5px 7px; border-radius: 2px; border: 1px solid var(--line); color: var(--fg); background: var(--bg);
+  white-space: nowrap;
+}
+.chip-hero { border-color: transparent; background: linear-gradient(var(--bg), var(--bg)) padding-box, var(--spectrum) border-box; }
+.chip-ad { background: var(--line); border-color: var(--line); }
+.chip-v { border-color: var(--fg); }
+.chip-still { border-style: dashed; color: var(--muted); }
+.chip-shoot { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  background: var(--nav-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap { display: flex; align-items: center; gap: 24px; height: 68px; }
+.logo { display: flex; color: var(--fg); flex: none; }
+.logo svg { height: 26px; width: auto; display: block; }
+.nav-links { display: none; gap: 28px; margin-left: auto; font-size: .95rem; }
+.nav-links a { text-decoration: none; color: var(--muted); transition: color .15s; }
+.nav-links a:hover { color: var(--fg); }
+.nav-end { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+.nav .btn { padding: 11px 16px; font-size: .88rem; }
+.mode-toggle {
+  display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 12px;
+  border: 1px solid var(--line); border-radius: 3px; background: transparent; color: var(--fg);
+  font: 500 .72rem/1 var(--mono); letter-spacing: .04em; text-transform: uppercase; cursor: pointer;
+}
+.mode-toggle:hover { border-color: var(--fg); }
+.mode-toggle svg { width: 14px; height: 14px; flex: none; }
+.mode-word { display: none; }
+@media (min-width: 560px) { .mode-word { display: inline; } }
+@media (min-width: 960px) {
+  .nav-links { display: flex; }
+  .nav-end { margin-left: 8px; }
+}
+@media (max-width: 400px) { .nav .wrap { gap: 12px; } .nav .btn { padding: 11px 12px; font-size: .82rem; } .logo svg { height: 22px; } }
+
+/* ---------- hero ---------- */
+.hero { padding-block: 40px 72px; }
+.hero-top {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px;
+  font: 400 .75rem/1.4 var(--mono); letter-spacing: .04em; color: var(--muted);
+  margin-bottom: clamp(24px, 3vw, 36px);
+}
+.hero-top strong { color: var(--fg); font-weight: 500; }
+.rec { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--s1); margin-right: 8px; vertical-align: 1px; animation: rec 1.2s steps(1, end) infinite; }
+@keyframes rec { 50% { opacity: .15; } }
+.hero h1 {
+  font: 700 clamp(2.9rem, 8.4vw, 7rem)/.95 var(--display);
+  letter-spacing: -.02em;
+}
+.hero h1 span { display: block; }
+.hero-row { display: grid; gap: 28px; margin-top: clamp(24px, 3vw, 36px); align-items: end; }
+.hero-row .lede { color: var(--muted); font-size: 1.15rem; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+@media (min-width: 900px) {
+  .hero-row { grid-template-columns: minmax(0, 1fr) auto; gap: 48px; }
+}
+
+/* calendar */
+.cal { margin-top: clamp(36px, 4vw, 48px); background: var(--raised); border: 1px solid var(--line); border-radius: 3px; }
+.cal-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+.cal-title { font: 400 .8rem/1.5 var(--mono); color: var(--muted); }
+.cal-title strong { color: var(--fg); font-weight: 500; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font: 400 .75rem/1 var(--mono); color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.cal-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, minmax(96px, 1fr)); min-width: 700px; }
+.cal-dow { font: 500 .7rem/1 var(--mono); letter-spacing: .06em; color: var(--muted); padding: 12px; border-bottom: 1px solid var(--line); }
+.cal-cell { min-height: 74px; padding: 10px 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.cal-dow:not(:nth-child(7n)) { border-right: 1px solid var(--line); }
+.cal-cell:nth-child(7n) { border-right: 0; }
+.cal-cell.last-row { border-bottom: 0; }
+.cal-num { font: 400 .7rem/1 var(--mono); color: var(--muted); }
+.cal-cell.wk0 { background: var(--bg); }
+.cal-cell.empty { background: repeating-linear-gradient(110deg, var(--hatch) 0 1px, transparent 1px 9px); }
+.cal-foot { display: flex; flex-wrap: wrap; gap: 14px 36px; padding: 16px 18px; border-top: 1px solid var(--line); font: 400 .78rem/1.3 var(--mono); color: var(--muted); }
+.cal-foot b { font: 700 1.35rem/1 var(--display); color: var(--fg); margin-right: 6px; font-variant-numeric: tabular-nums; }
+.scroll-hint { display: block; padding: 8px 18px 0; font: 400 .7rem/1 var(--mono); color: var(--muted); }
+@media (min-width: 740px) { .scroll-hint { display: none; } }
+
+/* ---------- goals ---------- */
+.goals { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 3px; }
+.goal-tabs { display: grid; border-bottom: 1px solid var(--line); }
+.goal-tab {
+  position: relative; text-align: left; cursor: pointer; background: transparent; color: var(--fg);
+  border: 0; border-bottom: 1px solid var(--line); padding: 18px 20px 18px 24px; font: inherit;
+  display: grid; gap: 2px;
+}
+.goal-tab:last-child { border-bottom: 0; }
+.goal-tab .t { font: 500 1.15rem/1.25 var(--display); }
+.goal-tab .s { font: 400 .75rem/1.4 var(--mono); color: var(--muted); }
+.goal-tab::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: transparent; }
+.goal-tab[aria-selected="true"] { background: var(--raised); }
+.goal-tab[aria-selected="true"]::before { background: linear-gradient(0deg, var(--s1), var(--s2) 28%, var(--s3) 50%, var(--s4) 72%, var(--s5)); }
+.goal-tab:hover .t { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.goal-panel { padding: clamp(24px, 4vw, 44px); display: grid; gap: 28px; align-content: start; min-width: 0; }
+.goal-pitch { font: italic 400 clamp(1.6rem, 3vw, 2.3rem)/1.15 var(--serif); max-width: 24ch; }
+.goal-lists { display: grid; gap: 28px; }
+.goal-lists h3 { font: 500 .75rem/1 var(--mono); letter-spacing: .04em; color: var(--muted); margin-bottom: 14px; }
+.slash-list li { position: relative; padding-left: 20px; margin-bottom: 8px; }
+.slash-list li::before { content: ""; position: absolute; left: 0; top: .45em; width: 6px; height: 12px; background: var(--fg); clip-path: polygon(64% 0, 100% 0, 36% 100%, 0 100%); }
+.goal-month { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding-top: 22px; border-top: 1px solid var(--line); }
+.goal-month p { flex: 1 1 280px; color: var(--muted); }
+.goal-month strong { color: var(--fg); font-weight: 600; }
+.goal-month .btn { padding: 12px 16px; font-size: .88rem; }
+@media (min-width: 640px) { .goal-lists { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) {
+  .goals { grid-template-columns: 320px minmax(0, 1fr); }
+  .goal-tabs { border-bottom: 0; border-right: 1px solid var(--line); align-content: start; }
+}
+
+/* ---------- process ---------- */
+.steps { display: grid; border-top: 1px solid var(--line); }
+.step { padding: 28px 0; border-bottom: 1px solid var(--line); display: grid; gap: 12px; align-content: start; }
+.step-top { display: flex; justify-content: space-between; font: 500 .75rem/1 var(--mono); letter-spacing: .04em; color: var(--muted); }
+.step-num { font: 700 2.4rem/1 var(--display); font-variant-numeric: tabular-nums; }
+.step h3 { font: 600 1.35rem/1.2 var(--body); }
+.step p { color: var(--muted); }
+@media (min-width: 640px) {
+  .steps { grid-template-columns: 1fr 1fr; }
+  .step { padding: 28px 24px; }
+  .step:nth-child(odd) { border-right: 1px solid var(--line); padding-left: 0; }
+}
+@media (min-width: 1024px) {
+  .steps { grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--line); }
+  .step { border-bottom: 0; border-right: 1px solid var(--line); padding: 32px 24px; }
+  .step:nth-child(odd) { padding-left: 24px; }
+  .step:first-child { padding-left: 0; }
+  .step:last-child { border-right: 0; padding-right: 0; }
+}
+
+/* ---------- work ---------- */
+.work-grid { display: grid; gap: clamp(28px, 3vw, 40px) 24px; }
+.case { display: grid; gap: 14px; align-content: start; min-width: 0; }
+.frame {
+  position: relative; aspect-ratio: 16 / 9; max-width: 100%; overflow: hidden; border: 1px solid var(--line); border-radius: 2px;
+  background: repeating-linear-gradient(110deg, var(--hatch) 0 1px, transparent 1px 10px), var(--raised);
+}
+.frame::after {
+  content: ""; position: absolute; top: -10%; bottom: -10%; right: 18%; width: 9%;
+  background: var(--spectrum-slash); opacity: .22; transform: skewX(-20deg);
+}
+.frame-label { position: absolute; left: 14px; top: 12px; font: 500 .72rem/1 var(--mono); letter-spacing: .04em; }
+.frame-pending { position: absolute; left: 14px; bottom: 12px; font: 400 .7rem/1 var(--mono); color: var(--muted); }
+.case-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.case h3 { font: 600 1.25rem/1.25 var(--body); }
+.case p { color: var(--muted); max-width: 60ch; }
+.also { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: .95rem; }
+.also strong { color: var(--fg); font-weight: 600; }
+@media (min-width: 800px) {
+  .work-grid { grid-template-columns: repeat(12, 1fr); }
+  .case-a { grid-column: span 7; } .case-b { grid-column: span 5; }
+  .case-c, .case-d { grid-column: span 6; }
+}
+
+/* ---------- tracking ---------- */
+.track-grid { display: grid; gap: 40px; }
+.dash { background: var(--raised); border: 1px solid var(--line); border-radius: 3px; min-width: 0; }
+.dash-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); font: 500 .78rem/1 var(--mono); }
+.sample-tag { background: var(--s2); color: #0A0A0A; font: 500 .66rem/1 var(--mono); letter-spacing: .06em; padding: 5px 7px; border-radius: 2px; }
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); }
+.kpi { padding: 18px; border-right: 1px solid var(--line); min-width: 0; }
+.kpi:last-child { border-right: 0; }
+.kpi b { display: block; font: 700 clamp(1.5rem, 3vw, 2.1rem)/1 var(--display); font-variant-numeric: tabular-nums; }
+.kpi span { display: block; margin-top: 8px; font: 400 .72rem/1.35 var(--mono); color: var(--muted); }
+.bars { padding: 18px; display: grid; gap: 12px; }
+.bar { display: grid; grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr) 3rem; gap: 12px; align-items: center; font-size: .85rem; }
+.bar-track { height: 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 1px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--fg); }
+.bar-fill.top { background: var(--spectrum); }
+.bar-val { font: 500 .78rem/1 var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
+.insight { margin: 0 18px 18px; padding-top: 14px; border-top: 1px solid var(--line); font-size: .92rem; color: var(--muted); }
+.insight strong { color: var(--fg); font-weight: 600; }
+.terms { display: grid; gap: 0; border-top: 1px solid var(--line); align-content: start; }
+.term { padding: 20px 0; border-bottom: 1px solid var(--line); display: grid; gap: 6px; }
+.term dt { font: 500 .75rem/1.3 var(--mono); letter-spacing: .04em; color: var(--muted); }
+.term dd { margin: 0; }
+@media (max-width: 480px) { .bar { grid-template-columns: minmax(0, 1fr) 3rem; } .bar-track { grid-column: 1 / -1; grid-row: 2; } }
+@media (min-width: 980px) { .track-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; } }
+
+/* ---------- packages (inverted band) ---------- */
+.band { background: var(--band-bg); color: var(--band-fg); border-top: 0; }
+.band .label, .band .lede { color: var(--band-muted); }
+.pkgs { display: grid; border: 1px solid var(--band-line); border-radius: 3px; }
+.pkg { padding: 28px 24px; display: grid; gap: 18px; grid-template-rows: auto auto auto 1fr auto; border-bottom: 1px solid var(--band-line); min-width: 0; }
+.pkg:last-child { border-bottom: 0; }
+.pkg-len { font: 500 .75rem/1 var(--mono); letter-spacing: .04em; color: var(--band-muted); }
+.pkg h3 { font: 700 1.8rem/1 var(--display); }
+.price { display: flex; align-items: baseline; gap: 8px; }
+.price small { font: 400 .8rem/1 var(--mono); color: var(--band-muted); }
+.price b { font: 700 clamp(2.2rem, 3.4vw, 2.7rem)/1 var(--display); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.pkg-for { color: var(--band-muted); font-size: .95rem; }
+.items { border-top: 1px solid var(--band-line); align-self: start; }
+.items li { display: grid; grid-template-columns: 4.2rem minmax(0, 1fr); gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--band-line); font-size: .93rem; }
+.items .n { font: 500 .8rem/1.6 var(--mono); font-variant-numeric: tabular-nums; }
+.pkg-meta { font: 400 .74rem/1.55 var(--mono); color: var(--band-muted); }
+.pkg.featured { background: var(--bg); color: var(--fg); position: relative; }
+.pkg.featured::before { content: ""; position: absolute; left: -1px; right: -1px; top: -1px; height: 4px; background: var(--spectrum); }
+.pkg.featured .pkg-len, .pkg.featured .price small, .pkg.featured .pkg-for, .pkg.featured .pkg-meta { color: var(--muted); }
+.pkg.featured .items, .pkg.featured .items li { border-color: var(--line); }
+.feat-line { font: italic 400 1.15rem/1.2 var(--serif); }
+.pkg-cta { margin-top: 4px; }
+.band .btn-primary { background: var(--band-btn-bg); color: var(--band-btn-fg); }
+.band .btn-primary:hover { opacity: .88; }
+.pkg.featured .btn-primary { background: var(--btn-bg); color: var(--btn-fg); }
+.pkg.featured .btn-primary:hover { background: var(--btn-hover); opacity: 1; }
+.wide { display: grid; gap: 24px; margin-top: 24px; }
+.wide-card { border: 1px solid var(--band-line); border-radius: 3px; padding: 24px; display: grid; gap: 12px; align-content: start; }
+.wide-card h3 { font: 700 1.5rem/1.1 var(--display); }
+.wide-card .wp { font: 700 1.35rem/1.2 var(--display); font-variant-numeric: tabular-nums; }
+.wide-card .wp small { font: 400 .8rem/1 var(--mono); color: var(--band-muted); margin-left: 4px; }
+.wide-card p { color: var(--band-muted); }
+.fine { margin-top: 28px; font-size: .9rem; color: var(--band-muted); max-width: 80ch; }
+@media (min-width: 960px) {
+  .pkgs { grid-template-columns: repeat(3, 1fr); }
+  .pkg { border-bottom: 0; border-right: 1px solid var(--band-line); padding: 32px 28px; }
+  .pkg:last-child { border-right: 0; }
+  .wide { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- estimate ---------- */
+.est-grid { display: grid; gap: 40px; }
+.qs { display: grid; gap: 34px; min-width: 0; }
+.q { border: 0; padding: 0; margin: 0; min-width: 0; }
+.q legend { padding: 0; margin-bottom: 14px; font-weight: 600; font-size: 1.05rem; display: flex; gap: 12px; align-items: baseline; }
+.q legend .qn { font: 500 .75rem/1 var(--mono); color: var(--muted); }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.pill span {
+  display: inline-flex; gap: 8px; align-items: center; padding: 10px 14px; border: 1px solid var(--line); border-radius: 3px;
+  cursor: pointer; font-size: .93rem; transition: border-color .15s, background-color .15s, color .15s; user-select: none;
+}
+.pill span small { font: 400 .75rem/1 var(--mono); color: var(--muted); }
+.pill:hover span { border-color: var(--fg); }
+.pill input:checked + span { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.pill input:checked + span small { color: inherit; opacity: .75; }
+.pill input:focus-visible + span { outline: 2px solid var(--focus); outline-offset: 2px; }
+.episodes { margin-top: 16px; display: grid; gap: 8px; max-width: 420px; }
+.episodes label { font-size: .9rem; color: var(--muted); }
+.episodes output { font: 500 .9rem/1 var(--mono); color: var(--fg); }
+.episodes input[type="range"] { width: 100%; accent-color: var(--s4); }
+.result { background: var(--raised); border: 1px solid var(--line); border-radius: 3px; position: relative; padding: 26px 24px; display: grid; gap: 18px; align-self: start; min-width: 0; }
+.result::before { content: ""; position: absolute; left: -1px; right: -1px; top: -1px; height: 4px; background: var(--spectrum); border-radius: 3px 3px 0 0; }
+.range { font: 700 clamp(1.9rem, 2.8vw, 2.5rem)/1.05 var(--display); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.range small { font: 400 .9rem/1 var(--mono); color: var(--muted); margin-left: 4px; }
+.based { color: var(--muted); font-size: .95rem; margin-top: 8px; }
+.lines { border-top: 1px solid var(--line); }
+.lines li { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
+.lines li span:last-child { font: 500 .82rem/1.6 var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.includes { font-size: .9rem; color: var(--muted); }
+.includes strong { color: var(--fg); font-weight: 600; }
+.lead { display: grid; gap: 12px; padding-top: 18px; border-top: 1px solid var(--line); }
+.field { display: grid; gap: 6px; }
+.field label { font-size: .85rem; font-weight: 500; }
+.field label em { font-style: normal; color: var(--muted); font-weight: 400; }
+.field input, .field textarea {
+  font: inherit; font-size: .95rem; color: var(--fg); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 3px; padding: 11px 12px; width: 100%;
+}
+.field textarea { min-height: 84px; resize: vertical; }
+.field input:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 0; border-color: transparent; }
+.field input[aria-invalid="true"] { border-color: var(--s1); }
+.err { font-size: .82rem; color: var(--s1); }
+.lead .btn { justify-content: center; width: 100%; }
+.note { font: 400 .75rem/1.4 var(--mono); color: var(--muted); }
+.sent { padding: 16px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg); display: grid; gap: 8px; }
+.sent strong { font-weight: 600; }
+.placeholder-tag { display: inline-block; font: 500 .66rem/1 var(--mono); letter-spacing: .06em; background: var(--s2); color: #0A0A0A; padding: 4px 6px; border-radius: 2px; margin-right: 6px; vertical-align: 1px; }
+@media (min-width: 1000px) {
+  .est-grid { grid-template-columns: minmax(0, 1fr) 420px; gap: 56px; }
+  .result { position: sticky; top: calc(88px + env(safe-area-inset-top, 0px)); }
+}
+
+/* ---------- faq ---------- */
+.faq-grid { display: grid; gap: 32px; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq details:first-child { border-top: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; padding: 20px 40px 20px 0; position: relative; font-weight: 600; font-size: 1.05rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; top: 16px; font: 400 1.4rem/1 var(--mono); color: var(--muted); }
+.faq details[open] summary::after { content: "\2212"; }
+.faq details p { padding-bottom: 22px; color: var(--muted); max-width: 62ch; }
+@media (min-width: 900px) { .faq-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; } }
+
+/* ---------- closer ---------- */
+.closer { position: relative; overflow: hidden; border-top: 1px solid var(--line); padding-block: clamp(80px, 12vw, 150px); }
+.closer .wrap { position: relative; z-index: 1; display: grid; gap: 28px; justify-items: start; }
+.closer .h2 { font-size: clamp(2.3rem, 6vw, 4.8rem); max-width: 13ch; }
+.big-slash {
+  position: absolute; top: -20%; bottom: -20%; right: 6%; width: clamp(70px, 11vw, 150px);
+  background: var(--spectrum-slash); transform: skewX(-20deg);
+}
+@media (max-width: 640px) { .big-slash { right: -40px; opacity: .9; } .closer .h2 { max-width: 11ch; } }
+
+/* ---------- footer ---------- */
+.foot { border-top: 1px solid var(--line); padding-block: 36px; }
+.foot .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; }
+.foot .logo svg { height: 22px; }
+.mail { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font: 400 .85rem/1.4 var(--mono); }
+.mail code { font: inherit; user-select: all; }
+.copy { font: 500 .72rem/1 var(--mono); letter-spacing: .04em; padding: 7px 9px; border: 1px solid var(--line); border-radius: 2px; background: transparent; color: var(--fg); cursor: pointer; }
+.copy:hover { border-color: var(--fg); }
+.foot-meta { font: 400 .75rem/1.4 var(--mono); color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="SLAM Production, back to top">
+      <svg viewBox="0 0 440 100" role="img" aria-label="SLAM">
+        <defs><linearGradient id="spec-nav" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FF2E1F"/><stop offset=".3" stop-color="#FFB300"/><stop offset=".5" stop-color="#EAF6FF"/><stop offset=".72" stop-color="#18BFFF"/><stop offset="1" stop-color="#1636FF"/></linearGradient></defs>
+        <polygon points="0,0 42,0 5.6,100 0,100" fill="currentColor"/>
+        <polygon points="49,0 70,0 33.6,100 12.6,100" fill="url(#spec-nav)"/>
+        <polygon points="77,0 100,0 100,100 40.6,100" fill="currentColor"/>
+        <text x="122" y="88" fill="currentColor" font-family="Futura, Jost, sans-serif" font-weight="700" font-size="118" letter-spacing="-2">SLAM</text>
+      </svg>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#goals">Goals</a>
+      <a href="#work">Work</a>
+      <a href="#tracking">Tracking</a>
+      <a href="#packages">Packages</a>
+      <a href="#estimate">Estimate</a>
+    </nav>
+    <div class="nav-end">
+      <button class="mode-toggle" id="mode-toggle" type="button" aria-pressed="false" aria-label="Dark mode">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg>
+        <span class="mode-word" id="mode-word">Dark</span>
+      </button>
+      <a class="btn btn-primary" href="#estimate" data-track="cta_nav">Get a free treatment</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- 1. Hero -->
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="wrap">
+    <div class="hero-top">
+      <span><span class="rec" aria-hidden="true"></span><strong>SLAM Production</strong> // corporate video, Atlanta</span>
+      <span class="tnum" aria-hidden="true"><span id="tc">TC 00:00:00:00</span> // 4K 25p</span>
+    </div>
+    <h1 id="hero-title"><span>Shoot once.</span> <span>Post all month.</span> <span>Know what worked.</span></h1>
+    <div class="hero-row">
+      <p class="lede">We plan and film everything in one production, cut it into weeks of ready-to-post video, and track how every piece performs on your channels.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#estimate" data-track="cta_hero"><span class="slash-ico" aria-hidden="true"></span>Get a free treatment</a>
+        <a class="btn btn-secondary" href="#work">See the work</a>
+      </div>
+    </div>
+
+    <figure class="cal" aria-labelledby="cal-title" style="margin-inline:0">
+      <div class="cal-head">
+        <p class="cal-title" id="cal-title"><strong>One production</strong> → a month of posts. Example calendar from The Month package.</p>
+        <div class="legend" aria-label="Legend">
+          <span><i class="chip chip-hero">Hero</i>16:9 film</span>
+          <span><i class="chip chip-ad">AD</i>15s / 30s</span>
+          <span><i class="chip chip-v">9:16</i>vertical clip</span>
+          <span><i class="chip chip-still">Still</i>photo</span>
+        </div>
+      </div>
+      <span class="scroll-hint" aria-hidden="true">Scroll sideways to see the full week →</span>
+      <div class="cal-scroll" tabindex="0" aria-label="Example month posting calendar">
+        <div class="cal-grid" id="cal-grid">
+          <div class="cal-dow">MON</div><div class="cal-dow">TUE</div><div class="cal-dow">WED</div><div class="cal-dow">THU</div><div class="cal-dow">FRI</div><div class="cal-dow">SAT</div><div class="cal-dow">SUN</div>
+        </div>
+      </div>
+      <div class="cal-foot">
+        <span><b>1</b>production</span>
+        <span><b>15</b>videos</span>
+        <span><b>25</b>stills</span>
+        <span><b>3</b>posts a week</span>
+        <span><b>30</b>day results report</span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- 2. Goal picker -->
+<section class="section" id="goals" aria-labelledby="goals-title">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">// Start with the goal</span>
+      <h2 class="h2" id="goals-title">What do you need your video to do?</h2>
+      <p class="lede">Pick the outcome first. The treatment, the shot list and what we measure afterward all follow from it.</p>
+    </div>
+    <div class="goals">
+      <div class="goal-tabs" role="tablist" aria-label="Goals" id="goal-tabs"></div>
+      <div class="goal-panel" role="tabpanel" id="goal-panel" tabindex="0"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Process -->
+<section class="section" id="process" aria-labelledby="process-title">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">// How one shoot becomes a month</span>
+      <h2 class="h2" id="process-title">One production. Four steps. You sign off on each.</h2>
+    </div>
+    <ol class="steps" style="list-style:none;margin:0;padding:0">
+      <li class="step">
+        <div class="step-top"><span>PLAN</span><span>WEEK 1</span></div>
+        <span class="step-num">01</span>
+        <h3>Treatment and shot list</h3>
+        <p>A discovery call on your goal, then a free first-pass treatment. Every clip is planned before the shoot, not salvaged in the edit.</p>
+      </li>
+      <li class="step">
+        <div class="step-top"><span>SHOOT</span><span>WEEK 2</span></div>
+        <span class="step-num">02</span>
+        <h3>One production</h3>
+        <p>Half a day to three days depending on the package, scheduled around your team. We film the hero, the cutdowns and the stills in one go.</p>
+      </li>
+      <li class="step">
+        <div class="step-top"><span>DELIVER</span><span>WEEKS 3–4</span></div>
+        <span class="step-num">03</span>
+        <h3>Cut for every platform</h3>
+        <p>Hero film, ad cuts, vertical clips and photos, exported for each channel with a content calendar and suggested captions.</p>
+      </li>
+      <li class="step">
+        <div class="step-top"><span>MEASURE</span><span>DAY 30</span></div>
+        <span class="step-num">04</span>
+        <h3>Know what worked</h3>
+        <p>Every video gets a tracked link. After 30 days you get a report on what got watched, what drove clicks and what to make more of.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- 4. Selected work -->
+<section class="section" id="work" aria-labelledby="work-title">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">// Selected work</span>
+      <h2 class="h2" id="work-title">Series, sport and brand stories.</h2>
+    </div>
+    <div class="work-grid">
+      <article class="case case-a">
+        <div class="frame" role="img" aria-label="Placeholder frame for TrialPort, still pending"><span class="frame-label">TRIALPORT // EP 01–15</span><span class="frame-pending">Still pending</span></div>
+        <div class="case-tags"><span class="chip">Pharmaceutical</span><span class="chip">Podcast series</span><span class="chip">YouTube</span></div>
+        <h3>TrialPort: a 15-episode video podcast</h3>
+        <p>Multi-camera production for a pharmaceutical company's podcast, filmed in studio sessions and released on YouTube, with clips cut from every episode.</p>
+      </article>
+      <article class="case case-b">
+        <div class="frame" role="img" aria-label="Placeholder frame for Czech Fencing Federation, still pending"><span class="frame-label">CZECH FENCING // SOCIAL</span><span class="frame-pending">Still pending</span></div>
+        <div class="case-tags"><span class="chip">Sport federation</span><span class="chip">Social content</span></div>
+        <h3>Czech Fencing Federation</h3>
+        <p>Ongoing social media management and content production: filming competitions and athletes, then running the channels that publish it.</p>
+      </article>
+      <article class="case case-c">
+        <div class="frame" role="img" aria-label="Placeholder frame for the Olympic fencer documentary, still pending"><span class="frame-label">DOCUMENTARY // OLYMPIC FENCER</span><span class="frame-pending">Still pending</span></div>
+        <div class="case-tags"><span class="chip">Documentary</span><span class="chip">With the Czech Fencing Federation</span></div>
+        <h3>Portrait of an Olympic fencer</h3>
+        <p>A documentary following an Olympic fencer, produced in collaboration with the federation.</p>
+      </article>
+      <article class="case case-d">
+        <div class="frame" role="img" aria-label="Placeholder frame for content for Red Bull athletes, still pending"><span class="frame-label">ATHLETES // FILM, EDIT, DELIVERY</span><span class="frame-pending">Still pending</span></div>
+        <div class="case-tags"><span class="chip">Athletes</span><span class="chip">Filmed, edited, produced</span></div>
+        <h3>Content for Red Bull athletes</h3>
+        <p>Videos for Red Bull athletes, from filming through edit and final delivery.</p>
+      </article>
+    </div>
+    <p class="also"><strong>Also designed for</strong> Toyota and Furiosa · Camera and lighting crew on corporate shoots for national brands</p>
+  </div>
+</section>
+
+<!-- 5. Tracking -->
+<section class="section" id="tracking" aria-labelledby="tracking-title">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">// Know what worked</span>
+      <h2 class="h2" id="tracking-title">We track every video after it goes live.</h2>
+      <p class="lede">Most studios hand over files and leave. Every SLAM package includes a 30-day results report. Retainer and series clients get a live dashboard.</p>
+    </div>
+    <div class="track-grid">
+      <figure class="dash" style="margin:0" aria-label="Sample results dashboard with illustrative numbers">
+        <div class="dash-head"><span>Results // first 30 days</span><span class="sample-tag">SAMPLE DATA</span></div>
+        <div class="kpis">
+          <div class="kpi"><b>48.2K</b><span>views, all platforms</span></div>
+          <div class="kpi"><b>41%</b><span>avg. watch-through</span></div>
+          <div class="kpi"><b>612</b><span>site visits from links</span></div>
+        </div>
+        <div class="bars">
+          <div class="bar"><span>Customer clip 03</span><div class="bar-track"><div class="bar-fill top" style="width:100%"></div></div><span class="bar-val">9.4K</span></div>
+          <div class="bar"><span>Customer clip 07</span><div class="bar-track"><div class="bar-fill" style="width:81.9%"></div></div><span class="bar-val">7.7K</span></div>
+          <div class="bar"><span>Hero film</span><div class="bar-track"><div class="bar-fill" style="width:63.8%"></div></div><span class="bar-val">6.0K</span></div>
+          <div class="bar"><span>Ad, 30 sec</span><div class="bar-track"><div class="bar-fill" style="width:41.5%"></div></div><span class="bar-val">3.9K</span></div>
+          <div class="bar"><span>Team BTS clip</span><div class="bar-track"><div class="bar-fill" style="width:29.8%"></div></div><span class="bar-val">2.8K</span></div>
+        </div>
+        <p class="insight"><strong>Vertical customer clips drove 3× the site visits of the 30-second ad.</strong> Next shoot: more customer stories, shorter openers.</p>
+      </figure>
+      <dl class="terms" style="margin:0">
+        <div class="term"><dt>WHAT YOU GIVE US</dt><dd>View-only access to your YouTube, Instagram, Facebook, LinkedIn, TikTok and Google Analytics. You approve it on each platform's own screen. We never need your passwords.</dd></div>
+        <div class="term"><dt>HOW LONG SETUP TAKES</dt><dd>About a week after delivery. Reporting starts once access is in place, so send it within five days of delivery.</dd></div>
+        <div class="term"><dt>WHAT WE CAN MEASURE</dt><dd>Views, watch time, reach, engagement and follower growth on each platform, plus clicks and form fills on your site through a tracked link for every video.</dd></div>
+        <div class="term"><dt>WHAT WE CAN'T</dt><dd>Each platform decides what it shares, and someone who watches on Instagram then calls your sales team two weeks later won't show up as a click. We report direction, not exact attribution.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Packages -->
+<section class="section band" id="packages" aria-labelledby="packages-title">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">// Packages</span>
+      <h2 class="h2" id="packages-title">Priced up front. Built around one production.</h2>
+      <p class="lede">Each package is a single shoot, sized to how much content you need. Your goal decides the mix inside.</p>
+    </div>
+    <div class="pkgs">
+      <article class="pkg">
+        <span class="pkg-len">ABOUT 2 WEEKS OF POSTS</span>
+        <h3>Spotlight</h3>
+        <div class="price"><small>from</small><b>$4,500</b></div>
+        <p class="pkg-for">For a first project, a single launch or announcement, or testing us before a bigger commitment.</p>
+        <ul class="items">
+          <li><span class="n">1</span><span>Hero video, 60–90 sec</span></li>
+          <li><span class="n">6</span><span>Vertical clips, 15–30 sec</span></li>
+          <li><span class="n">10</span><span>Edited stills</span></li>
+          <li><span class="n">2 wk</span><span>Posting plan, tracked link per video</span></li>
+          <li><span class="n">30 day</span><span>Results report</span></li>
+        </ul>
+        <p class="pkg-meta">Half day, 1 location · Crew of 2 · About 10 business days</p>
+      </article>
+      <article class="pkg featured">
+        <span class="pkg-len">A FULL MONTH OF POSTS</span>
+        <h3>The Month</h3>
+        <div class="price"><small>from</small><b>$9,000</b></div>
+        <p class="feat-line">The one we recommend for most teams.</p>
+        <ul class="items">
+          <li><span class="n">1</span><span>Hero video, 90 sec to 2 min</span></li>
+          <li><span class="n">2</span><span>Ad cuts, 15 and 30 sec</span></li>
+          <li><span class="n">12</span><span>Vertical clips, 3 posts a week</span></li>
+          <li><span class="n">25</span><span>Edited stills</span></li>
+          <li><span class="n">30 day</span><span>Content calendar with suggested captions</span></li>
+          <li><span class="n">30 day</span><span>Results report and review call</span></li>
+        </ul>
+        <p class="pkg-meta">Full day, up to 2 locations · Crew of 3 · 2–3 weeks</p>
+      </article>
+      <article class="pkg">
+        <span class="pkg-len">ABOUT 3 MONTHS OF POSTS</span>
+        <h3>The Quarter</h3>
+        <div class="price"><small>from</small><b>$21,500</b></div>
+        <p class="pkg-for">For launches, rebrands, and a content library spanning several stories or departments.</p>
+        <ul class="items">
+          <li><span class="n">1</span><span>Hero brand film, up to 3 min</span></li>
+          <li><span class="n">2</span><span>Testimonial videos, 60–90 sec</span></li>
+          <li><span class="n">3</span><span>Ad cuts, 6, 15 and 30 sec</span></li>
+          <li><span class="n">36</span><span>Vertical clips</span></li>
+          <li><span class="n">60</span><span>Edited stills</span></li>
+          <li><span class="n">90 day</span><span>Content calendar and review</span></li>
+        </ul>
+        <p class="pkg-meta">2–3 days, multiple locations · Crew of 4 · 4–6 weeks</p>
+      </article>
+    </div>
+    <div class="wide">
+      <article class="wide-card">
+        <span class="pkg-len">RETAINER // 3-MONTH MINIMUM</span>
+        <h3>Always On</h3>
+        <p class="wp">$4,500/mo <small>or</small> $8,500/mo <small>Plus</small></p>
+        <p>A monthly shoot, 12 to 20 fresh clips a month, a live dashboard and a content calendar. Each month's shoot makes more of what worked last month.</p>
+      </article>
+      <article class="wide-card">
+        <span class="pkg-len">PODCASTS AND INTERVIEW SERIES</span>
+        <h3>Series</h3>
+        <p class="wp">$3,500 <small>setup</small> + $2,200 <small>per episode</small></p>
+        <p>Multi-camera episodes, an audio master for podcast platforms, 4 clips and a thumbnail per episode, and a dashboard across the release. 6-episode minimum; $1,950 per episode at 12 or more.</p>
+      </article>
+    </div>
+    <p class="fine">Add-ons include extra shoot days, drone, hair and makeup, motion graphics, extra clips and rush delivery. Billing is 50% to book and 50% on delivery. You own every final deliverable. Travel within metro Atlanta is included.</p>
+  </div>
+</section>
+
+<!-- 7. Estimate -->
+<section class="section" id="estimate" aria-labelledby="estimate-title">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">// Estimate</span>
+      <h2 class="h2" id="estimate-title">Get a price range in a minute.</h2>
+      <p class="lede">Answer five questions. Send it to us and we'll reply within one business day with a free first-pass treatment built for your goal.</p>
+    </div>
+    <div class="est-grid">
+      <form class="qs" id="est-form" novalidate>
+        <fieldset class="q">
+          <legend><span class="qn">01</span>What should the video do?</legend>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="goal" id="g-win" value="win"><span>Win more customers</span></label>
+            <label class="pill"><input type="radio" name="goal" id="g-trust" value="trust" checked><span>Build trust and close deals</span></label>
+            <label class="pill"><input type="radio" name="goal" id="g-visible" value="visible"><span>Stay visible every week</span></label>
+            <label class="pill"><input type="radio" name="goal" id="g-story" value="story"><span>Tell your story</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="q">
+          <legend><span class="qn">02</span>How much content do you need?</legend>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="pkg" id="p-spot" value="spotlight"><span>2 weeks</span></label>
+            <label class="pill"><input type="radio" name="pkg" id="p-month" value="month" checked><span>A month</span></label>
+            <label class="pill"><input type="radio" name="pkg" id="p-quarter" value="quarter"><span>A quarter</span></label>
+            <label class="pill"><input type="radio" name="pkg" id="p-always" value="always"><span>Ongoing, every month</span></label>
+            <label class="pill"><input type="radio" name="pkg" id="p-series" value="series"><span>A podcast or series</span></label>
+          </div>
+          <div class="episodes" id="episodes-wrap" hidden>
+            <label for="episodes">Episodes: <output id="episodes-out" for="episodes">8</output></label>
+            <input type="range" id="episodes" name="episodes" min="6" max="24" step="1" value="8">
+          </div>
+        </fieldset>
+        <fieldset class="q">
+          <legend><span class="qn">03</span>How many locations?</legend>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="loc" id="l-1" value="1" checked><span>1 location</span></label>
+            <label class="pill"><input type="radio" name="loc" id="l-2" value="2"><span>2 locations</span></label>
+            <label class="pill"><input type="radio" name="loc" id="l-3" value="3"><span>3 or more</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="q">
+          <legend><span class="qn">04</span>Anything extra?</legend>
+          <div class="pills">
+            <label class="pill"><input type="checkbox" name="addon" id="a-drone" value="drone"><span>Drone footage <small>$750</small></span></label>
+            <label class="pill"><input type="checkbox" name="addon" id="a-hmu" value="hmu"><span>Hair and makeup <small>$600</small></span></label>
+            <label class="pill"><input type="checkbox" name="addon" id="a-motion" value="motion"><span>Motion graphics <small>$1,500</small></span></label>
+            <label class="pill"><input type="checkbox" name="addon" id="a-clips" value="clips"><span>6 extra clips <small>$900</small></span></label>
+            <label class="pill"><input type="checkbox" name="addon" id="a-vo" value="vo"><span>Voiceover <small>$400</small></span></label>
+            <label class="pill"><input type="checkbox" name="addon" id="a-raw" value="raw"><span>Raw footage <small>$750</small></span></label>
+          </div>
+        </fieldset>
+        <fieldset class="q">
+          <legend><span class="qn">05</span>When do you need it?</legend>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="time" id="t-std" value="standard" checked><span>Standard turnaround</span></label>
+            <label class="pill"><input type="radio" name="time" id="t-rush" value="rush"><span>Rush, half the time <small>+25%</small></span></label>
+          </div>
+        </fieldset>
+      </form>
+
+      <aside class="result" aria-labelledby="result-label">
+        <div aria-live="polite" aria-atomic="true" id="est-live">
+          <span class="label" id="result-label" style="margin-bottom:10px">Estimated range</span>
+          <p class="range" id="est-range">$8,000 – $10,500</p>
+          <p class="based" id="est-based">Based on The Month</p>
+        </div>
+        <ul class="lines" id="est-lines"></ul>
+        <p class="includes" id="est-includes"></p>
+        <form class="lead" id="lead-form" novalidate>
+          <div class="field"><label for="lead-name">Name</label><input id="lead-name" name="name" autocomplete="name"></div>
+          <div class="field"><label for="lead-company">Company</label><input id="lead-company" name="company" autocomplete="organization"></div>
+          <div class="field">
+            <label for="lead-email">Work email <em>(required)</em></label>
+            <input id="lead-email" name="email" type="email" autocomplete="email" required aria-describedby="lead-email-err">
+            <span class="err" id="lead-email-err" hidden>Enter a work email so we can send your treatment.</span>
+          </div>
+          <div class="field"><label for="lead-notes">Anything we should know?</label><textarea id="lead-notes" name="notes" placeholder="Audience, platforms, a video you like, a launch date"></textarea></div>
+          <button class="btn btn-primary" type="submit"><span class="slash-ico" aria-hidden="true"></span>Send and get my free treatment</button>
+          <p class="note">We reply within one business day.</p>
+          <div class="sent" id="lead-sent" role="status" hidden></div>
+        </form>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 8. FAQ -->
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="wrap faq-grid">
+    <div>
+      <span class="label">// Questions</span>
+      <h2 class="h2" id="faq-title">Before you book.</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Is it really just one shoot day?</summary><p>It's one production, sized to the package: a half day for Spotlight, a full day for The Month, two to three days for The Quarter. You block your team's calendar once instead of every week.</p></details>
+      <details><summary>How much does corporate video cost in Atlanta?</summary><p>Most single projects here land between $5,000 and $12,000. Our packages start at $4,500, and the estimate tool above gives you a range for your exact needs.</p></details>
+      <details><summary>Who owns the footage?</summary><p>You own every final deliverable. Raw footage stays with us unless you buy it out, which is a $750 add-on.</p></details>
+      <details><summary>What do you need from us for tracking?</summary><p>View-only access to your social accounts and Google Analytics, granted on each platform's own screen within five days of delivery. Setup takes about a week.</p></details>
+      <details><summary>Do you travel outside Atlanta?</summary><p>Yes. Travel within metro Atlanta is included. Outside that, we bill mileage or travel at cost.</p></details>
+      <details><summary>What is the free treatment?</summary><p>A first-pass creative plan for your video: the concept, the story, the shot list and how the content splits across platforms. First-time clients get one free, with no obligation to book.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Closing banner -->
+<section class="closer" aria-labelledby="closer-title">
+  <div class="big-slash" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="label" style="margin:0">// Ready when you are</span>
+    <h2 class="h2" id="closer-title">One shoot. A month of content. Proof it worked.</h2>
+    <a class="btn btn-primary" href="#estimate" data-track="cta_closer"><span class="slash-ico" aria-hidden="true"></span>Get a free treatment</a>
+  </div>
+</section>
+</main>
+
+<!-- 10. Footer -->
+<footer class="foot">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="SLAM Production, back to top">
+      <svg viewBox="0 0 440 100" role="img" aria-label="SLAM">
+        <defs><linearGradient id="spec-foot" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FF2E1F"/><stop offset=".3" stop-color="#FFB300"/><stop offset=".5" stop-color="#EAF6FF"/><stop offset=".72" stop-color="#18BFFF"/><stop offset="1" stop-color="#1636FF"/></linearGradient></defs>
+        <polygon points="0,0 42,0 5.6,100 0,100" fill="currentColor"/>
+        <polygon points="49,0 70,0 33.6,100 12.6,100" fill="url(#spec-foot)"/>
+        <polygon points="77,0 100,0 100,100 40.6,100" fill="currentColor"/>
+        <text x="122" y="88" fill="currentColor" font-family="Futura, Jost, sans-serif" font-weight="700" font-size="118" letter-spacing="-2">SLAM</text>
+      </svg>
+    </a>
+    <div class="mail">
+      <span class="placeholder-tag">PLACEHOLDER</span>
+      <code id="mail-addr">hello@slamproduction.com</code>
+      <button class="copy" id="copy-mail" type="button">Copy</button>
+    </div>
+    <p class="foot-meta">SLAM Production // Atlanta, GA // © 2026</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var root = document.documentElement;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Site analytics hook. Pushes to GA4's dataLayer once the GA4 tag is installed. */
+  function track(name, params) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(Object.assign({ event: name }, params || {}));
+    if (typeof window.gtag === "function") window.gtag("event", name, params || {});
+  }
+  document.querySelectorAll("[data-track]").forEach(function (el) {
+    el.addEventListener("click", function () { track("cta_click", { location: el.getAttribute("data-track") }); });
+  });
+
+  /* ---------- light / dark ---------- */
+  var toggle = document.getElementById("mode-toggle");
+  var word = document.getElementById("mode-word");
+  function paintToggle() {
+    var dark = root.getAttribute("data-mode") === "dark";
+    toggle.setAttribute("aria-pressed", dark ? "true" : "false");
+    word.textContent = dark ? "Light" : "Dark";
+    toggle.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+  }
+  toggle.addEventListener("click", function () {
+    var next = root.getAttribute("data-mode") === "dark" ? "light" : "dark";
+    root.setAttribute("data-mode", next);
+    try { localStorage.setItem("slam-mode", next); } catch (e) {}
+    paintToggle();
+    track("theme_change", { mode: next });
+  });
+  paintToggle();
+
+  /* ---------- running timecode, 25 fps ---------- */
+  var tc = document.getElementById("tc");
+  var t0 = performance.now();
+  function pad(n) { return String(n).padStart(2, "0"); }
+  function tick() {
+    var f = Math.floor((performance.now() - t0) / 40);
+    var ff = f % 25, s = Math.floor(f / 25), ss = s % 60, mm = Math.floor(s / 60) % 60, hh = Math.floor(s / 3600);
+    tc.textContent = "TC " + pad(hh) + ":" + pad(mm) + ":" + pad(ss) + ":" + pad(ff);
+  }
+  if (!reduce) setInterval(tick, 40);
+
+  /* ---------- month calendar ---------- */
+  var plan = { 1: ["hero", "Hero"], 5: ["ad", "AD 30s"], 17: ["ad", "AD 15s"] };
+  [3, 8, 10, 12, 15, 19, 22, 24, 26, 27, 29, 31].forEach(function (d) { plan[d] = ["v", "9:16"]; });
+  [2, 9, 16, 23, 30].forEach(function (d) { plan[d] = ["still", "Still"]; });
+  var grid = document.getElementById("cal-grid");
+  var cells = [];
+  cells.push('<div class="cal-cell wk0"><span class="cal-num">WK 0</span><span class="chip chip-shoot">Shoot day</span></div>');
+  for (var d = 1; d <= 31; d++) {
+    var p = plan[d];
+    cells.push('<div class="cal-cell"><span class="cal-num">' + pad(d) + "</span>" + (p ? '<span class="chip chip-' + p[0] + '">' + p[1] + "</span>" : "") + "</div>");
+  }
+  while (cells.length % 7) cells.push('<div class="cal-cell empty" aria-hidden="true"></div>');
+  grid.insertAdjacentHTML("beforeend", cells.join(""));
+  var all = grid.querySelectorAll(".cal-cell");
+  for (var i = all.length - 7; i < all.length; i++) all[i].classList.add("last-row");
+
+  /* ---------- goals ---------- */
+  var GOALS = [
+    { id: "win", name: "Win more customers", sub: "Ads, product videos, launches",
+      pitch: "Video that moves people from scrolling to buying.",
+      make: ["Paid social ads, 6, 15 and 30 sec", "Product and demo videos", "Launch films", "Retargeting cutdowns"],
+      track: ["Clicks from every video to your site", "Form fills and sign-ups", "Cost per lead on paid placements", "Which hook stops the scroll"],
+      month: "4 ad cuts instead of 2 and product-led clips." },
+    { id: "trust", name: "Build trust and close deals", sub: "Testimonials, case studies",
+      pitch: "Let your customers make the case for you.",
+      make: ["Customer testimonial videos", "Case-study films for your sales team", "Clips built from customer quotes", "Founder and expert interviews"],
+      track: ["Views from prospects and sales pages", "Watch-through on proof videos", "Visits to pricing and contact pages", "Shares inside buying teams"],
+      month: "a testimonial replaces part of the hero time, and clips come from customer quotes." },
+    { id: "visible", name: "Stay visible every week", sub: "Monthly social content",
+      pitch: "Show up three times a week without filming every week.",
+      make: ["Vertical clips for Reels, TikTok, Shorts", "Behind-the-scenes and team moments", "LinkedIn thought-leadership cuts", "A month-long posting calendar"],
+      track: ["Reach and follower growth", "Engagement per post", "Best days and formats to post", "Month-over-month trend"],
+      month: "mostly vertical clips, plus behind-the-scenes and team personality." },
+    { id: "story", name: "Tell your story", sub: "Brand films, about-us videos",
+      pitch: "The film that explains who you are in two minutes.",
+      make: ["Brand or about-us film", "Website hero video", "Founder story", "Chapters cut for social"],
+      track: ["Watch time on the hero film", "Time on site with the video", "Completion rate", "Where viewers drop off"],
+      month: "the hero runs longer and more cinematic, with clips that extend the story." }
+  ];
+  var tabsEl = document.getElementById("goal-tabs");
+  var panel = document.getElementById("goal-panel");
+  tabsEl.innerHTML = GOALS.map(function (g) {
+    return '<button class="goal-tab" role="tab" type="button" id="tab-' + g.id + '" aria-controls="goal-panel" aria-selected="false" tabindex="-1" data-goal="' + g.id + '">' +
+      '<span class="t">' + g.name + '</span><span class="s">' + g.sub + "</span></button>";
+  }).join("");
+  var tabs = Array.prototype.slice.call(tabsEl.querySelectorAll(".goal-tab"));
+  function li(arr) { return arr.map(function (x) { return "<li>" + x + "</li>"; }).join(""); }
+  function selectGoal(id, opts) {
+    opts = opts || {};
+    var g = GOALS.filter(function (x) { return x.id === id; })[0];
+    tabs.forEach(function (t) {
+      var on = t.dataset.goal === id;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      if (on && opts.focus) t.focus();
+    });
+    panel.setAttribute("aria-labelledby", "tab-" + id);
+    panel.innerHTML =
+      '<p class="goal-pitch">' + g.pitch + "</p>" +
+      '<div class="goal-lists"><div><h3>WHAT WE MAKE</h3><ul class="slash-list">' + li(g.make) + "</ul></div>" +
+      '<div><h3>WHAT WE TRACK</h3><ul class="slash-list">' + li(g.track) + "</ul></div></div>" +
+      '<div class="goal-month"><p><strong>In The Month:</strong> ' + g.month.charAt(0).toUpperCase() + g.month.slice(1) + "</p>" +
+      '<a class="btn btn-secondary" href="#estimate" data-goal-cta>Estimate for this goal</a></div>';
+    if (opts.sync !== false) {
+      var r = document.getElementById("g-" + id);
+      if (r && !r.checked) { r.checked = true; calc(); }
+    }
+  }
+  tabs.forEach(function (t, idx) {
+    t.addEventListener("click", function () { selectGoal(t.dataset.goal); track("goal_select", { goal: t.dataset.goal, source: "picker" }); });
+    t.addEventListener("keydown", function (e) {
+      var n = null;
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") n = (idx + 1) % tabs.length;
+      if (e.key === "ArrowUp" || e.key === "ArrowLeft") n = (idx - 1 + tabs.length) % tabs.length;
+      if (e.key === "Home") n = 0;
+      if (e.key === "End") n = tabs.length - 1;
+      if (n !== null) { e.preventDefault(); selectGoal(tabs[n].dataset.goal, { focus: true }); track("goal_select", { goal: tabs[n].dataset.goal, source: "picker" }); }
+    });
+  });
+
+  /* ---------- estimate ---------- */
+  var PKG = {
+    spotlight: { name: "Spotlight", price: 4500, locs: 1,
+      includes: "1 hero video (60–90 sec), 6 vertical clips, 10 stills, a 2-week posting plan and a 30-day results report." },
+    month: { name: "The Month", price: 9000, locs: 2,
+      includes: "1 hero video (90 sec to 2 min), 2 ad cuts, 12 vertical clips, 25 stills, a 30-day content calendar, results report and review call." },
+    quarter: { name: "The Quarter", price: 21500, locs: 3,
+      includes: "1 brand film (up to 3 min), 2 testimonial videos, 3 ad cuts, 36 vertical clips, 60 stills, a 90-day calendar and a 90-day review." },
+    always: { name: "Always On", price: 4500, locs: 1, monthly: true,
+      includes: "A half-day shoot every month, 12 vertical clips, 1 short feature, 15 stills, a monthly content calendar and a live dashboard." },
+    series: { name: "Series", price: 0, locs: 1,
+      includes: "Series setup with branded graphics and a trailer, then per episode a multicam edit, an audio master, 4 clips, a thumbnail and a live dashboard." }
+  };
+  var ADDONS = { drone: ["Drone footage", 750], hmu: ["Hair and makeup", 600], motion: ["Motion graphics", 1500], clips: ["6 extra clips", 900], vo: ["Voiceover", 400], raw: ["Raw footage", 750] };
+  var MIX = {
+    win: "Mix tilted toward ad cuts and product-led clips.",
+    trust: "Mix tilted toward testimonials and customer-quote clips.",
+    visible: "Mix tilted toward vertical clips and behind-the-scenes.",
+    story: "Mix tilted toward a longer, cinematic hero film."
+  };
+  var form = document.getElementById("est-form");
+  var epWrap = document.getElementById("episodes-wrap");
+  var epIn = document.getElementById("episodes");
+  var epOut = document.getElementById("episodes-out");
+  var money = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
+  var r500 = function (n) { return Math.round(n / 500) * 500; };
+  var current = {};
+
+  function val(name) { var el = form.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : null; }
+
+  function calc() {
+    var goal = val("goal"), key = val("pkg"), locs = parseInt(val("loc"), 10), rush = val("time") === "rush";
+    var pkg = PKG[key], lines = [], base;
+    var episodes = parseInt(epIn.value, 10);
+    epWrap.hidden = key !== "series";
+    epOut.textContent = episodes;
+    if (key === "series") {
+      var per = episodes >= 12 ? 1950 : 2200;
+      base = 3500 + episodes * per;
+      lines.push(["Series setup", 3500]);
+      lines.push([episodes + " episodes × " + money(per), episodes * per]);
+    } else {
+      base = pkg.price;
+      lines.push([pkg.name + " package" + (pkg.monthly ? ", per month" : ""), base]);
+    }
+    var extraLocs = Math.max(0, locs - pkg.locs);
+    var extraLoc = extraLocs * 500;
+    if (extraLoc) lines.push(["Extra location" + (extraLocs > 1 ? "s" : "") + " × " + extraLocs, extraLoc]);
+    var addons = [];
+    form.querySelectorAll('input[name="addon"]:checked').forEach(function (a) {
+      var ad = ADDONS[a.value]; addons.push(a.value); lines.push([ad[0], ad[1]]);
+    });
+    var subtotal = base + extraLoc + addons.reduce(function (s, k) { return s + ADDONS[k][1]; }, 0);
+    if (rush) { lines.push(["Rush delivery, +25%", subtotal * 0.25]); subtotal *= 1.25; }
+    var low = r500(subtotal * 0.9), high = r500(subtotal * 1.15);
+    var per = pkg.monthly ? "/mo" : "";
+
+    document.getElementById("est-range").innerHTML = money(low) + " – " + money(high) + (per ? "<small>" + per + "</small>" : "");
+    document.getElementById("est-based").textContent = "Based on " + pkg.name + (pkg.monthly ? ", 3-month minimum" : "") + (key === "series" ? ", " + episodes + " episodes" : "");
+    document.getElementById("est-lines").innerHTML = lines.map(function (l) { return "<li><span>" + l[0] + "</span><span>" + money(l[1]) + "</span></li>"; }).join("");
+    document.getElementById("est-includes").innerHTML = "<strong>Includes:</strong> " + pkg.includes + " " + MIX[goal];
+
+    current = { goal: goal, package: pkg.name, locations: locs === 3 ? "3 or more" : locs, addons: addons.map(function (k) { return ADDONS[k][0]; }),
+      timeline: rush ? "rush" : "standard", episodes: key === "series" ? episodes : null, subtotal: Math.round(subtotal),
+      range_low: low, range_high: high, range: money(low) + " – " + money(high) + per };
+    return current;
+  }
+  form.addEventListener("change", function (e) {
+    calc();
+    if (e.target.name === "goal") { selectGoal(e.target.value, { sync: false }); track("goal_select", { goal: e.target.value, source: "estimate" }); }
+    track("estimate_change", { field: e.target.name, package: current.package, range: current.range });
+  });
+  epIn.addEventListener("input", calc);
+  form.addEventListener("submit", function (e) { e.preventDefault(); });
+
+  /* lead form */
+  var lead = document.getElementById("lead-form");
+  var email = document.getElementById("lead-email");
+  var emailErr = document.getElementById("lead-email-err");
+  var sent = document.getElementById("lead-sent");
+  function emailOk() { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim()); }
+  email.addEventListener("input", function () { if (emailOk()) { email.removeAttribute("aria-invalid"); emailErr.hidden = true; } });
+  lead.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!emailOk()) { email.setAttribute("aria-invalid", "true"); emailErr.hidden = false; email.focus(); return; }
+    var payload = Object.assign({}, calc(), {
+      name: document.getElementById("lead-name").value.trim(),
+      company: document.getElementById("lead-company").value.trim(),
+      email: email.value.trim(),
+      notes: document.getElementById("lead-notes").value.trim(),
+      submitted_at: new Date().toISOString()
+    });
+    track("generate_lead", { package: payload.package, goal: payload.goal, range: payload.range });
+    /* PLACEHOLDER: no backend yet. Set window.SLAM_FORM_ENDPOINT to a form service URL to send the payload. */
+    var endpoint = window.SLAM_FORM_ENDPOINT;
+    if (endpoint) {
+      fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }).catch(function () {});
+    }
+    sent.innerHTML = "<strong>Thanks" + (payload.name ? ", " + payload.name.replace(/[<>&]/g, "") : "") + ". We'll reply within one business day.</strong>" +
+      '<span class="note"><span class="placeholder-tag">PLACEHOLDER</span>The form isn\'t connected to an inbox yet, so nothing was sent.</span>';
+    sent.hidden = false;
+  });
+
+  /* goal CTA inside the picker jumps to the estimate */
+  panel.addEventListener("click", function (e) { if (e.target.closest("[data-goal-cta]")) track("cta_click", { location: "goal_panel" }); });
+
+  /* copy email */
+  document.getElementById("copy-mail").addEventListener("click", function () {
+    var btn = this, addr = document.getElementById("mail-addr");
+    function done(ok) { btn.textContent = ok ? "Copied" : "Select and copy"; setTimeout(function () { btn.textContent = "Copy"; }, 1800); }
+    function fallback() { var r = document.createRange(); r.selectNodeContents(addr); var s = getSelection(); s.removeAllRanges(); s.addRange(r); done(false); }
+    try { navigator.clipboard.writeText(addr.textContent).then(function () { done(true); }, fallback); } catch (err) { fallback(); }
+  });
+
+  selectGoal("trust", { sync: false });
+  calc();
+})();
+</script>
+
+</body>
+</html>
