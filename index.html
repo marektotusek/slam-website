@@ -206,47 +206,96 @@ ul { margin: 0; padding: 0; list-style: none; }
   letter-spacing: -.02em;
 }
 .hero h1 span { display: block; }
-.hero-row { display: grid; gap: 32px; margin-top: clamp(28px, 3.5vw, 44px); align-items: start; }
-.hero-copy { display: grid; gap: 24px; align-content: start; }
+.hero-row { display: grid; gap: 28px; margin-top: clamp(24px, 3vw, 36px); align-items: end; }
 .hero-row .lede { color: var(--muted); font-size: 1.15rem; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-@media (min-width: 1000px) {
-  .hero-row { grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: 56px; }
-  .hero-copy { padding-top: 8px; }
+@media (min-width: 900px) {
+  .hero-row { grid-template-columns: minmax(0, 1fr) auto; gap: 48px; }
 }
 
-/* calendar: compact, sits beside the lede on wide screens; each post opens a preview */
-.cal { background: var(--raised); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; width: 100%; max-width: 620px; }
-.cal-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
-.cal-title { font: 400 .72rem/1.45 var(--mono); color: var(--muted); }
-.cal-title strong { color: var(--fg); font-weight: 500; }
-.cal-hint { font: 500 .66rem/1 var(--mono); letter-spacing: .04em; color: var(--fg); display: inline-flex; align-items: center; gap: 6px; }
-.cal-hint::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--s4); animation: rec 1.6s steps(1, end) infinite; }
-.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 10px 14px; border-top: 1px solid var(--line); font: 400 .66rem/1 var(--mono); color: var(--muted); }
-.legend span { display: inline-flex; align-items: center; gap: 6px; }
-.cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
-.cal-dow { font: 500 .6rem/1 var(--mono); letter-spacing: .06em; color: var(--muted); padding: 8px 6px; border-bottom: 1px solid var(--line); text-align: center; }
-.cal-cell {
-  min-height: 46px; padding: 6px 4px; border: 0; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  display: flex; flex-direction: column; gap: 5px; align-items: center; justify-content: flex-start;
-  background: transparent; color: inherit; font: inherit; text-align: center;
+/* month timeline: one shoot day feeds 30 days of posts, ending in the results report.
+   Laid out like an edit timeline: a day ruler, three tracks, a playhead that runs once. */
+.tl { margin-top: clamp(40px, 5vw, 64px); border: 1px solid var(--line); border-radius: 6px; background: var(--raised); overflow: hidden; }
+.tl-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding: 18px 20px; border-bottom: 1px solid var(--line); }
+.tl-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font: 700 clamp(1.1rem, 2vw, 1.45rem)/1.15 var(--display); letter-spacing: -.01em; }
+.tl-title i { font-style: normal; color: var(--muted); font-weight: 500; }
+.tl-title .rep { background: var(--spectrum); -webkit-background-clip: text; background-clip: text; color: transparent; filter: saturate(1.2); }
+:root:not([data-mode="dark"]) .tl-title .rep { background: linear-gradient(110deg, #FF2E1F, #E08A00 40%, #1636FF); -webkit-background-clip: text; background-clip: text; }
+.tl-side { display: flex; align-items: center; gap: 14px; font: 400 .72rem/1 var(--mono); color: var(--muted); }
+.tl-side b { font: 700 1.1rem/1 var(--display); color: var(--fg); font-variant-numeric: tabular-nums; margin-right: 4px; }
+.tl-replay { font: 500 .68rem/1 var(--mono); letter-spacing: .04em; padding: 7px 9px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg); color: var(--fg); cursor: pointer; }
+.tl-replay:hover { border-color: var(--fg); }
+.tl-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.tl-grid {
+  --lab: 96px; --src: 86px; --rep: 168px; --day: 26px;
+  position: relative; display: grid; min-width: calc(var(--lab) + var(--src) + var(--rep) + 30 * var(--day));
+  grid-template-columns: var(--lab) var(--src) repeat(30, minmax(var(--day), 1fr)) var(--rep);
+  grid-template-rows: 30px 40px 40px 40px; row-gap: 6px; padding: 10px 0 14px;
 }
-button.cal-cell { cursor: pointer; transition: background-color .18s ease, box-shadow .18s ease; }
-button.cal-cell:hover { background: var(--bg); box-shadow: inset 0 0 0 1px var(--fg); }
-button.cal-cell:hover .chip { transform: translateY(-1px); }
-button.cal-cell:focus-visible { outline-offset: -3px; }
-.cal-cell .chip { font-size: .56rem; padding: 3px 4px; transition: transform .18s ease; max-width: 100%; overflow: hidden; }
-.cal-dow:not(:nth-child(7n)) { border-right: 1px solid var(--line); }
-.cal-cell:nth-child(7n) { border-right: 0; }
-.cal-cell.last-row { border-bottom: 0; }
-.cal-num { font: 400 .6rem/1 var(--mono); color: var(--muted); }
-.cal-cell.wk0 { background: var(--bg); }
-.cal-cell.empty { background: repeating-linear-gradient(110deg, var(--hatch) 0 1px, transparent 1px 9px); }
-.cal-foot { display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 10px 14px; border-top: 1px solid var(--line); font: 400 .68rem/1.3 var(--mono); color: var(--muted); }
-.cal-foot b { font: 700 1rem/1 var(--display); color: var(--fg); margin-right: 5px; font-variant-numeric: tabular-nums; }
-@media (max-width: 480px) { .cal-cell { min-height: 40px; padding: 5px 2px; } .cal-cell .chip { font-size: .5rem; padding: 2px 3px; letter-spacing: 0; } }
+.tl-lab { grid-column: 1; align-self: center; padding-left: 20px; font: 500 .6rem/1.2 var(--mono); letter-spacing: .06em; color: var(--muted); position: sticky; left: 0; z-index: 3; background: var(--raised); height: 100%; display: flex; align-items: center; }
+.tl-day { grid-row: 1; align-self: end; text-align: center; font: 400 .58rem/1 var(--mono); color: var(--muted); padding-bottom: 6px; font-variant-numeric: tabular-nums; }
+.tl-day.wk { color: var(--fg); font-weight: 500; }
+.tl-lane { grid-column: 3 / 33; border-radius: 3px;
+  background: linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / calc(100% / 30) 100%, var(--bg); }
+.tl-clip {
+  position: relative; z-index: 1; margin: 4px 2px; border: 1px solid transparent; border-radius: 3px; padding: 0; cursor: pointer;
+  font: 600 .52rem/1 var(--mono); letter-spacing: .04em; color: var(--bg); background: var(--fg);
+  display: grid; place-items: center; overflow: hidden;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.tl-clip:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.18); }
+.tl-clip:focus-visible { outline-offset: 2px; }
+.tl-clip.t-v::after { content: ""; border-left: 6px solid currentColor; border-top: 4px solid transparent; border-bottom: 4px solid transparent; margin-left: 2px; }
+.tl-clip.t-hero { background: var(--spectrum); color: #0A0A0A; }
+.tl-clip.t-ad { background: var(--s2); color: #0A0A0A; }
+.tl-clip.t-still { background: var(--bg); border: 1px dashed var(--muted); color: var(--muted); }
+.tl-clip.t-still::after { content: ""; width: 8px; height: 6px; border: 1px solid currentColor; border-radius: 1px; }
+.tl-src, .tl-rep { position: relative; z-index: 2; margin: 0 8px; border-radius: 5px; border: 0; cursor: pointer; text-align: left; font: inherit; display: flex; flex-direction: column; justify-content: space-between; padding: 12px; overflow: hidden; transition: transform .18s ease, box-shadow .18s ease; }
+.tl-src:hover, .tl-rep:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.2); }
+.tl-src { grid-column: 2; grid-row: 1 / 5; background: var(--fg); color: var(--bg); }
+.tl-src small, .tl-rep small { font: 500 .58rem/1.3 var(--mono); letter-spacing: .06em; opacity: .7; }
+.tl-src strong { font: 700 1.05rem/1 var(--display); }
+.tl-src .rec { margin: 0; }
+.tl-rep { grid-column: 33; grid-row: 1 / 5; background: #0A0A0A; color: #fff; }
+.tl-rep::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--spectrum); }
+.tl-rep strong { font: 700 1.6rem/1 var(--display); font-variant-numeric: tabular-nums; }
+.tl-rep .spark { display: flex; align-items: flex-end; gap: 2px; height: 34px; }
+.tl-rep .spark i { flex: 1; background: rgba(255,255,255,.35); border-radius: 1px; min-height: 2px; transform-origin: bottom; }
+.tl-rep .spark i.top { background: var(--s4); }
+.tl-rep .go { font: 500 .62rem/1 var(--mono); letter-spacing: .04em; color: var(--s3); }
+.tl-head-cell { grid-row: 1; }
+.tl-ph { position: absolute; top: 4px; bottom: 6px; left: 0; width: 2px; background: var(--s1); z-index: 4; pointer-events: none; opacity: 0; }
+.tl-ph::before { content: ""; position: absolute; top: 0; left: -5px; border: 6px solid transparent; border-top: 8px solid var(--s1); border-bottom: 0; }
+.tl-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; padding: 12px 20px; border-top: 1px solid var(--line); }
+.tl-foot .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font: 400 .66rem/1 var(--mono); color: var(--muted); }
+.tl-foot .legend span { display: inline-flex; align-items: center; gap: 7px; }
+.tl-foot .legend i { width: 14px; height: 10px; border-radius: 2px; display: inline-block; }
+.tl-hint { font: 400 .66rem/1.4 var(--mono); color: var(--muted); }
+.m-only { display: none; }
+@media (max-width: 1100px) { .m-only { display: inline; } }
+@media (max-width: 760px) {
+  .tl-grid { --lab: 70px; --src: 74px; --rep: 140px; --day: 28px; }
+  .tl-lab { padding-left: 12px; font-size: .54rem; }
+  .tl-src strong { font-size: .9rem; }
+}
 
 /* post preview */
+.rep-chart { width: 100%; display: grid; gap: 10px; color: #fff; align-self: stretch; align-content: center; }
+.rep-chart .rc-top { display: flex; justify-content: space-between; font: 500 .62rem/1 var(--mono); letter-spacing: .06em; color: rgba(255,255,255,.6); }
+.rep-chart .rc-bars { display: flex; align-items: flex-end; gap: 3px; height: 190px; margin-top: 14px; border-bottom: 1px solid rgba(255,255,255,.2); }
+.rep-chart .rc-bars i { position: relative; flex: 1; border-radius: 2px 2px 0 0; transform-origin: bottom; min-height: 1px; background: rgba(255,255,255,.12); }
+.rep-chart .rc-bars i.t-v { background: #EAF6FF; }
+.rep-chart .rc-bars i.t-hero { background: linear-gradient(0deg, #FF2E1F, #FFB300 40%, #18BFFF); }
+.rep-chart .rc-bars i.t-ad { background: #FFB300; }
+.rep-chart .rc-bars i.t-still { background: rgba(255,255,255,.4); }
+.rep-chart .rc-bars i.top { background: #18BFFF; }
+.rep-chart .rc-bars i b { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); font: 600 .62rem/1 var(--mono); white-space: nowrap; color: #18BFFF; }
+.rep-chart .rc-axis { display: flex; justify-content: space-between; font: 400 .56rem/1 var(--mono); color: rgba(255,255,255,.5); }
+.rep-chart .rc-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.15); border-radius: 4px; overflow: hidden; margin-top: 6px; }
+.rep-chart .rc-kpis div { background: #141414; padding: 10px; display: grid; gap: 4px; }
+.rep-chart .rc-kpis b { font: 700 1.2rem/1 var(--display); }
+.rep-chart .rc-kpis span { font: 400 .56rem/1.3 var(--mono); color: rgba(255,255,255,.6); }
+
 .post-modal { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; padding: 16px; }
 .post-modal[hidden] { display: none !important; }
 .post-backdrop { position: absolute; inset: 0; background: rgba(10, 10, 10, .55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
@@ -570,37 +619,34 @@ body.modal-open { overflow: hidden; }
     </div>
     <h1 id="hero-title"><span>Shoot once.</span> <span>Post all month.</span> <span>Know what worked.</span></h1>
     <div class="hero-row">
-      <div class="hero-copy">
-        <p class="lede">We plan and film everything in one production, cut it into weeks of ready-to-post video, and track how every piece performs on your channels.</p>
-        <div class="hero-ctas">
-          <a class="btn btn-primary" href="#estimate" data-track="cta_hero"><span class="slash-ico" aria-hidden="true"></span>Get a free treatment</a>
-          <a class="btn btn-secondary" href="#work">See the work</a>
+      <p class="lede">We plan and film everything in one production, cut it into weeks of ready-to-post video, and track how every piece performs on your channels.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#estimate" data-track="cta_hero"><span class="slash-ico" aria-hidden="true"></span>Get a free treatment</a>
+        <a class="btn btn-secondary" href="#work">See the work</a>
+      </div>
+    </div>
+
+    <figure class="tl" aria-labelledby="tl-title" style="margin-inline:0">
+      <div class="tl-head">
+        <p class="tl-title" id="tl-title"><span>1 shoot day</span><i aria-hidden="true">→</i><span>30 days of posts</span><i aria-hidden="true">→</i><span class="rep">1 results report</span></p>
+        <div class="tl-side">
+          <span><b id="tl-n">20</b>posts live</span>
+          <button class="tl-replay" type="button" id="tl-replay" aria-label="Replay the month">↻ Replay</button>
         </div>
       </div>
-
-      <figure class="cal" aria-labelledby="cal-title" style="margin:0">
-        <div class="cal-head">
-          <p class="cal-title" id="cal-title"><strong>One production</strong> → a month of posts</p>
-          <span class="cal-hint">Tap a day to see the post</span>
-        </div>
-        <div class="cal-grid" id="cal-grid" aria-label="Example month posting calendar from The Month package">
-          <div class="cal-dow">MON</div><div class="cal-dow">TUE</div><div class="cal-dow">WED</div><div class="cal-dow">THU</div><div class="cal-dow">FRI</div><div class="cal-dow">SAT</div><div class="cal-dow">SUN</div>
-        </div>
+      <div class="tl-scroll" tabindex="0" aria-label="Example month from The Month package. Scroll sideways on small screens.">
+        <div class="tl-grid" id="tl-grid"></div>
+      </div>
+      <div class="tl-foot">
         <div class="legend" aria-label="Legend">
-          <span><i class="chip chip-hero">Hero</i>16:9 film</span>
-          <span><i class="chip chip-ad">AD</i>15s / 30s</span>
-          <span><i class="chip chip-v">9:16</i>vertical clip</span>
-          <span><i class="chip chip-still">Still</i>photo</span>
+          <span><i style="background:var(--spectrum)"></i>Hero film</span>
+          <span><i style="background:var(--s2)"></i>Ad, 15s / 30s</span>
+          <span><i style="background:var(--fg)"></i>Vertical clip</span>
+          <span><i style="border:1px dashed var(--muted)"></i>Photo</span>
         </div>
-        <div class="cal-foot">
-          <span><b>1</b>production</span>
-          <span><b>15</b>videos</span>
-          <span><b>25</b>stills</span>
-          <span><b>3</b>posts a week</span>
-          <span><b>30</b>day report</span>
-        </div>
-      </figure>
-    </div>
+        <span class="tl-hint">Click any post to preview it, or the report to see the results.<span class="m-only"> Swipe to scroll the month.</span></span>
+      </div>
+    </figure>
   </div>
 </section>
 
@@ -1002,23 +1048,77 @@ body.modal-open { overflow: hidden; }
   }
   if (!reduce) setInterval(tick, 40);
 
-  /* ---------- month calendar ---------- */
+  /* ---------- month timeline ---------- */
   var plan = { 1: ["hero", "Hero"], 5: ["ad", "AD 30s"], 17: ["ad", "AD 15s"] };
-  [3, 8, 10, 12, 15, 19, 22, 24, 26, 27, 29, 31].forEach(function (d) { plan[d] = ["v", "9:16"]; });
+  [3, 8, 10, 12, 15, 19, 22, 24, 26, 27, 28, 29].forEach(function (d) { plan[d] = ["v", "9:16"]; });
   [2, 9, 16, 23, 30].forEach(function (d) { plan[d] = ["still", "Still"]; });
-  var grid = document.getElementById("cal-grid");
+  /* illustrative 30-day views per post; totals match the sample dashboard (48.2K) */
+  var VIEWS = { 1: 6000, 5: 3900, 17: 2400, 3: 3600, 8: 3900, 10: 9400, 12: 1900, 15: 7700, 19: 2200, 22: 1600, 24: 1400, 26: 1100, 27: 900, 28: 600, 29: 500,
+                2: 300, 9: 250, 16: 220, 23: 180, 30: 150 };
+  function k(n) { return n >= 1000 ? (n / 1000).toFixed(1).replace(".0", "") + "K" : String(n); }
+  var grid = document.getElementById("tl-grid");
   var DOW = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  var cells = [];
-  cells.push('<button type="button" class="cal-cell wk0" data-day="0" aria-label="Week 0, shoot day. Open preview"><span class="cal-num">WK 0</span><span class="chip chip-shoot">Shoot</span></button>');
-  for (var d = 1; d <= 31; d++) {
-    var p = plan[d];
-    if (p) cells.push('<button type="button" class="cal-cell" data-day="' + d + '" aria-label="Day ' + d + ", " + p[1] + '. Open preview"><span class="cal-num">' + pad(d) + '</span><span class="chip chip-' + p[0] + '">' + p[1] + "</span></button>");
-    else cells.push('<div class="cal-cell"><span class="cal-num">' + pad(d) + "</span></div>");
+  var ROW = { hero: 2, ad: 2, v: 3, still: 4 };
+  var NAME = { hero: "Hero film", ad: "Ad", v: "Vertical clip", still: "Photo" };
+  var h = [];
+  h.push('<span class="tl-lab" style="grid-row:1">DAY</span>');
+  h.push('<span class="tl-lab" style="grid-row:2">FILM + ADS</span><span class="tl-lab" style="grid-row:3">VERTICAL</span><span class="tl-lab" style="grid-row:4">PHOTOS</span>');
+  for (var r = 2; r <= 4; r++) h.push('<span class="tl-lane" style="grid-row:' + r + '" aria-hidden="true"></span>');
+  for (var d = 1; d <= 30; d++) h.push('<span class="tl-day' + ((d - 1) % 7 === 0 ? " wk" : "") + '" style="grid-column:' + (d + 2) + '">' + pad(d) + "</span>");
+  h.push('<button type="button" class="tl-src" data-day="0" aria-label="Day 0, shoot day. Open preview"><small>DAY 0</small><span><span class="rec" aria-hidden="true"></span></span><strong>Shoot<br>day</strong></button>');
+  Object.keys(plan).map(Number).sort(function (a, b) { return a - b; }).forEach(function (d) {
+    var t = plan[d][0], span = t === "hero" ? 2 : 1;
+    var txt = t === "hero" ? "HERO" : t === "ad" ? "AD" : "";
+    h.push('<button type="button" class="tl-clip t-' + t + '" data-day="' + d + '" style="grid-row:' + ROW[t] + ";grid-column:" + (d + 2) + " / span " + span + '" aria-label="Day ' + d + ", " + NAME[t] + '. Open preview" title="Day ' + d + " · " + NAME[t] + '">' + txt + "</button>");
+  });
+  var maxV = 9400, spark = "";
+  for (var sd = 1; sd <= 30; sd++) spark += '<i style="height:' + Math.max(4, Math.round((VIEWS[sd] || 0) / maxV * 100)) + '%"' + (sd === 10 ? ' class="top"' : "") + "></i>";
+  h.push('<button type="button" class="tl-rep" data-day="99" aria-label="Day 30, results report. Open the report"><small>DAY 30 · REPORT</small><span><strong>48.2K</strong><small style="display:block;margin-top:4px">views across platforms</small></span><span class="spark" aria-hidden="true">' + spark + '</span><span class="go">Open report →</span></button>');
+  h.push('<span class="tl-ph" id="tl-ph" aria-hidden="true"></span>');
+  grid.innerHTML = h.join("");
+
+  /* playhead: runs once when the timeline comes into view, posts light up as it passes */
+  var ph = document.getElementById("tl-ph"), countEl = document.getElementById("tl-n");
+  var TOTAL = Object.keys(plan).length;
+  function playMonth() {
+    if (reduce || !grid.animate) { countEl.textContent = TOTAL; return; }
+    var src = grid.querySelector(".tl-src"), rep = grid.querySelector(".tl-rep");
+    var x0 = src.offsetLeft + src.offsetWidth, x1 = rep.offsetLeft, D = 3200;
+    grid.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); });
+    ph.animate([{ transform: "translateX(" + x0 + "px)", opacity: 1 }, { transform: "translateX(" + x1 + "px)", opacity: 1, offset: .97 }, { transform: "translateX(" + x1 + "px)", opacity: 0 }],
+      { duration: D, easing: "linear", fill: "forwards" });
+    src.animate([{ transform: "scale(.94)", opacity: .6 }, { transform: "none", opacity: 1 }], { duration: 400, easing: "cubic-bezier(.2,.8,.2,1)" });
+    var n = 0; countEl.textContent = "0";
+    grid.querySelectorAll(".tl-clip").forEach(function (c) {
+      var delay = Math.max(0, (c.offsetLeft - x0) / (x1 - x0) * D);
+      c.animate([{ opacity: .12, transform: "scale(.6)" }, { opacity: 1, transform: "scale(1.15)", offset: .6 }, { opacity: 1, transform: "none" }],
+        { duration: 380, delay: delay, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" })
+        .onfinish = function () { countEl.textContent = ++n; };
+    });
+    /* on narrow screens the strip scrolls with the playhead */
+    var sc = grid.parentNode;
+    if (sc.scrollWidth > sc.clientWidth + 4) {
+      var t0s = performance.now(), maxS = sc.scrollWidth - sc.clientWidth, stopped = false;
+      var stop = function () { stopped = true; };
+      sc.addEventListener("touchstart", stop, { once: true, passive: true });
+      sc.addEventListener("wheel", stop, { once: true, passive: true });
+      (function follow(now) {
+        if (stopped) return;
+        var p = Math.min(1, (now - t0s) / D), x = x0 + (x1 - x0) * p;
+        sc.scrollLeft = Math.max(0, Math.min(maxS, x - sc.clientWidth * .6));
+        if (p < 1) requestAnimationFrame(follow);
+      })(t0s);
+    }
+    rep.animate([{ opacity: .35, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }], { duration: 500, delay: D - 200, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
+    rep.querySelectorAll(".spark i").forEach(function (b, i) {
+      b.animate([{ transform: "scaleY(0)" }, { transform: "none" }], { duration: 500, delay: D + i * 18, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
+    });
   }
-  while (cells.length % 7) cells.push('<div class="cal-cell empty" aria-hidden="true"></div>');
-  grid.insertAdjacentHTML("beforeend", cells.join(""));
-  var all = grid.querySelectorAll(".cal-cell");
-  for (var i = all.length - 7; i < all.length; i++) all[i].classList.add("last-row");
+  if ("IntersectionObserver" in window && !reduce) {
+    var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { playMonth(); io.disconnect(); } }, { threshold: .45 });
+    io.observe(grid.closest(".tl"));
+  } else countEl.textContent = TOTAL;
+  document.getElementById("tl-replay").addEventListener("click", function () { playMonth(); track("timeline_replay"); });
 
   /* ---------- post preview ---------- */
   var G = {
@@ -1068,14 +1168,37 @@ body.modal-open { overflow: hidden; }
       meta: [["Platforms", "LinkedIn, Instagram, website"], ["Format", "1:1 and 4:5"], ["We track", "Engagement, profile visits"]] }; }
     o.type = t; POSTS[d] = o;
   });
+  Object.keys(POSTS).forEach(function (d) { if (VIEWS[d]) POSTS[d].meta.push(["30-day result", k(VIEWS[d]) + " views" + (+d === 10 ? " · top post" : "")]); });
+  var bars = "";
+  for (var bd = 1; bd <= 30; bd++) {
+    var v = VIEWS[bd] || 0, t = plan[bd] ? plan[bd][0] : "";
+    bars += '<i class="t-' + t + (bd === 10 ? " top" : "") + '" style="height:' + (v ? Math.max(2, v / maxV * 100) : 0.5) + '%" title="Day ' + bd + ": " + k(v) + ' views">' + (bd === 10 ? "<b>9.4K</b>" : "") + "</i>";
+  }
+  POSTS[99] = { type: "report", title: "Your 30-day results report",
+    desc: "On day 30 you get every post tracked across your channels, the winners and losers, and what we would change for next month's shoot.",
+    meta: [["Views", "48.2K across all platforms"], ["Watch-through", "41% average"], ["Site visits", "612 from tracked links"], ["Top post", "Vertical customer clip, day 10 · 9.4K views"], ["Next month", "More customer stories, shorter openers"]] };
   var ORDER = Object.keys(POSTS).map(Number).sort(function (a, b) { return a - b; });
 
   var modal = document.getElementById("post-modal"), card = document.getElementById("post-card");
   var stage = document.getElementById("post-stage");
   var curPost = null, opener = null;
-  function dayLabel(d) { return d === 0 ? "Week 0 · Shoot" : "Day " + pad(d) + " · " + DOW[d % 7]; }
+  function dayLabel(d) { return d === 0 ? "Day 0 · Shoot" : d === 99 ? "Day 30" : "Day " + pad(d) + " · " + DOW[(d - 1) % 7]; }
   function render(d) {
     var o = POSTS[d]; curPost = d;
+    if (o.type === "report") {
+      stage.innerHTML = '<div class="rep-chart"><div class="rc-top"><span>VIEWS PER POST · DAYS 1–30</span><span>SAMPLE DATA</span></div>' +
+        '<div class="rc-bars">' + bars + '</div><div class="rc-axis"><span>01</span><span>08</span><span>15</span><span>22</span><span>30</span></div>' +
+        '<div class="rc-kpis"><div><b>48.2K</b><span>views</span></div><div><b>41%</b><span>watch-through</span></div><div><b>612</b><span>site visits</span></div></div></div>';
+      document.getElementById("post-kicker").textContent = "// Example report · " + dayLabel(d);
+      document.getElementById("post-title").textContent = o.title;
+      document.getElementById("post-desc").textContent = o.desc;
+      document.getElementById("post-meta").innerHTML = o.meta.map(function (m) { return "<div><dt>" + m[0] + "</dt><dd>" + m[1] + "</dd></div>"; }).join("");
+      document.getElementById("post-count").textContent = (ORDER.indexOf(d) + 1) + " of " + ORDER.length;
+      if (!reduce && stage.animate) stage.querySelectorAll(".rc-bars i").forEach(function (b, i) {
+        b.animate([{ transform: "scaleY(0)" }, { transform: "none" }], { duration: 600, delay: 250 + i * 22, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
+      });
+      return;
+    }
     var ratio = { v: "r-v", hero: "r-hero", ad: "r-ad", still: "r-still", shoot: "r-shoot" }[o.type];
     var playable = o.type !== "still" && o.type !== "shoot";
     stage.innerHTML = '<div class="post-media ' + ratio + '" style="--grad:' + o.grad + '">' +
@@ -1103,7 +1226,7 @@ body.modal-open { overflow: hidden; }
       stage.firstChild.animate([{ transform: "translateY(24px) scale(.94)", opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 520, delay: 160, easing: EASE, fill: "backwards" });
     }
     card.focus();
-    track("calendar_post_open", { day: d, type: POSTS[d].type });
+    track("timeline_post_open", { day: d, type: POSTS[d].type });
   }
   function closePost() {
     if (modal.hidden) return;
@@ -1121,7 +1244,7 @@ body.modal-open { overflow: hidden; }
     opener = grid.querySelector('[data-day="' + n + '"]');
     if (!reduce && stage.firstChild.animate) stage.firstChild.animate([{ transform: "translateX(" + (dir * 40) + "px)", opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 360, easing: EASE });
   }
-  grid.addEventListener("click", function (e) { var c = e.target.closest("button.cal-cell"); if (c) openPost(+c.dataset.day, c); });
+  grid.addEventListener("click", function (e) { var c = e.target.closest("button[data-day]"); if (c) openPost(+c.dataset.day, c); });
   modal.addEventListener("click", function (e) { if (e.target.closest("[data-close]")) closePost(); });
   document.getElementById("post-prev").addEventListener("click", function () { step(-1); });
   document.getElementById("post-next").addEventListener("click", function () { step(1); });
