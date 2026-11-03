@@ -227,7 +227,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .tl-replay:hover { border-color: var(--fg); }
 .tl-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
 .tl-grid {
-  --lab: 104px; --src: 112px; --rep: 214px; --day: 22px;
+  --lab: 104px; --src: 112px; --rep: 260px; --day: 21px;
   position: relative; display: grid; min-width: calc(var(--lab) + var(--src) + var(--rep) + 30 * var(--day));
   grid-template-columns: var(--lab) var(--src) repeat(30, minmax(var(--day), 1fr)) var(--rep);
   grid-template-rows: 40px 72px 72px 72px; row-gap: 10px; padding: 16px 0 22px;
@@ -258,7 +258,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .tl-src .rec { margin: 0; }
 .tl-rep { grid-column: 33; grid-row: 1 / 5; background: #0A0A0A; color: #fff; }
 .tl-rep::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--spectrum); }
-.tl-rep strong { font: 700 2.4rem/1 var(--display); font-variant-numeric: tabular-nums; }
+.tl-rep strong { display: block; font: 700 clamp(3.2rem, 4.6vw, 4rem)/.9 var(--display); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
 .tl-rep .spark { display: flex; align-items: flex-end; gap: 2px; height: 60px; }
 .tl-rep .spark i { flex: 1; background: rgba(255,255,255,.35); border-radius: 1px; min-height: 2px; transform-origin: bottom; }
 .tl-rep .spark i.top { background: var(--s4); }
@@ -274,12 +274,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 .m-only { display: none; }
 @media (max-width: 1100px) { .m-only { display: inline; } }
 @media (max-width: 760px) {
-  .tl-grid { --lab: 78px; --src: 92px; --rep: 180px; --day: 34px; grid-template-rows: 34px 60px 60px 60px; }
+  .tl-grid { --lab: 78px; --src: 92px; --rep: 210px; --day: 34px; grid-template-rows: 34px 60px 60px 60px; }
   .tl-head { padding: 20px 16px; }
   .tl-foot { padding: 14px 16px; }
   .tl-lab { padding-left: 14px; font-size: .6rem; }
   .tl-src strong { font-size: 1.15rem; }
-  .tl-rep strong { font-size: 1.9rem; }
+  .tl-rep strong { font-size: 2.5rem; }
 }
 
 /* post preview */
@@ -296,7 +296,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .rep-chart .rc-axis { display: flex; justify-content: space-between; font: 400 .56rem/1 var(--mono); color: rgba(255,255,255,.5); }
 .rep-chart .rc-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.15); border-radius: 4px; overflow: hidden; margin-top: 6px; }
 .rep-chart .rc-kpis div { background: #141414; padding: 10px; display: grid; gap: 4px; }
-.rep-chart .rc-kpis b { font: 700 1.2rem/1 var(--display); }
+.rep-chart .rc-kpis b { font: 700 1.6rem/1 var(--display); }
+.rep-chart .rc-kpis div:first-child b { font-size: 2.2rem; }
 .rep-chart .rc-kpis span { font: 400 .56rem/1.3 var(--mono); color: rgba(255,255,255,.6); }
 
 .post-modal { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; padding: 16px; }
@@ -1076,7 +1077,7 @@ body.modal-open { overflow: hidden; }
   });
   var maxV = 9400, spark = "";
   for (var sd = 1; sd <= 30; sd++) spark += '<i style="height:' + Math.max(4, Math.round((VIEWS[sd] || 0) / maxV * 100)) + '%"' + (sd === 10 ? ' class="top"' : "") + "></i>";
-  h.push('<button type="button" class="tl-rep" data-day="99" aria-label="Day 30, results report. Open the report"><small>DAY 30 · REPORT</small><span><strong>48.2K</strong><small style="display:block;margin-top:4px">views across platforms</small></span><span class="spark" aria-hidden="true">' + spark + '</span><span class="go">Open report →</span></button>');
+  h.push('<button type="button" class="tl-rep" data-day="99" aria-label="Day 30, results report. Open the report"><small>DAY 30 · REPORT</small><span><strong id="tl-views">48.2K</strong><small style="display:block;margin-top:8px">views across platforms</small></span><span class="spark" aria-hidden="true">' + spark + '</span><span class="go">Open report →</span></button>');
   h.push('<span class="tl-ph" id="tl-ph" aria-hidden="true"></span>');
   grid.innerHTML = h.join("");
 
@@ -1110,9 +1111,20 @@ body.modal-open { overflow: hidden; }
         var p = Math.min(1, (now - t0s) / D), x = x0 + (x1 - x0) * p;
         sc.scrollLeft = Math.max(0, Math.min(maxS, x - sc.clientWidth * .6));
         if (p < 1) requestAnimationFrame(follow);
+        else if (sc.scrollTo) sc.scrollTo({ left: maxS, behavior: "smooth" });
       })(t0s);
     }
     rep.animate([{ opacity: .35, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }], { duration: 500, delay: D - 200, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
+    var vEl = document.getElementById("tl-views"), vStart;
+    setTimeout(function () {
+      vStart = performance.now();
+      (function up(now) {
+        var p = Math.min(1, (now - vStart) / 900), e = 1 - Math.pow(1 - p, 3);
+        vEl.textContent = (48.2 * e).toFixed(1) + "K";
+        if (p < 1) requestAnimationFrame(up);
+      })(vStart);
+    }, D - 200);
+    vEl.textContent = "0.0K";
     rep.querySelectorAll(".spark i").forEach(function (b, i) {
       b.animate([{ transform: "scaleY(0)" }, { transform: "none" }], { duration: 500, delay: D + i * 18, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
     });
