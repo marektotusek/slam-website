@@ -227,7 +227,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .tl-replay:hover { border-color: var(--fg); }
 .tl-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
 .tl-grid {
-  --lab: 104px; --src: 146px; --rep: 260px; --day: 21px;
+  --lab: 104px; --src: 150px; --rep: 300px; --day: 20px;
   position: relative; display: grid; min-width: calc(var(--lab) + var(--src) + var(--rep) + 30 * var(--day));
   grid-template-columns: var(--lab) var(--src) repeat(30, minmax(var(--day), 1fr)) var(--rep);
   grid-template-rows: 40px 72px 72px 72px; row-gap: 10px; padding: 16px 0 22px;
@@ -255,10 +255,15 @@ ul { margin: 0; padding: 0; list-style: none; }
 .tl-src { grid-column: 2; grid-row: 1 / 5; background: var(--fg); color: var(--bg); }
 .tl-src small, .tl-rep small { font: 500 .68rem/1.35 var(--mono); letter-spacing: .06em; opacity: .7; }
 .tl-src strong { font: 700 1.4rem/1.05 var(--display); white-space: nowrap; }
-.tl-src .rec { margin: 0; }
+.tl-src .rec { margin: 0 6px 0 0; flex: none; }
+.src-rec { display: flex; align-items: center; font: 500 .62rem/1 var(--mono); letter-spacing: .04em; color: var(--s1); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.src-rec span:last-child { color: inherit; opacity: .85; margin-left: 5px; }
+.src-out { display: grid; gap: 7px; padding: 12px 0; margin: 10px 0; border-top: 1px solid rgba(127,127,127,.35); border-bottom: 1px solid rgba(127,127,127,.35); }
+.src-out span { display: flex; align-items: baseline; gap: 6px; font: 400 .62rem/1 var(--mono); letter-spacing: .02em; opacity: .75; white-space: nowrap; }
+.src-out b { font: 700 1.05rem/1 var(--display); min-width: 1.4em; opacity: 1; font-variant-numeric: tabular-nums; }
 .tl-rep { grid-column: 33; grid-row: 1 / 5; background: #0A0A0A; color: #fff; }
 .tl-rep::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--spectrum); }
-.tl-rep strong { display: block; font: 700 clamp(3.2rem, 4.6vw, 4rem)/.9 var(--display); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.tl-rep strong { display: block; font: 700 clamp(4rem, 5.6vw, 5.2rem)/.85 var(--display); letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
 .tl-rep .spark { display: flex; align-items: flex-end; gap: 2px; height: 60px; }
 .tl-rep .spark i { flex: 1; background: rgba(255,255,255,.35); border-radius: 1px; min-height: 2px; transform-origin: bottom; }
 .tl-rep .spark i.top { background: var(--s4); }
@@ -274,13 +279,16 @@ ul { margin: 0; padding: 0; list-style: none; }
 .m-only { display: none; }
 @media (max-width: 1100px) { .m-only { display: inline; } }
 @media (max-width: 760px) {
-  .tl-grid { --lab: 78px; --src: 118px; --rep: 210px; --day: 34px; grid-template-rows: 34px 60px 60px 60px; }
+  .tl-grid { --lab: 78px; --src: 122px; --rep: 250px; --day: 34px; grid-template-rows: 34px 60px 60px 60px; }
   .tl-head { padding: 20px 16px; }
   .tl-foot { padding: 14px 16px; }
   .tl-lab { padding-left: 14px; font-size: .6rem; }
   .tl-src strong { font-size: 1.1rem; }
   .tl-src, .tl-rep { margin: 0 8px; padding: 12px; }
-  .tl-rep strong { font-size: 2.5rem; }
+  .src-out { gap: 5px; padding: 8px 0; margin: 6px 0; }
+  .src-out b { font-size: .9rem; }
+  .src-out span { font-size: .56rem; }
+  .tl-rep strong { font-size: 3.4rem; }
 }
 
 /* post preview */
@@ -1051,6 +1059,7 @@ body.modal-open { overflow: hidden; }
     var f = Math.floor((performance.now() - t0) / 40);
     var ff = f % 25, s = Math.floor(f / 25), ss = s % 60, mm = Math.floor(s / 60) % 60, hh = Math.floor(s / 3600);
     tc.textContent = "TC " + pad(hh) + ":" + pad(mm) + ":" + pad(ss) + ":" + pad(ff);
+    var stc = document.getElementById("tl-tc"); if (stc) stc.textContent = pad(mm) + ":" + pad(ss) + ":" + pad(ff);
   }
   if (!reduce) setInterval(tick, 40);
 
@@ -1071,7 +1080,7 @@ body.modal-open { overflow: hidden; }
   h.push('<span class="tl-lab" style="grid-row:2">FILM + ADS</span><span class="tl-lab" style="grid-row:3">VERTICAL</span><span class="tl-lab" style="grid-row:4">PHOTOS</span>');
   for (var r = 2; r <= 4; r++) h.push('<span class="tl-lane" style="grid-row:' + r + '" aria-hidden="true"></span>');
   for (var d = 1; d <= 30; d++) h.push('<span class="tl-day' + ((d - 1) % 7 === 0 ? " wk" : "") + '" style="grid-column:' + (d + 2) + '">' + pad(d) + "</span>");
-  h.push('<button type="button" class="tl-src" data-day="0" aria-label="Day 0, shoot day. Open preview"><small>DAY 0</small><span><span class="rec" aria-hidden="true"></span></span><strong>Shoot<br>day</strong></button>');
+  h.push('<button type="button" class="tl-src" data-day="0" aria-label="Day 0, shoot day. Open preview"><small>DAY 0</small><span class="src-rec" aria-hidden="true"><span class="rec"></span>REC <span id="tl-tc">00:00:00</span></span><span class="src-out" aria-hidden="true"><span><b>1</b>hero film</span><span><b>2</b>ads</span><span><b>12</b>clips</span><span><b>25</b>photos</span></span><strong>Shoot<br>day</strong></button>');
   Object.keys(plan).map(Number).sort(function (a, b) { return a - b; }).forEach(function (d) {
     var t = plan[d][0], span = t === "hero" ? 2 : 1;
     var txt = t === "hero" ? "HERO" : t === "ad" ? "AD" : "";
