@@ -227,7 +227,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .tl-replay:hover { border-color: var(--fg); }
 .tl-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
 .tl-grid {
-  --lab: 104px; --src: 112px; --rep: 260px; --day: 21px;
+  --lab: 104px; --src: 146px; --rep: 260px; --day: 21px;
   position: relative; display: grid; min-width: calc(var(--lab) + var(--src) + var(--rep) + 30 * var(--day));
   grid-template-columns: var(--lab) var(--src) repeat(30, minmax(var(--day), 1fr)) var(--rep);
   grid-template-rows: 40px 72px 72px 72px; row-gap: 10px; padding: 16px 0 22px;
@@ -254,7 +254,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .tl-src:hover, .tl-rep:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.2); }
 .tl-src { grid-column: 2; grid-row: 1 / 5; background: var(--fg); color: var(--bg); }
 .tl-src small, .tl-rep small { font: 500 .68rem/1.35 var(--mono); letter-spacing: .06em; opacity: .7; }
-.tl-src strong { font: 700 1.5rem/1 var(--display); }
+.tl-src strong { font: 700 1.4rem/1.05 var(--display); white-space: nowrap; }
 .tl-src .rec { margin: 0; }
 .tl-rep { grid-column: 33; grid-row: 1 / 5; background: #0A0A0A; color: #fff; }
 .tl-rep::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--spectrum); }
@@ -274,11 +274,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 .m-only { display: none; }
 @media (max-width: 1100px) { .m-only { display: inline; } }
 @media (max-width: 760px) {
-  .tl-grid { --lab: 78px; --src: 92px; --rep: 210px; --day: 34px; grid-template-rows: 34px 60px 60px 60px; }
+  .tl-grid { --lab: 78px; --src: 118px; --rep: 210px; --day: 34px; grid-template-rows: 34px 60px 60px 60px; }
   .tl-head { padding: 20px 16px; }
   .tl-foot { padding: 14px 16px; }
   .tl-lab { padding-left: 14px; font-size: .6rem; }
-  .tl-src strong { font-size: 1.15rem; }
+  .tl-src strong { font-size: 1.1rem; }
+  .tl-src, .tl-rep { margin: 0 8px; padding: 12px; }
   .tl-rep strong { font-size: 2.5rem; }
 }
 
@@ -558,12 +559,13 @@ body.modal-open { overflow: hidden; }
 /* ---------- closer ---------- */
 .closer { position: relative; overflow: hidden; border-top: 1px solid var(--line); padding-block: clamp(80px, 12vw, 150px); }
 .closer .wrap { position: relative; z-index: 1; display: grid; gap: 28px; justify-items: start; }
-.closer .h2 { font-size: clamp(2.3rem, 6vw, 4.8rem); max-width: 13ch; }
+.closer .h2 { font-size: clamp(2.3rem, 6vw, 4.8rem); max-width: none; }
+.closer .h2 .line { display: block; }
 .big-slash {
   position: absolute; top: -20%; bottom: -20%; right: 6%; width: clamp(70px, 11vw, 150px);
   background: var(--spectrum-slash); transform: skewX(-20deg);
 }
-@media (max-width: 640px) { .big-slash { right: -40px; opacity: .9; } .closer .h2 { max-width: 11ch; } }
+@media (max-width: 640px) { .big-slash { right: -40px; opacity: .9; } .closer .h2 { font-size: 8.6vw; } .closer .h2 .line { white-space: nowrap; } }
 
 /* ---------- footer ---------- */
 .foot { border-top: 1px solid var(--line); padding-block: 36px; }
@@ -959,7 +961,7 @@ body.modal-open { overflow: hidden; }
   <div class="big-slash" aria-hidden="true"></div>
   <div class="wrap">
     <span class="label" style="margin:0">// Ready when you are</span>
-    <h2 class="h2" id="closer-title">One shoot. A month of content. Proof it worked.</h2>
+    <h2 class="h2" id="closer-title"><span class="line">One shoot.</span> <span class="line">A month of content.</span> <span class="line">Proof it worked.</span></h2>
     <a class="btn btn-primary" href="#estimate" data-track="cta_closer"><span class="slash-ico" aria-hidden="true"></span>Get a free treatment</a>
   </div>
 </section>
