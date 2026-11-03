@@ -14,6 +14,17 @@
     document.documentElement.setAttribute("data-mode", mode);
   })();
 </script>
+<script>
+  /* Cookie consent: analytics stays off until the visitor accepts (Google Consent Mode v2). */
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag("consent", "default", { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", wait_for_update: 500 });
+  (function () {
+    var c = null;
+    try { c = localStorage.getItem("slam-consent"); } catch (e) {}
+    if (c === "all") gtag("consent", "update", { analytics_storage: "granted" });
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -585,6 +596,53 @@ body.modal-open { overflow: hidden; }
 .copy:hover { border-color: var(--fg); }
 .foot-meta { font: 400 .75rem/1.4 var(--mono); color: var(--muted); }
 
+/* ---------- cookie banner ---------- */
+.cookie {
+  position: fixed; z-index: 80; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  max-width: 440px; margin-left: auto;
+  background: var(--bg); color: var(--fg); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.18); padding: 20px; display: grid; gap: 14px;
+}
+.cookie[hidden] { display: none !important; }
+.cookie h2 { font: 700 1.15rem/1.15 var(--display); display: flex; align-items: center; gap: 10px; }
+.cookie h2::before { content: ""; width: 7px; height: 16px; flex: none; background: var(--spectrum); clip-path: polygon(64% 0, 100% 0, 36% 100%, 0 100%); }
+.cookie p { font-size: .9rem; color: var(--muted); }
+.cookie-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.cookie-actions .btn { padding: 11px 16px; font-size: .88rem; flex: 1 1 auto; justify-content: center; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.linkish { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+/* ---------- contact window ---------- */
+.contact-modal { position: fixed; inset: 0; z-index: 95; display: grid; place-items: center; padding: 16px; }
+.contact-modal[hidden] { display: none !important; }
+.contact-card {
+  position: relative; width: min(880px, 100%); max-height: calc(100dvh - 32px); overflow: auto;
+  background: var(--bg); color: var(--fg); border: 1px solid var(--line); border-radius: 12px;
+  display: grid; box-shadow: 0 30px 80px rgba(0,0,0,.35); transform-origin: center;
+}
+@media (min-width: 760px) { .contact-card { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
+.contact-side { position: relative; overflow: hidden; background: #0A0A0A; color: #fff; padding: 32px 28px; display: grid; gap: 22px; align-content: start; }
+.contact-side::after { content: ""; position: absolute; right: -40px; top: -20%; bottom: -20%; width: 70px; background: var(--spectrum-slash); transform: skewX(-20deg); opacity: .9; }
+.contact-side > * { position: relative; z-index: 1; max-width: 30ch; }
+.contact-side .label { color: rgba(255,255,255,.6); margin: 0; }
+.contact-side h2 { font: 700 clamp(2rem, 4vw, 2.8rem)/1 var(--display); letter-spacing: -.02em; }
+.contact-side p { color: rgba(255,255,255,.72); }
+.c-rows { display: grid; border-top: 1px solid rgba(255,255,255,.18); }
+.c-rows div { display: grid; gap: 4px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+.c-rows dt { font: 500 .66rem/1 var(--mono); letter-spacing: .06em; color: rgba(255,255,255,.55); }
+.c-rows dd { margin: 0; font-size: 1rem; }
+.c-rows a { color: #fff; }
+.contact-form { padding: 32px 28px; display: grid; gap: 14px; align-content: start; }
+.contact-form .row2 { display: grid; gap: 14px; }
+@media (min-width: 520px) { .contact-form .row2 { grid-template-columns: 1fr 1fr; } }
+.field select { font: inherit; padding: 11px 12px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg); color: var(--fg); }
+.contact-form .btn { justify-content: center; }
+.contact-close { position: absolute; top: 12px; right: 12px; z-index: 3; }
+.hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
+.form-msg { font-size: .9rem; padding: 12px 14px; border-radius: 4px; background: var(--raised); border: 1px solid var(--line); }
+.form-msg.err { border-color: var(--s1); }
+.nav-contact { color: var(--fg) !important; font-weight: 500; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -612,6 +670,7 @@ body.modal-open { overflow: hidden; }
       <a href="#tracking">Tracking</a>
       <a href="#packages">Packages</a>
       <a href="#estimate">Estimate</a>
+      <a href="#contact" class="nav-contact" data-contact>Contact</a>
     </nav>
     <div class="nav-end">
       <button class="mode-toggle" id="mode-toggle" type="button" aria-pressed="false" aria-label="Dark mode">
@@ -928,7 +987,10 @@ body.modal-open { overflow: hidden; }
         </div>
         <ul class="lines" id="est-lines"></ul>
         <p class="includes" id="est-includes"></p>
-        <form class="lead" id="lead-form" novalidate>
+        <form class="lead" id="lead-form" name="estimate" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="estimate">
+          <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <input type="hidden" name="estimate" id="lead-estimate">
           <div class="field"><label for="lead-name">Name</label><input id="lead-name" name="name" autocomplete="name"></div>
           <div class="field"><label for="lead-company">Company</label><input id="lead-company" name="company" autocomplete="organization"></div>
           <div class="field">
@@ -970,7 +1032,10 @@ body.modal-open { overflow: hidden; }
   <div class="wrap">
     <span class="label" style="margin:0">// Ready when you are</span>
     <h2 class="h2" id="closer-title"><span class="line">One shoot.</span> <span class="line">A month of content.</span> <span class="line">Proof it worked.</span></h2>
-    <a class="btn btn-primary" href="#estimate" data-track="cta_closer"><span class="slash-ico" aria-hidden="true"></span>Get a free treatment</a>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#estimate" data-track="cta_closer"><span class="slash-ico" aria-hidden="true"></span>Get a free treatment</a>
+      <a class="btn btn-secondary" href="#contact" data-contact>Contact us</a>
+    </div>
   </div>
 </section>
 </main>
@@ -997,6 +1062,59 @@ body.modal-open { overflow: hidden; }
   </div>
 </div>
 
+<!-- Contact window -->
+<div class="contact-modal" id="contact-modal" hidden>
+  <div class="post-backdrop" data-cclose></div>
+  <div class="contact-card" id="contact-card" role="dialog" aria-modal="true" aria-labelledby="contact-title" tabindex="-1">
+    <button class="icon-btn post-close contact-close" type="button" data-cclose aria-label="Close contact window">✕</button>
+    <div class="contact-side">
+      <span class="label">// Contact</span>
+      <h2 id="contact-title">Let's make your next month of content.</h2>
+      <p>Tell us what you need and we'll reply within one business day. Or just email us.</p>
+      <dl class="c-rows" style="margin:0">
+        <div><dt>EMAIL</dt><dd><a href="mailto:contact@slamproduction.com">contact@slamproduction.com</a></dd></div>
+        <div><dt>STUDIOS</dt><dd>Atlanta, GA · Boston, MA</dd></div>
+        <div><dt>REPLY TIME</dt><dd>Within one business day</dd></div>
+      </dl>
+    </div>
+    <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="contact">
+      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <div class="row2">
+        <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" autocomplete="name"></div>
+        <div class="field"><label for="c-company">Company</label><input id="c-company" name="company" autocomplete="organization"></div>
+      </div>
+      <div class="field">
+        <label for="c-email">Email <em>(required)</em></label>
+        <input id="c-email" name="email" type="email" autocomplete="email" required aria-describedby="c-email-err">
+        <span class="err" id="c-email-err" hidden>Enter an email so we can reply.</span>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="c-city">Where are you?</label>
+          <select id="c-city" name="city"><option>Atlanta</option><option>Boston</option><option>Somewhere else</option></select></div>
+        <div class="field"><label for="c-phone">Phone <em>(optional)</em></label><input id="c-phone" name="phone" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="field">
+        <label for="c-msg">Message <em>(required)</em></label>
+        <textarea id="c-msg" name="message" required aria-describedby="c-msg-err" placeholder="What are you looking to film, and when?"></textarea>
+        <span class="err" id="c-msg-err" hidden>Add a short message so we know what you need.</span>
+      </div>
+      <button class="btn btn-primary" type="submit"><span class="slash-ico" aria-hidden="true"></span>Send message</button>
+      <div class="form-msg" id="contact-sent" role="status" hidden></div>
+    </form>
+  </div>
+</div>
+
+<!-- Cookie banner -->
+<div class="cookie" id="cookie" role="region" aria-labelledby="cookie-title" hidden>
+  <h2 id="cookie-title">Cookies</h2>
+  <p>We use analytics cookies to see which pages and videos people find useful. They stay off unless you accept. Your light or dark mode choice is saved on your device either way.</p>
+  <div class="cookie-actions">
+    <button class="btn btn-primary" type="button" id="cookie-accept">Accept all</button>
+    <button class="btn btn-secondary" type="button" id="cookie-decline">Only necessary</button>
+  </div>
+</div>
+
 <!-- 10. Footer -->
 <footer class="foot">
   <div class="wrap">
@@ -1012,6 +1130,10 @@ body.modal-open { overflow: hidden; }
     <div class="mail">
       <code id="mail-addr">contact@slamproduction.com</code>
       <button class="copy" id="copy-mail" type="button">Copy</button>
+    </div>
+    <div class="foot-links foot-meta">
+      <a href="#contact" data-contact>Contact</a>
+      <button type="button" class="linkish" id="cookie-settings">Cookie settings</button>
     </div>
     <p class="foot-meta">SLAM Production // Atlanta, GA // Boston, MA // © 2026</p>
   </div>
@@ -1461,15 +1583,119 @@ body.modal-open { overflow: hidden; }
       submitted_at: new Date().toISOString()
     });
     track("generate_lead", { package: payload.package, goal: payload.goal, range: payload.range });
-    /* PLACEHOLDER: no backend yet. Set window.SLAM_FORM_ENDPOINT to a form service URL to send the payload. */
-    var endpoint = window.SLAM_FORM_ENDPOINT;
-    if (endpoint) {
-      fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }).catch(function () {});
-    }
-    sent.innerHTML = "<strong>Thanks" + (payload.name ? ", " + payload.name.replace(/[<>&]/g, "") : "") + ". We'll reply within one business day.</strong>" +
-      '<span class="note"><span class="placeholder-tag">PLACEHOLDER</span>The form isn\'t connected to an inbox yet, so nothing was sent.</span>';
-    sent.hidden = false;
+    document.getElementById("lead-estimate").value =
+      "Range: " + payload.range + " | Package: " + payload.package + " | Goal: " + ((GOALS.filter(function (g) { return g.id === payload.goal; })[0] || {}).name || payload.goal) +
+      " | Locations: " + payload.locations + " | Add-ons: " + (payload.addons || []).join(", ") + " | Timeline: " + (payload.timeline || "");
+    var btn = lead.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    sendForm(lead).then(function () {
+      sent.innerHTML = "<strong>Thanks" + (payload.name ? ", " + payload.name.replace(/[<>&]/g, "") : "") + ". Your estimate is on its way to us.</strong>" +
+        '<span class="note">We\'ll reply within one business day with your free treatment.</span>';
+      sent.hidden = false; lead.reset(); calc();
+    }, function () {
+      sent.innerHTML = "<strong>That didn't go through.</strong><span class=\"note\">Please try again, or email contact@slamproduction.com.</span>";
+      sent.hidden = false;
+    }).then(function () { btn.disabled = false; });
   });
+
+  /* Netlify Forms: post the form, url-encoded, to the site root */
+  function sendForm(formEl) {
+    var body = new URLSearchParams(new FormData(formEl)).toString();
+    return fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); });
+  }
+
+  /* ---------- contact window ---------- */
+  var cModal = document.getElementById("contact-modal"), cCard = document.getElementById("contact-card");
+  var cForm = document.getElementById("contact-form"), cSent = document.getElementById("contact-sent"), cOpener = null;
+  function openContact(from) {
+    cOpener = from || null;
+    cModal.hidden = false; document.body.classList.add("modal-open");
+    if (!reduce && cCard.animate) {
+      var start = "translateY(40px) scale(.96)";
+      if (from && from.getBoundingClientRect) {
+        var a = from.getBoundingClientRect(), b = cCard.getBoundingClientRect();
+        start = "translate(" + (a.left + a.width / 2 - (b.left + b.width / 2)) + "px," + (a.top + a.height / 2 - (b.top + b.height / 2)) + "px) scale(.2)";
+      }
+      cCard.animate([{ transform: start, opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 480, easing: "cubic-bezier(.2,.8,.2,1)" });
+      cModal.querySelector(".post-backdrop").animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
+      Array.prototype.forEach.call(cCard.querySelectorAll(".contact-side > *, .contact-form > .row2, .contact-form > .field, .contact-form > .btn"), function (el, i) {
+        el.animate([{ transform: "translateY(14px)", opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 420, delay: 160 + i * 40, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
+      });
+    }
+    setTimeout(function () { var n = document.getElementById("c-name"); (n || cCard).focus({ preventScroll: true }); }, 60);
+    track("contact_open", { source: from && from.closest ? (from.closest("nav") ? "nav" : from.closest("footer") ? "footer" : "page") : "link" });
+  }
+  function closeContact() {
+    if (cModal.hidden) return;
+    var done = function () {
+      cModal.hidden = true; document.body.classList.remove("modal-open");
+      if (location.hash === "#contact") history.replaceState(null, "", location.pathname + location.search);
+      if (cOpener && cOpener.focus) cOpener.focus({ preventScroll: true });
+    };
+    if (!reduce && cCard.animate) {
+      cModal.querySelector(".post-backdrop").animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220, fill: "forwards" });
+      cCard.animate([{ transform: "none", opacity: 1 }, { transform: "translateY(30px) scale(.97)", opacity: 0 }], { duration: 240, easing: "cubic-bezier(.4,0,.2,1)", fill: "forwards" })
+        .onfinish = function () { cCard.getAnimations().forEach(function (x) { x.cancel(); }); cModal.querySelector(".post-backdrop").getAnimations().forEach(function (x) { x.cancel(); }); done(); };
+    } else done();
+  }
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-contact]");
+    if (t) { e.preventDefault(); openContact(t); return; }
+    if (e.target.closest("[data-cclose]")) closeContact();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (cModal.hidden) return;
+    if (e.key === "Escape") closeContact();
+    else if (e.key === "Tab") {
+      var f = cCard.querySelectorAll("a[href], button:not([disabled]), input:not([type=hidden]):not([tabindex='-1']), select, textarea");
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  if (location.hash === "#contact") openContact(null);
+  var cEmail = document.getElementById("c-email"), cMsg = document.getElementById("c-msg");
+  function cValid(el, errId, ok) { el.toggleAttribute("aria-invalid", !ok); document.getElementById(errId).hidden = ok; return ok; }
+  cEmail.addEventListener("blur", function () { if (cEmail.value) cValid(cEmail, "c-email-err", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(cEmail.value.trim())); });
+  cEmail.addEventListener("input", function () { if (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(cEmail.value.trim())) cValid(cEmail, "c-email-err", true); });
+  cMsg.addEventListener("input", function () { if (cMsg.value.trim()) cValid(cMsg, "c-msg-err", true); });
+  cForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var okE = cValid(cEmail, "c-email-err", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(cEmail.value.trim()));
+    var okM = cValid(cMsg, "c-msg-err", !!cMsg.value.trim());
+    if (!okE) { cEmail.focus(); return; }
+    if (!okM) { cMsg.focus(); return; }
+    var btn = cForm.querySelector('button[type="submit"]'); btn.disabled = true;
+    sendForm(cForm).then(function () {
+      cSent.className = "form-msg"; cSent.innerHTML = "<strong>Thanks, message sent.</strong> We'll reply within one business day.";
+      cSent.hidden = false; cForm.reset(); track("contact_submit");
+    }, function () {
+      cSent.className = "form-msg err"; cSent.innerHTML = "<strong>That didn't go through.</strong> Please try again, or email contact@slamproduction.com.";
+      cSent.hidden = false;
+    }).then(function () { btn.disabled = false; });
+  });
+
+  /* ---------- cookie consent ---------- */
+  var cookie = document.getElementById("cookie");
+  function getConsent() { try { return localStorage.getItem("slam-consent"); } catch (e) { return null; } }
+  function setConsent(v) {
+    try { localStorage.setItem("slam-consent", v); } catch (e) {}
+    gtag("consent", "update", { analytics_storage: v === "all" ? "granted" : "denied" });
+    hideCookie();
+  }
+  function showCookie() {
+    cookie.hidden = false;
+    if (!reduce && cookie.animate) cookie.animate([{ transform: "translateY(24px)", opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 420, easing: "cubic-bezier(.2,.8,.2,1)" });
+  }
+  function hideCookie() {
+    if (!reduce && cookie.animate) cookie.animate([{ opacity: 1 }, { transform: "translateY(16px)", opacity: 0 }], { duration: 220 }).onfinish = function () { cookie.hidden = true; };
+    else cookie.hidden = true;
+  }
+  document.getElementById("cookie-accept").addEventListener("click", function () { setConsent("all"); });
+  document.getElementById("cookie-decline").addEventListener("click", function () { setConsent("necessary"); });
+  document.getElementById("cookie-settings").addEventListener("click", showCookie);
+  if (!getConsent()) setTimeout(showCookie, 900);
 
   /* goal CTA inside the picker jumps to the estimate */
   panel.addEventListener("click", function (e) { if (e.target.closest("[data-goal-cta]")) track("cta_click", { location: "goal_panel" }); });
